@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\SearchProductController;
 use App\Http\Controllers\SignInFormController;
 use App\Http\Controllers\SignUpFormController;
@@ -27,6 +28,9 @@ Route::get('/about_us', function () {
 Route::get('/contact_us', function () {
     return view('contact_us');
 })->name('contact_us');
+
+Route::get('/contact_us', [ContactFormController::class, 'showContactForm'])->name('contact_us');
+Route::post('/contact_us', [ContactFormController::class, 'contactFormValidation'])->name('contact_us');
 
 // Route::get('/signin', function () {
 //     return view('accounts.signin');
