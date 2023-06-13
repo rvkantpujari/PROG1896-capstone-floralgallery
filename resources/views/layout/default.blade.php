@@ -68,7 +68,7 @@
         @show
         @section('navbar')
             <!-- Navbar -->
-            <nav x-data="{ isOpen: false }" class="relative bg-white shadow bg-gray-800 lg:px-32">
+            <nav x-data="{ isOpen: false }" class="relative bg-white shadow bg-gray-800 md:px-24 lg:px-32">
                 <div class="container px-6 py-4 mx-auto pb-6 mt-1">
                     <div class="lg:flex lg:items-center lg:justify-between">
                         <div class="flex items-center justify-between mt-1">
