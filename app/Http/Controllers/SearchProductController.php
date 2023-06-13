@@ -16,6 +16,9 @@ class SearchProductController extends Controller
         // dd($req);
         // print_r($req->all());
         // print_r($req->input('search'));
-        return view('search');
+        $req->validate([
+            'search' => 'required|min:3'
+        ]);
+        return view('search', ['search' => $req->input('search')]);
     }
 }

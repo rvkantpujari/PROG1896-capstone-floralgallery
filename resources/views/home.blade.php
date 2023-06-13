@@ -4,10 +4,7 @@
 
 @section('main-content')
     <!-- Carousel -->
-    <article
-        x-data="slider"
-        class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl"
-    >
+    <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl">
         <template x-for="(image, index) in images">
             <figure
                 class="h-screen"
@@ -319,8 +316,7 @@
                 <p
                     class="mt-2 text-sm text-gray-600 dark:text-gray-400 md:text-gray-400"
                 >
-                    Lorem ipsum dolor sit, amet consectetur adipisicing
-                    elit. Consectetur obcaecati odio
+                    Be the first to get notified. FREE!!! 😎
                 </p>
             </div>
         </div>

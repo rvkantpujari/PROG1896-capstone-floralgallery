@@ -8,10 +8,8 @@
         <div class="container px-5 mx-auto lg:mb-28">
             <div class="flex flex-wrap w-full mb-16">
                 <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-                    <h1
-                        class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900"
-                    >
-                        Search Results: Keywords
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
+                        Search Results for: {{$search}}
                     </h1>
                     <div class="h-1 w-20 bg-pink-500 rounded"></div>
                 </div>
@@ -25,10 +23,8 @@
         >
             <div class="lg:w-1/4 space-y-2 -mt-12 mx-8 md:mx-32 lg:mx-0">
                 <form>
-                    <details class="rounded border border-gray-300 mb-2">
-                        <summary
-                            class="flex cursor-pointer items-center justify-between gap-2 bg-white p-4 text-gray-900"
-                        >
+                    <details class="my-2 overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex cursor-pointer items-center justify-between gap-2 bg-white p-4 text-gray-900 transition duration-300">
                             <span class="text-sm font-medium">
                                 Availability
                             </span>
@@ -130,12 +126,8 @@
                         </div>
                     </details>
 
-                    <details
-                        class="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden"
-                    >
-                        <summary
-                            class="flex cursor-pointer items-center justify-between gap-2 bg-white p-4 text-gray-900 transition"
-                        >
+                    <details class="my-2 overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex cursor-pointer items-center justify-between gap-2 bg-white p-4 text-gray-900 transition duration-300">
                             <span class="text-sm font-medium"> Price </span>
 
                             <span class="transition group-open:-rotate-180">

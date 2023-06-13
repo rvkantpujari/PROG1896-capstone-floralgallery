@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\SearchProductController;
+use App\Http\Controllers\SignInFormController;
+use App\Http\Controllers\SignUpFormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,21 +28,30 @@ Route::get('/contact_us', function () {
     return view('contact_us');
 })->name('contact_us');
 
-Route::get('/signin', function () {
-    return view('accounts.signin');
-})->name('signin');
+// Route::get('/signin', function () {
+//     return view('accounts.signin');
+// })->name('signin');
 
-Route::get('/signup', function () {
-    return view('accounts.signup');
-})->name('signup');
+Route::get('/signin', [SignInFormController::class, 'showSignInForm'])->name('signin');
+Route::post('/signin', [SignInFormController::class, 'signInFormValidation'])->name('signin');
+
+// Route::get('/signup', function () {
+//     return view('accounts.signup');
+// })->name('signup');
+
+Route::get('/signup', [SignUpFormController::class, 'showSignUpForm'])->name('signup');
+Route::post('/signup', [SignUpFormController::class, 'signUpFormValidation'])->name('signup');
 
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
 
-Route::get('/search', function () {
-    return view('search');
-})->name('search');
+// Route::get('/search', function () {
+//     return view('search');
+// })->name('search');
+
+Route::get('/search', [SearchProductController::class, 'showSearchForm'])->name('search');
+Route::post('/search', [SearchProductController::class, 'showResults'])->name('search');
 
 Route::get('/view_product', function () {
     return view('view_product');
