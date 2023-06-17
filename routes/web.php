@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AccountInfoFormController;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\PersonalInfoFormController;
 use App\Http\Controllers\SearchProductController;
 use App\Http\Controllers\SignInFormController;
 use App\Http\Controllers\SignUpFormController;
@@ -45,6 +47,13 @@ Route::post('/signin', [SignInFormController::class, 'signInFormValidation'])->n
 
 Route::get('/signup', [SignUpFormController::class, 'showSignUpForm'])->name('signup');
 Route::post('/signup', [SignUpFormController::class, 'signUpFormValidation'])->name('signup');
+
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
+
+Route::post('/profile/personal_info', [PersonalInfoFormController::class, 'personalInfoFormValidation'])->name('personal_info');
+Route::post('/profile/account_info', [AccountInfoFormController::class, 'accountInfoFormValidation'])->name('account_info');
 
 Route::get('/cart', function () {
     return view('cart');

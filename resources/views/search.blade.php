@@ -4,20 +4,22 @@
 
 @section('main-content')
     <!-- Search Results -->
-    <section class="text-gray-600 body-font m-24 lg:mx-40">
-        <div class="container px-5 mx-auto lg:mb-28">
-            <div class="flex flex-wrap w-full mb-16">
-                <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-                        Search Results for: {{$search}}
-                    </h1>
-                    <div class="h-1 w-20 bg-pink-500 rounded"></div>
+    @isset($search)
+        <section class="text-gray-600 body-font mx-12 my-12 lg:mx-40">
+            <div class="container px-5 mx-auto lg:mb-28">
+                <div class="flex flex-wrap w-full mb-16">
+                    <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
+                                Search Results for: {{$search}}
+                        </h1>
+                        <div class="h-1 w-20 bg-pink-500 rounded"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endisset
 
-    <section class="my-20 text-gray-600 body-font lg:mx-32 mx-auto">
+    <section class="mt-32 mb-20 text-gray-600 body-font lg:mx-32 mx-auto">
         <div
             class="w-full container px-5 flex flex-col lg:flex-row gap-x-8"
         >

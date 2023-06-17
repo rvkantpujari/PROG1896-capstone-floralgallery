@@ -17,7 +17,7 @@
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossorigin="anonymous"
         />
-        <script src="https://cdn.tailwindcss.com"></script>
+        @vite('resources/css/app.css')
         <script src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js" defer></script>
     </head>
     <body class="bg-gradient-to-r from-pink-500 to-blue-500">

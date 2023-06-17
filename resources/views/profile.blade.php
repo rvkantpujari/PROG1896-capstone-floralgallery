@@ -4,32 +4,23 @@
 
 @section('main-content')
     <!-- Profile -->
-    <div class="px-40 py-24 flex justify-around">
-        <form>
-            <div class="space-y-12 flex lg:flex-row gap-x-8">
-                <div class="border-b border-gray-900/10 flex flex-col">
-                    <h2
-                        class="font-semibold leading-7 text-gray-900 text-3xl"
-                    >
+    <div class="px-20 py-8 md:px-40 md:py-8 flex justify-center">
+        <form method="POST" action={{route('personal_info')}} class="border-b pb-20" enctype="multipart/form-data" id="personal_info">
+            @csrf
+            <div class="space-y-12 flex flex-col lg:flex-row gap-x-8">
+                <div class="border-b border-gray-900/10 py-8 flex flex-col">
+                    <h2 class="font-semibold leading-7 text-gray-900 text-3xl">
                         Manage Profile
                     </h2>
-                    <p class="mt-1 text-sm leading-6 text-gray-600">
-                        Manage your Personal Data such as name, contact
-                        information etc.
-                    </p>
 
-                    <div
-                        class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 grid-cols-6"
-                    >
+                    <div class="mt-10 flex flex-col w-80">
                         <div class="col-span-full">
-                            <label
-                                for="photo"
-                                class="block text-sm font-medium leading-6 text-gray-900"
-                                >Photo</label
-                            >
-                            <div class="mt-2 flex items-center gap-x-3">
+                            <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">
+                                Photo
+                            </label>
+                            <div class="mt-2 flex justify-center items-center gap-x-3">
                                 <svg
-                                    class="h-32 w-32 text-gray-300"
+                                    class="h-48 w-48 md:h-32 md:w-32 text-gray-300"
                                     viewBox="0 0 24 24"
                                     fill="currentColor"
                                     aria-hidden="true"
@@ -43,12 +34,10 @@
                             </div>
                         </div>
 
-                        <div class="col-span-full">
-                            <label
-                                for="cover-photo"
-                                class="block text-sm font-medium leading-6 text-gray-900"
-                                >Change photo</label
-                            >
+                        <div class="col-span-full ">
+                            <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">
+                                Change photo
+                            </label>
                             <div
                                 class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10"
                             >
@@ -69,13 +58,13 @@
                                         class="mt-4 flex text-sm leading-6 text-gray-600"
                                     >
                                         <label
-                                            for="file-upload"
-                                            class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                                            for="file_upload"
+                                            class="relative cursor-pointer rounded-md bg-white font-semibold text-pink-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-pink-600 focus-within:ring-offset-2 hover:text-pink-500"
                                         >
                                             <span>Upload a file</span>
                                             <input
-                                                id="file-upload"
-                                                name="file-upload"
+                                                id="file_upload"
+                                                name="file_upload"
                                                 type="file"
                                                 class="sr-only"
                                             />
@@ -85,163 +74,189 @@
                                     <p
                                         class="text-xs leading-5 text-gray-600"
                                     >
-                                        PNG, JPG, GIF up to 10MB
+                                        PNG or JPG up to 4 MB
                                     </p>
                                 </div>
                             </div>
+                            @error('file_upload')
+                                <span class="text-red-500 text-sm">{{$message}}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
 
                 <div class="border-b border-gray-900/10 py-8">
-                    <h2
-                        class="text-base font-semibold leading-7 text-gray-900"
-                    >
+                    <h2 class="text-base font-semibold leading-7 text-gray-900">
                         Personal Information
                     </h2>
                     <p class="mt-1 text-sm leading-6 text-gray-600">
-                        Use a permanent address where you can receive mail.
+                        Manage your personal information such as name and mailing address.
                     </p>
 
-                    <div
-                        class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
-                    >
-                        <div class="sm:col-span-3">
-                            <label
-                                for="first-name"
-                                class="block text-sm font-medium leading-6 text-gray-900"
-                                >First name</label
-                            >
+                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-6">
+                        <input type="text" name="_personal_info" id="_personal_info" hidden>
+                        <div class="col-span-3">
+                            <label for="first_name" class="block text-sm font-medium leading-6 text-gray-900">
+                                First name
+                            </label>
                             <div class="mt-2">
-                                <input
-                                    type="text"
-                                    name="first-name"
-                                    id="first-name"
-                                    autocomplete="given-name"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                <input type="text" name="first_name" id="first_name" autocomplete="given-name"
+                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                 />
                             </div>
+                            @error('first_name')
+                                <span class="text-red-500 text-sm">{{$message}}</span>
+                            @enderror
                         </div>
 
-                        <div class="sm:col-span-3">
-                            <label
-                                for="last-name"
-                                class="block text-sm font-medium leading-6 text-gray-900"
-                                >Last name</label
-                            >
+                        <div class="col-span-3">
+                            <label for="last_name" class="block text-sm font-medium leading-6 text-gray-900">
+                                Last name
+                            </label>
                             <div class="mt-2">
-                                <input
-                                    type="text"
-                                    name="last-name"
-                                    id="last-name"
-                                    autocomplete="family-name"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                <input type="text" name="last_name" id="last_name"autocomplete="family-name"
+                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                 />
                             </div>
+                            @error('last_name')
+                                <span class="text-red-500 text-sm">{{$message}}</span>
+                            @enderror
                         </div>
 
-                        <div class="sm:col-span-4">
-                            <label
-                                for="email"
-                                class="block text-sm font-medium leading-6 text-gray-900"
-                                >Email address</label
-                            >
+                        <div class="col-span-3">
+                            <label for="street_address" class="block text-sm font-medium leading-6 text-gray-900">
+                                Street address
+                            </label>
                             <div class="mt-2">
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    autocomplete="email"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                <input type="text" name="street_address" id="street_address" autocomplete="street-address"
+                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                 />
                             </div>
+                            @error('street_address')
+                                <span class="text-red-500 text-sm">{{$message}}</span>
+                            @enderror
                         </div>
 
-                        <div class="sm:col-span-3">
-                            <label
-                                for="country"
-                                class="block text-sm font-medium leading-6 text-gray-900"
-                                >Country</label
-                            >
+                        <div class="col-span-3">
+                            <label for="city" class="block text-sm font-medium leading-6 text-gray-900">
+                                City
+                            </label>
                             <div class="mt-2">
-                                <select
-                                    id="country"
-                                    name="country"
-                                    autocomplete="country-name"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                >
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>Mexico</option>
+                                <input type="text" name="city" id="city" autocomplete="address-level2"
+                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                            @error('city')
+                                <span class="text-red-500 text-sm">{{$message}}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-span-3">
+                            <label for="region" class="block text-sm font-medium leading-6 text-gray-900">
+                                Province / Territory
+                            </label>
+                            <div class="mt-2">
+                                <select name="province" id="province" class="block w-full rounded-md border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-pink-300 sm:max-w-xs sm:text-sm sm:leading-6">
+                                    <option value="" selected disabled>Select Province</option>
+                                    <option value="Alberta">Alberta</option>
+                                    <option value="British Columbia">British Columbia</option>
+                                    <option value="Manitoba">Manitoba</option>
+                                    <option value="New Brunswick">New Brunswick</option>
+                                    <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                    <option value="Nova Scotia">Nova Scotia</option>
+                                    <option value="Ontario">Ontario</option>
+                                    <option value="Prince Edward Island">Prince Edward Island</option>
+                                    <option value="Quebec">Quebec</option>
+                                    <option value="Saskatchewan">Saskatchewan</option>
                                 </select>
                             </div>
+                            @error('province')
+                                <span class="text-red-500 text-sm">{{$message}}</span>
+                            @enderror
                         </div>
 
-                        <div class="col-span-full">
-                            <label
-                                for="street-address"
-                                class="block text-sm font-medium leading-6 text-gray-900"
-                                >Street address</label
-                            >
+                        <div class="col-span-3">
+                            <label for="postal_code" class="block text-sm font-medium leading-6 text-gray-900">
+                                ZIP / Postal code
+                            </label>
                             <div class="mt-2">
-                                <input
-                                    type="text"
-                                    name="street-address"
-                                    id="street-address"
-                                    autocomplete="street-address"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                <input type="text" name="postal_code" id="postal_code" autocomplete="postal_code"
+                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                 />
                             </div>
+                            @error('postal_code')
+                                <span class="text-red-500 text-sm">{{$message}}</span>
+                            @enderror
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="sm:col-span-2 sm:col-start-1">
-                            <label
-                                for="city"
-                                class="block text-sm font-medium leading-6 text-gray-900"
-                                >City</label
-                            >
+            <div class="mt-6 flex items-center justify-end gap-x-8">
+                <button type="button" class="text-sm font-semibold leading-6 text-gray-900">
+                    Cancel
+                </button>
+                <button type="submit" class="rounded-md bg-pink-600 px-[20px] py-2 text-sm font-semibold text-white shadow-sm hover:bg-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="px-20 py-8 md:px-40 md:py-8 flex justify-center">
+        <form method="POST" action={{route('account_info')}} class="pb-20" id="account_info">
+            @csrf
+            <div class="space-y-12 flex flex-col lg:flex-row gap-x-8">
+                <div class="border-b border-gray-900/10 py-8 flex flex-col">
+                    <h2 class="text-base font-semibold leading-7 text-gray-900">
+                        Account Information
+                    </h2>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">
+                        Manage your account credentials such as email, password.
+                    </p>
+                </div>
+
+                <div class="border-b border-gray-900/10 pb-8">
+                    <div class="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-6">
+                        <div class="col-span-6">
+                            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">
+                                Email address
+                            </label>
                             <div class="mt-2">
-                                <input
-                                    type="text"
-                                    name="city"
-                                    id="city"
-                                    autocomplete="address-level2"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                <input type="text" id="email" name="email" autocomplete="email"
+                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                 />
                             </div>
+                            @error('email')
+                                <span class="text-red-500 text-sm">{{$message}}</span>
+                            @enderror
                         </div>
 
-                        <div class="sm:col-span-2">
-                            <label
-                                for="region"
-                                class="block text-sm font-medium leading-6 text-gray-900"
-                                >State / Province</label
-                            >
+                        <div class="col-span-6 lg:col-span-3">
+                            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">
+                                Password
+                            </label>
                             <div class="mt-2">
-                                <input
-                                    type="text"
-                                    name="region"
-                                    id="region"
-                                    autocomplete="address-level1"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                <input type="password" name="password" id="password" autocomplete="password"
+                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                 />
                             </div>
+                            @error('password')
+                                <span class="text-red-500 text-sm">{{$message}}</span>
+                            @enderror
                         </div>
 
-                        <div class="sm:col-span-2">
-                            <label
-                                for="postal-code"
-                                class="block text-sm font-medium leading-6 text-gray-900"
-                                >ZIP / Postal code</label
-                            >
+                        <div class="col-span-6 lg:col-span-3">
+                            <label for="confirm_password" class="block text-sm font-medium leading-6 text-gray-900">
+                                Confirm Password
+                            </label>
                             <div class="mt-2">
-                                <input
-                                    type="text"
-                                    name="postal-code"
-                                    id="postal-code"
-                                    autocomplete="postal-code"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                <input type="password" name="confirm_password" id="confirm_password" autocomplete="confirm_password"
+                                    class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                 />
+                                @error('confirm_password')
+                                    <span class="text-red-500 text-sm">{{$message}}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -249,16 +264,10 @@
             </div>
 
             <div class="mt-6 flex items-center justify-end gap-x-8">
-                <button
-                    type="button"
-                    class="text-sm font-semibold leading-6 text-gray-900"
-                >
+                <button type="button" class="text-sm font-semibold leading-6 text-gray-900">
                     Cancel
                 </button>
-                <button
-                    type="submit"
-                    class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
+                <button type="submit" class="rounded-md bg-pink-600 px-[20px] py-2 text-sm font-semibold text-white shadow-sm hover:bg-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">
                     Save
                 </button>
             </div>

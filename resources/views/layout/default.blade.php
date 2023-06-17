@@ -12,7 +12,7 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
-        <script src="https://cdn.tailwindcss.com"></script>
+        @vite('resources/css/app.css')
         <script src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js" defer></script>
         <style>
             .active {
@@ -69,8 +69,8 @@
         @show
         @section('navbar')
             <!-- Navbar -->
-            <nav x-data="{ isOpen: false }" class="relative bg-white shadow bg-gray-800 md:px-24 lg:px-32">
-                <div class="container px-6 py-4 mx-auto pb-6 mt-1">
+            <nav x-data="{ isOpen: false }" class="relative bg-white shadow md:px-8 lg:px-12">
+                <div class="container px-4 py-4 mx-auto pb-6 mt-1">
                     <div class="lg:flex lg:items-center lg:justify-between">
                         <div class="flex items-center justify-between mt-1">
                             <a
@@ -129,13 +129,11 @@
                         <div
                             x-cloak
                             :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']"
-                            class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center"
+                            class="absolute inset-x-0 z-20 w-full px-4 py-4 transition-all duration-300 ease-in-out bg-white lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center"
                         >
                             <form action="{{route('search')}}" method="post">
                                 @csrf
-                                <div
-                                    class="pt-2 relative text-gray-600 lg:ml-8 order-last"
-                                >
+                                <div class="pt-2 relative text-gray-600 lg:ml-8 order-last">
                                     <input
                                         class="w-10/12 lg:w-80 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus-within:ring focus-within:ring-opacity-40 focus-within:ring-pink-300 outline-none focus:border-white"
                                         type="search"
@@ -143,10 +141,7 @@
                                         placeholder="Search Flowers"
                                     />
 
-                                    <button
-                                        type="submit"
-                                        class="md:absolute lg:absolute right-0 top-0 mt-5 mr-4 mb-4 ml-2"
-                                    >
+                                    <button type="submit" class="md:absolute lg:absolute right-0 top-0 mt-5 mr-4 mb-4 ml-2">
                                         <svg
                                             class="text-gray-600 h-4 w-4 fill-current"
                                             xmlns="http://www.w3.org/2000/svg"
@@ -156,10 +151,7 @@
                                             x="0px"
                                             y="0px"
                                             viewBox="0 0 56.966 56.966"
-                                            style="
-                                                enable-background: new 0 0 56.966
-                                                    56.966;
-                                            "
+                                            style="enable-background: new 0 0 56.966 56.966;"
                                             xml:space="preserve"
                                             width="512px"
                                             height="512px"
@@ -171,10 +163,7 @@
                                     </button>
                                 </div>
                             </form>
-
-                            <!-- <div
-                                class="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8"
-                            > -->
+                            
                             <div
                                 class="flex flex-col lg:flex-row items-end lg:mx-8 mx-4"
                             >

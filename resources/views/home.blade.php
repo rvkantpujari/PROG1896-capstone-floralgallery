@@ -68,30 +68,29 @@
     <!-- Products -->
     <section class="text-gray-600 body-font m-24 lg:mx-40 lg:mx24">
         <div class="container px-5 mx-auto lg:mb-28">
-            <div class="flex flex-wrap w-full mb-16">
+            <div class="flex flex-wrap flex-row w-full mb-16 justify-between">
                 <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-                    <h1
-                        class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900"
-                    >
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
                         Flowers 🌺
                     </h1>
                     <div class="h-1 w-20 bg-pink-500 rounded"></div>
                 </div>
-                <a
-                    href="#"
-                    class="lg:w-1/2 text-right w-full leading-relaxed text-gray-500 hover:text-blue-600"
-                >
-                    More Products
-                </a>
+                <span>
+                    {{-- <a href="{{url('/search')}}" class="lg:w-1/2 text-right w-full leading-relaxed text-gray-500 hover:text-blue-600">
+                        More Products
+                    </a> --}}
+                    <form method="get" action="{{url('/search')}}">
+                        <button type="submit" class="hover:text-pink-500">
+                            More Products
+                        </button>
+                    </form>
+                </span>
             </div>
         </div>
         <div class="container px-5 mx-auto">
             <div class="flex flex-wrap -m-16">
                 <div class="lg:w-1/4 md:w-1/2 p-4 w-full hover:font-bold">
-                    <a
-                        href="#"
-                        class="block relative h-48 rounded overflow-hidden hover:scale-105"
-                    >
+                    <a href="#" class="block relative h-48 rounded overflow-hidden hover:scale-105">
                         <img
                             alt="ecommerce"
                             class="object-cover object-center w-full h-full block"
