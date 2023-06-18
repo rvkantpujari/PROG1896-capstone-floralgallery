@@ -19,13 +19,14 @@
         />
         @vite('resources/css/app.css')
         <script src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body class="bg-gradient-to-r from-pink-500 to-blue-500">
         <main class="mt-48">
             <div
-                class="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg"
+                class="w-120 max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg"
             >
-                <div class="px-6 py-4">
+                <div class="px-4 pt-16 pb-4">
                     <div class="flex justify-center mx-auto">
                         <a
                             href="{{url('/')}}"
@@ -36,17 +37,15 @@
                         </a>
                     </div>
 
-                    <h3
-                        class="mt-3 text-xl font-medium text-center text-gray-900"
-                    >
-                        @yield('form-title')
+                    <h3 class="mt-3 text-xl font-medium text-gray-900 flex justify-center">
+                        <span>
+                            @yield('form-title')
+                        </span>
                     </h3>
                     @yield('form')
                 </div>
 
-                <div
-                    class="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700"
-                >
+                <div class="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
                     @yield('form-link-up')
                 </div>
             </div>

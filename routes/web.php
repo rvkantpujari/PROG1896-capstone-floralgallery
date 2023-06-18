@@ -6,6 +6,7 @@ use App\Http\Controllers\PersonalInfoFormController;
 use App\Http\Controllers\SearchProductController;
 use App\Http\Controllers\SignInFormController;
 use App\Http\Controllers\SignUpFormController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,8 +46,8 @@ Route::post('/signin', [SignInFormController::class, 'signInFormValidation'])->n
 //     return view('accounts.signup');
 // })->name('signup');
 
-Route::get('/signup', [SignUpFormController::class, 'showSignUpForm'])->name('signup');
-Route::post('/signup', [SignUpFormController::class, 'signUpFormValidation'])->name('signup');
+Route::get('/signup', [SignUpFormController::class, 'index'])->name('signup');
+Route::post('/signup', [SignUpFormController::class, 'create'])->name('signup');
 
 Route::get('/profile', function () {
     return view('profile');
