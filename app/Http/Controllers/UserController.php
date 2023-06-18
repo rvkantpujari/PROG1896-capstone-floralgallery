@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use Illuminate\Validation\Rules\Password;
 
-class SignUpFormController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +14,7 @@ class SignUpFormController extends Controller
     public function index()
     {
         //
+        // echo "<script>swal('Hello world!')</script>";
         return view('accounts.signup');
     }
 
@@ -40,7 +40,6 @@ class SignUpFormController extends Controller
         $user->fname = $req->first_name;
         $user->lname = $req->last_name;
         $user->email = $req->email;
-        $user->password = Hash::make($req->password);
         $user->save();
 
         return redirect(route('signup'))->with('message','Registration Successfull!!');;
