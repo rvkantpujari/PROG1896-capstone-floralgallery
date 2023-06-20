@@ -1,22 +1,16 @@
-@extends('layout.default')
+@extends('layouts.app')
 
 @section('title', 'Contact Us - FlowerGallery')
 
 @section('main-content')
     <!-- Contact Us -->
-    <div
-        class="mt-16 text-center text-3xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2"
-    >
+    <div class="pt-16 text-center text-3xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2">
         Contact Us
         <div class="h-1 w-20 bg-pink-500 rounded"></div>
     </div>
     <section class="text-gray-600 body-font relative mx-4 lg:mx-24">
-        <div
-            class="container px-5 pt-16 pb-24 mx-auto flex sm:flex-nowrap flex-wrap"
-        >
-            <div
-                class="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative"
-            >
+        <div class="container px-5 pt-16 pb-24 mx-auto flex sm:flex-nowrap flex-wrap">
+            <div class="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
                 <iframe
                     class="absolute inset-0"
                     style="filter: grayscale(1) contrast(1.2) opacity(0.4)"
@@ -59,11 +53,11 @@
                     </div>
                 </div>
             </div>
-            <div class="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
+            <div class="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:py-8 mt-16 md:mt-0">
                 <h2 class="text-gray-900 text-3xl font-semibold lg:text-2xl mb-1 title-font">
                     Feedback
                 </h2>
-                <p class="leading-relaxed mb-5 text-gray-600">
+                <p class="leading-relaxed mt-2 mb-5 text-gray-600">
                     Please fill up the form to provide your valuable
                     feedback.
                 </p>

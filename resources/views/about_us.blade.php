@@ -1,20 +1,16 @@
-@extends('layout.default')
+@extends('layouts.app')
 
 @section('title', 'About Us - FlowerGallery')
 
 @section('main-content')
     <!-- About Us -->
-    <div
-        class="mt-16 text-center text-3xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2"
-    >
+    <div class="pt-16 text-center text-3xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2">
         About Us
         <div class="h-1 w-20 bg-pink-500 rounded"></div>
     </div>
     <section class="text-gray-600 body-font relative mx-4 lg:mx-24">
-        <div
-            class="container px-5 pt-16 pb-24 mx-auto flex flex-col gap-y-4 text"
-        >
-            <span class="text-2xl">Welcome to FloralGallery!</span>
+        <div class="container px-5 pt-16 pb-24 mx-auto flex flex-col gap-y-4">
+            <span class="text-2xl pb-8">Welcome to FloralGallery!</span>
             <div>
                 At FloralGallery, we believe that flowers have the power to
                 brighten any moment, bring a smile to someone's face, and
@@ -81,7 +77,7 @@
                 serving you and being a part of your meaningful moments.
             </div>
 
-            <div class="text-2xl">The FloralGallery Team</div>
+            <div class="text-2xl mt-8">The FloralGallery Team</div>
         </div>
     </section>
 @endsection
