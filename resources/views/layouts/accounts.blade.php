@@ -22,18 +22,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body class="bg-gradient-to-r from-pink-500 to-blue-500">
-        <main class="mt-40">
-            <div
-                class="w-120 max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg"
-            >
+        <main class="mt-[10vh]">
+            <div class="w-120 max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg">
                 <div class="px-4 pt-16 pb-4">
                     <div class="flex justify-center mx-auto">
-                        <a
-                            href="{{url('/')}}"
-                            class="text-2xl font-semibold subpixel-antialiased hover:no-underline hover:duration-300"
-                        >
-                            <span class="text-pink-500">Floral</span
-                            ><span class="text-black">Gallery</span>
+                        <a href="{{url('/')}}" class="text-2xl font-semibold subpixel-antialiased hover:no-underline hover:duration-300">
+                            <span class="text-pink-500">Floral</span><span class="text-black">Gallery</span>
                         </a>
                     </div>
 
