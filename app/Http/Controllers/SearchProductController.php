@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class SearchProductController extends Controller
 {
-    // show search form
+    //
     function showSearchForm() {
         return view('search');
     }

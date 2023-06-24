@@ -1,4 +1,4 @@
-@extends('layout.default')
+@extends('layouts.app')
 
 @section('title', 'FlowerGallery - Flowers for all occasions')
 
@@ -67,8 +67,8 @@
 
     <!-- Products -->
     <section class="text-gray-600 body-font m-24 lg:mx-40 lg:mx24">
-        <div class="container px-5 mx-auto lg:mb-28">
-            <div class="flex flex-wrap flex-row w-full mb-16 justify-between">
+        <div class="container px-5 mx-auto lg:pb-28">
+            <div class="flex flex-wrap flex-row w-full pt-8 pb-2 justify-between">
                 <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
                         Flowers 🌺
@@ -123,14 +123,10 @@
                         />
                     </a>
                     <div class="mt-4">
-                        <h3
-                            class="text-gray-500 text-xs tracking-widest title-font mb-1"
-                        >
+                        <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
                             Flower
                         </h3>
-                        <h2
-                            class="text-gray-900 title-font text-lg font-medium"
-                        >
+                        <h2 class="text-gray-900 title-font text-lg font-medium">
                             Purple Daisy
                         </h2>
                         <p class="mt-1">$8.50</p>
@@ -291,59 +287,42 @@
     </section>
 
     <!-- Newsletter -->
-    <div class="text-center text-3xl font-semibold lg:mt-40">
-        Newsletter
-    </div>
-    <section
-        class="mt-12 mb-20 flex flex-col mx-8 max-w-4xl lg:mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 md:flex-row md:h-48"
-    >
-        <div
-            class="md:flex md:items-center md:justify-center md:w-1/2 bg-[#1e3050]"
-        >
-            <div class="px-6 py-6 md:px-8 md:py-0">
-                <h2
-                    class="text-lg font-bold text-gray-700 dark:text-white md:text-gray-100"
-                >
-                    Sign Up For
-                    <span
-                        class="text-blue-600 capitalize dark:text-blue-400 md:text-blue-300"
-                        >Latest products</span
-                    >
-                    Updates
-                </h2>
-
-                <p
-                    class="mt-2 text-sm text-gray-600 dark:text-gray-400 md:text-gray-400"
-                >
-                    Be the first to get notified. FREE!!! 😎
-                </p>
-            </div>
+    <div class="pb-20 lg:mt-40">
+        <div class="text-center text-3xl font-semibold">
+            Newsletter
         </div>
-
-        <div
-            class="flex items-center justify-center pb-6 md:py-0 md:w-1/2 bg-white"
-        >
-            <form>
-                <div
-                    class="mt-8 lg:mt-0 flex flex-col p-1.5 overflow-hidden border rounded-lg lg:flex-row focus-within:ring focus-within:ring-opacity-40 focus-within:ring-pink-300 outline-none focus:border-white"
-                >
-                    <input
-                        class="px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none"
-                        type="text"
-                        name="email"
-                        placeholder="Enter your email"
-                        aria-label="Enter your email"
-                    />
-
-                    <button
-                        class="px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none"
-                    >
-                        subscribe
-                    </button>
+        <section class="mt-12 flex flex-col mx-8 max-w-4xl lg:mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 md:flex-row md:h-48">
+            <div class="md:flex md:items-center md:justify-center md:w-1/2 bg-[#1e3050]">
+                <div class="px-6 py-6 md:px-8 md:py-0">
+                    <h2 class="text-lg font-bold text-gray-700 dark:text-white md:text-gray-100">
+                        Sign Up For
+                        <span class="text-blue-600 capitalize dark:text-blue-400 md:text-blue-300">
+                            Latest products
+                        </span>
+                        Updates
+                    </h2>
+                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400 md:text-gray-400">
+                        Be the first to get notified. FREE!!! 😎
+                    </p>
                 </div>
-            </form>
-        </div>
-    </section>
+            </div>
+    
+            <div class="flex items-center justify-center pb-6 md:py-0 md:w-1/2 bg-white">
+                <form>
+                    <div class="mt-8 lg:mt-0 flex flex-col p-1.5 overflow-hidden rounded-lg lg:flex-row focus-within:ring focus-within:ring-opacity-40 focus-within:ring-pink-300 outline-none border focus:border-white">
+                        <input
+                            class="px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none border-white"
+                            type="text" name="email" placeholder="Enter your email" aria-label="Enter your email"
+                        />
+    
+                        <button class="px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
+                            subscribe
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
 @endsection
 
 @section('js-scripts')
