@@ -52,6 +52,13 @@ Route::get('/register', function () {
 })->name('register');
 
 
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function(){
+        return view('layouts.dashboard.dashboard');
+    })->name('dashboard');
+});
+
+
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
