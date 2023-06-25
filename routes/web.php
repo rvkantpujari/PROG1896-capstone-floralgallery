@@ -21,8 +21,6 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::redirect('/dashboard', '/home')->middleware(['auth', 'verified'])->name('loggedIn');
-
 Route::get('/home', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('loggedIn');
