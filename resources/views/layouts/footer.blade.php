@@ -71,7 +71,7 @@
     <div class="bg-[#1e3050]">
         <div class="container py-4 flex flex-wrap flex-col md:flex-row md:justify-around lg:flex-row lg:justify-between">
             <p class="text-white text-sm text-center sm:text-left lg:pl-12">
-                © 2023 All rights reserved.
+                © {{now()->year}} All rights reserved.
             </p>
             <span class="flex sm:mt-0 mt-2 justify-center sm:justify-start lg:pr-12 text-white">
                 Designed &amp; Developed with ❤

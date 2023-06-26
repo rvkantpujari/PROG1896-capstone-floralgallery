@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchProductController;
@@ -21,6 +22,15 @@ Route::get('/', function () {
 })->name('home');
 
 
+Route::get('/about_us', function () {
+    return view('about_us');
+})->name('about_us');
+
+
+Route::get('/contact_us', [ContactFormController::class, 'showContactForm'])->name('contact_us');
+Route::post('/contact_us', [ContactFormController::class, 'contactFormValidation'])->name('contact_us');
+
+
 Route::get('/home', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('loggedIn');
@@ -33,29 +43,15 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/about_us', function () {
-    return view('about_us');
-})->name('about_us');
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware(['auth:admin'])->name('admin.dashboard');
 
 
-Route::get('/contact_us', [ContactFormController::class, 'showContactForm'])->name('contact_us');
-Route::post('/contact_us', [ContactFormController::class, 'contactFormValidation'])->name('contact_us');
-
-
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
-
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
-
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function(){
-        return view('layouts.dashboard.dashboard');
-    })->name('dashboard');
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::patch('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+    Route::delete('/admin/profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');
 });
 
 
@@ -79,3 +75,5 @@ Route::fallback(function () {
 
 
 require __DIR__.'/auth.php';
+
+require __DIR__.'/adminauth.php';
