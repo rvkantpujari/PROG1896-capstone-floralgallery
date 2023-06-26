@@ -11,7 +11,6 @@ use App\Http\Controllers\AdminAuth\RegisteredUserController;
 use App\Http\Controllers\AdminAuth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-// Route::middleware('guest')->group(function () {
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function() {
 
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -37,7 +36,7 @@ Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'adm
                 ->name('password.store');
 });
 
-Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function() {
+Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('verify-email', EmailVerificationPromptController::class)
                 ->name('verification.notice');
 
