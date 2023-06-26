@@ -39,25 +39,25 @@
         @section('js-scripts')
             <script>
                 function openSidebar() {
-                    document.querySelector('.sidebarMenu').classList.remove('md:invisible');
+                    document.querySelector('.sidebarMenu').classList.remove('md:hidden');
                     document.querySelector('.sidebarBtn').classList.remove('md:visible');
                     document.querySelector('.sidebarBtn').classList.add('md:hidden');
                     
-                    document.querySelector('.sidebarMenu').classList.remove('invisible');
+                    document.querySelector('.sidebarMenu').classList.remove('hidden');
                     document.querySelector('.sidebarBtn').classList.remove('visible');
                     document.querySelector('.sidebarBtn').classList.add('hidden');
                 }
                 
                 function closeSidebar() {
-                    document.querySelector('.sidebarMenu').classList.add('md:invisible');
+                    document.querySelector('.sidebarMenu').classList.add('md:hidden');
                     document.querySelector('.sidebarBtn').classList.add('md:visible');
                     document.querySelector('.sidebarBtn').classList.remove('md:hidden');
                     
-                    document.querySelector('.sidebarMenu').classList.add('invisible');
+                    document.querySelector('.sidebarMenu').classList.add('hidden');
                     document.querySelector('.sidebarBtn').classList.add('visible');
                     document.querySelector('.sidebarBtn').classList.remove('hidden');
                 }
             </script>
-        @endsection
+        @show
     </body>
 </html>
