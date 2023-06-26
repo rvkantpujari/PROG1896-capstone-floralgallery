@@ -8,7 +8,7 @@
         @csrf
         @method('patch')
         
-        <div class="py-4 px-8 w-full lg:min-h-[50vh]">
+        <div class="py-4 px-8 w-full lg:min-h-[20vh]">
             
             <h2 class="pt-8 text-base font-semibold leading-7 text-gray-900">
                 Personal Information
@@ -20,7 +20,7 @@
 
             <div class="mt-10 grid grid-cols-6 gap-x-2 gap-y-4 md:grid-cols-12">
 
-                <div class="col-span-6 md:col-span-4">
+                <div class="col-span-6 md:col-span-6 lg:col-span-6">
                     <label for="first_name" class="block text-sm font-medium leading-6 text-gray-500">
                         First name
                     </label>
@@ -35,22 +35,7 @@
                     @enderror
                 </div>
 
-                <div class="col-span-6 md:col-span-4">
-                    <label for="middle_name" class="block text-sm font-medium leading-6 text-gray-500">
-                        Middle name
-                    </label>
-                    <div class="mt-2">
-                        <input type="text" name="middle_name" id="middle_name" autocomplete="additional-name"
-                            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                            value="{{old('middle_name', $user->middle_name)}}"
-                        />
-                    </div>
-                    @error('middle_name')
-                        <span class="text-red-500 text-sm">{{$message}}</span>
-                    @enderror
-                </div>
-
-                <div class="col-span-6 md:col-span-4">
+                <div class="col-span-6 md:col-span-6 lg:col-span-6">
                     <label for="last_name" class="block text-sm font-medium leading-6 text-gray-500">
                         Last name
                     </label>
@@ -65,14 +50,14 @@
                     @enderror
                 </div>
                 
-                <div class="col-span-6 md:col-span-6">
+                <div class="col-span-6 md:col-span-12 lg:col-span-12">
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-500">
                         Primary Email
                     </label>
                     <div class="mt-2">
                         <input type="text" id="email" name="email" autocomplete="email"
                             class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                            value="{{old('email', $user->email)}}"
+                            value="{{old('email', $user->email)}}" readonly
                         />
                     </div>
                     @error('email')
@@ -96,51 +81,6 @@
                             @endif
                         </div>
                     @endif
-                </div>
-                
-                <div class="col-span-6 md:col-span-6">
-                    <label for="secondary_email" class="block text-sm font-medium leading-6 text-gray-500">
-                        Secondary Email
-                    </label>
-                    <div class="mt-2">
-                        <input type="text" name="secondary_email" id="secondary_email" autocomplete="email"
-                            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                            value="{{old('secondary_email', $user->secondary_email)}}"
-                        />
-                    </div>
-                    @error('secondary_email')
-                        <span class="text-red-500 text-sm">{{$message}}</span>
-                    @enderror
-                </div>
-                
-                <div class="col-span-6 md:col-span-4">
-                    <label for="phone" class="block text-sm font-medium leading-6 text-gray-500">
-                        Phone
-                    </label>
-                    <div class="mt-2">
-                        <input type="text" name="phone" id="phone" autocomplete="tel" placeholder="(XXX) XXX-XXXX"
-                            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                            value="{{old('phone', $user->phone)}}"
-                        />
-                    </div>
-                    @error('phone')
-                        <span class="text-red-500 text-sm">{{$message}}</span>
-                    @enderror
-                </div>
-
-                <div class="col-span-6 md:col-span-4">
-                    <label for="dob" class="block text-sm font-medium leading-6 text-gray-500">
-                        Date of Birth
-                    </label>
-                    <div class="mt-2">
-                        <input type="date" name="dob" id="dob" autocomplete="family-name"
-                            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                            value="{{old('dob', $user->dob)}}"
-                        />
-                    </div>
-                    @error('last_name')
-                        <span class="text-red-500 text-sm">{{$message}}</span>
-                    @enderror
                 </div>
             </div>
         </div>
@@ -174,14 +114,14 @@
         </script>
     @endif
 
-{{-- </div>
-<div class="flex md:px-8 md:py-4 lg:px-0 lg:pb-24 lg:flex-row lg:justify-center"> --}}
+    {{-- </div>
+    <div class="flex md:px-8 md:py-4 lg:px-0 lg:pb-24 lg:flex-row lg:justify-center"> --}}
     
     <form method="post" action="{{ route('admin.password.update') }}">
         @csrf
         @method('put')
         
-        <div class="py-4 px-8 w-full lg:min-h-[50vh]">
+        <div class="py-4 px-8 w-full lg:min-h-[20vh]">
             
             <h2 class="pt-8 text-base font-semibold leading-7 text-gray-900">
                 Update Password
@@ -205,7 +145,7 @@
                     <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
                 </div>
                 
-                <div class="col-span-6 md:col-span-6 lg:col-span-12">
+                <div class="col-span-6 md:col-span-6 lg:col-span-6">
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-500">
                         New Password
                     </label>
@@ -217,7 +157,7 @@
                     <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
                 </div>
                 
-                <div class="col-span-6 md:col-span-6 lg:col-span-12">
+                <div class="col-span-6 md:col-span-6 lg:col-span-6">
                     <label for="password_confirmation" class="block text-sm font-medium leading-6 text-gray-500">
                         Confirm Password
                     </label>
