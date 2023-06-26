@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Visitor Routes
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -31,6 +34,17 @@ Route::get('/contact_us', [ContactFormController::class, 'showContactForm'])->na
 Route::post('/contact_us', [ContactFormController::class, 'contactFormValidation'])->name('contact_us');
 
 
+Route::get('/search', [SearchProductController::class, 'showSearchForm'])->name('search');
+Route::post('/search', [SearchProductController::class, 'showResults'])->name('search');
+
+
+Route::get('/view_product', function () {
+    return view('view_product');
+})->name('view_product');
+
+
+// Customer Routes
+
 Route::get('/home', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('loggedIn');
@@ -42,6 +56,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::get('/cart', function () {
+    return view('cart');
+})->name('cart');
+
+
+require __DIR__.'/auth.php';
+
+
+// Admin Routes
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
@@ -55,25 +79,10 @@ Route::middleware('auth:admin')->group(function () {
 });
 
 
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+require __DIR__.'/adminauth.php';
 
-
-Route::get('/search', [SearchProductController::class, 'showSearchForm'])->name('search');
-Route::post('/search', [SearchProductController::class, 'showResults'])->name('search');
-
-
-Route::get('/view_product', function () {
-    return view('view_product');
-})->name('view_product');
 
 
 Route::fallback(function () {
     return view('404');
 });
-
-
-require __DIR__.'/auth.php';
-
-require __DIR__.'/adminauth.php';
