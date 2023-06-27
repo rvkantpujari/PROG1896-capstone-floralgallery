@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -17,12 +18,8 @@ class AdminProfileUpdateRequest extends FormRequest
     {
         return [
             'first_name' => ['string', 'max:255'],
-            'middle_name' => ['string', 'nullable', 'max:255'],
             'last_name' => ['string', 'max:255'],
-            'dob' => ['date', 'nullable'],
-            'email' => ['email', 'max:255', Rule::unique(Admin::class)->ignore($this->user()->id)],
-            'secondary_email' => ['email', 'max:255', 'nullable', Rule::unique(Admin::class)->ignore($this->user()->id)],
-            'phone' => ['string', 'nullable', 'regex:/^\(\d{3}\)?[\s]?\d{3}[\s.-]?\d{4}$/'],
+            'email' => ['email', 'max:255', Rule::unique(Admin::class)->ignore($this->user()->id), Rule::unique(User::class)->ignore($this->user()->id)],
         ];
     }
 }
