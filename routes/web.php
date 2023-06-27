@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\SellerProfileController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchProductController;
@@ -81,6 +82,22 @@ Route::middleware('auth:admin')->group(function () {
 
 require __DIR__.'/adminauth.php';
 
+
+// Seller Routes
+
+Route::get('/seller/dashboard', function () {
+    return view('seller.dashboard');
+})->middleware(['auth:seller'])->name('seller.dashboard');
+
+
+Route::middleware('auth:seller')->group(function () {
+    Route::get('/seller/profile', [SellerProfileController::class, 'edit'])->name('seller.profile.edit');
+    Route::patch('/seller/profile', [SellerProfileController::class, 'update'])->name('seller.profile.update');
+    Route::delete('/seller/profile', [SellerProfileController::class, 'destroy'])->name('seller.profile.destroy');
+});
+
+
+require __DIR__.'/sellerauth.php';
 
 
 Route::fallback(function () {
