@@ -168,7 +168,7 @@
                                     class="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl"
                                 >
                                     <a
-                                        href="#"
+                                        href="#" title="{{Auth::user()->first_name}} {{Auth::user()->last_name}}"
                                         class="flex items-center p-3 -mt-2 text-gray-600 transition-colors duration-300 transform hover:bg-gray-700 hover:text-gray-200"
                                     >
                                         <img
@@ -181,7 +181,7 @@
                                                 {{ Str::upper(Str::limit(Auth::user()->first_name, 12)) }}
                                             </h1>
                                             <span class="text-sm font-medium text-pink-400">
-                                                {{ Str::lower(Str::limit(Auth::user()->email, 22)) }}
+                                                {{ Str::lower(Str::limit(Auth::user()->email, 16)) }}
                                             </span>
                                         </div>
                                     </a>
