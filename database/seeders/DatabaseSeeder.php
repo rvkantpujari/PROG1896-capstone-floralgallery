@@ -21,18 +21,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $roles = [
-            ['id' => 1, 'role' => 'admin', 'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 2, 'role' => 'customer', 'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 3, 'role' => 'seller', 'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')],
-        ];
-
-        DB::table('roles')->insert($roles);
-
         DB::table('admins')->insert([
             'id' => 1, 'first_name' => 'Ravi Kant', 'last_name' => 'Pujari', 
             'email' => 'rvkantpujari@gmail.com', 'password' => Hash::make('admin'),
-            'status' => 'approved', //'role_id' => 1,
+            'status' => 'approved',
             'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')
         ]);
     }
