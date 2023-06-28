@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\SellerAuth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Seller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -13,8 +12,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Mail\WelcomeMail;
-use App\Models\Admin;
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Seller;
 use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'store_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Seller::class, 'unique:'.User::class, 'unique:'.Admin::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class, 'unique:'.Admin::class, 'unique:'.Seller::class],
             'password' => ['required', 'confirmed', Rules\Password::min(8)->mixedCase()->numbers()->symbols()],
         ]);
 
