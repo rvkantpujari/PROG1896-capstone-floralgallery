@@ -182,7 +182,7 @@
                                     x-transition:leave="transition ease-in duration-100"
                                     x-transition:leave-start="opacity-100 scale-100"
                                     x-transition:leave-end="opacity-0 scale-90"
-                                    class="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl"
+                                    class="absolute right-0 z-20 w-64 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl"
                                 >
                                     <a
                                         href="#" title="{{Auth::user()->first_name}} {{Auth::user()->last_name}}"
@@ -195,10 +195,10 @@
                                         />
                                         <div class="mx-1">
                                             <h1 class="text-lg md:text-md lg:text-sm font-semibold">
-                                                {{ Str::upper(Str::limit(Auth::user()->first_name, 12)) }}
+                                                {{ Str::upper(Str::limit(Auth::user()->first_name, 16)) }}
                                             </h1>
                                             <span class="text-sm font-medium text-pink-400">
-                                                {{ Str::lower(Str::limit(Auth::user()->email, 16)) }}
+                                                {{ Str::lower(Str::limit(Auth::user()->email, 22)) }}
                                             </span>
                                         </div>
                                     </a>
@@ -218,7 +218,7 @@
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"
-                                            class="block px-4 py-3 text-sm capitalize transition-colors duration-300 transform text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                                            class="block px-4 py-3 -mb-2 text-sm capitalize transition-colors duration-300 transform text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                                             Sign Out
                                         </a>
                                     </form>
