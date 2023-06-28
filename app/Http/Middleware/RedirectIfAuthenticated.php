@@ -6,6 +6,7 @@ use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class RedirectIfAuthenticated
@@ -27,6 +28,13 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::HOME);
             }
+        }
+
+        if(Session::get('user_type') === 'admin') {
+            return redirect(RouteServiceProvider::ADMIN_HOME);
+        }
+        elseif(Session::get('user_type') === 'seller') {
+            return redirect(RouteServiceProvider::SELLER_HOME);
         }
 
         return $next($request);
