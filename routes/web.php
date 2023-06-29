@@ -78,6 +78,11 @@ Route::get('/admin/manage-users', function() {
 })->middleware(['auth:admin'])->name('admin.manage_users');
 
 
+Route::get('/admin/manage-sellers', function() {
+    return view('admin.manage_sellers');
+})->middleware(['auth:admin'])->name('admin.manage_sellers');
+
+
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::patch('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
