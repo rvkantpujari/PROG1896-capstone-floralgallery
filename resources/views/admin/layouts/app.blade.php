@@ -23,6 +23,9 @@
                 font-weight: bold;
             }
         </style>
+        @section('css-styles')
+            {{-- Include CSS Styles here!!! --}}
+        @show
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
@@ -37,28 +40,29 @@
             </main>
             @include('layouts.footer')
         </div>
-        @section('js-scripts')
-            <script>
-                function openSidebar() {
-                    document.querySelector('.sidebarMenu').classList.remove('md:hidden');
-                    document.querySelector('.sidebarBtn').classList.remove('md:visible');
-                    document.querySelector('.sidebarBtn').classList.add('md:hidden');
-                    
-                    document.querySelector('.sidebarMenu').classList.remove('hidden');
-                    document.querySelector('.sidebarBtn').classList.remove('visible');
-                    document.querySelector('.sidebarBtn').classList.add('hidden');
-                }
+        <script>
+            function openSidebar() {
+                document.querySelector('.sidebarMenu').classList.remove('md:hidden');
+                document.querySelector('.sidebarBtn').classList.remove('md:visible');
+                document.querySelector('.sidebarBtn').classList.add('md:hidden');
                 
-                function closeSidebar() {
-                    document.querySelector('.sidebarMenu').classList.add('md:hidden');
-                    document.querySelector('.sidebarBtn').classList.add('md:visible');
-                    document.querySelector('.sidebarBtn').classList.remove('md:hidden');
-                    
-                    document.querySelector('.sidebarMenu').classList.add('hidden');
-                    document.querySelector('.sidebarBtn').classList.add('visible');
-                    document.querySelector('.sidebarBtn').classList.remove('hidden');
-                }
-            </script>
+                document.querySelector('.sidebarMenu').classList.remove('hidden');
+                document.querySelector('.sidebarBtn').classList.remove('visible');
+                document.querySelector('.sidebarBtn').classList.add('hidden');
+            }
+            
+            function closeSidebar() {
+                document.querySelector('.sidebarMenu').classList.add('md:hidden');
+                document.querySelector('.sidebarBtn').classList.add('md:visible');
+                document.querySelector('.sidebarBtn').classList.remove('md:hidden');
+                
+                document.querySelector('.sidebarMenu').classList.add('hidden');
+                document.querySelector('.sidebarBtn').classList.add('visible');
+                document.querySelector('.sidebarBtn').classList.remove('hidden');
+            }
+        </script>
+        @section('js-scripts')
+            {{-- Include JS Scripts here!! --}}
         @show
         @livewireScripts
     </body>
