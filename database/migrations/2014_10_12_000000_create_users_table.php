@@ -21,7 +21,6 @@ return new class extends Migration
             $table->dateTime('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('secondary_email', 255)->nullable();
             $table->string('phone', 15)->nullable();
             $table->string('status', 20)->default('pending');
             $table->timestamps();

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\RedirectResponse;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 
 class VerifyEmailController extends Controller
 {
@@ -20,7 +23,15 @@ class VerifyEmailController extends Controller
         }
 
         if ($request->user()->markEmailAsVerified()) {
+            
             event(new Verified($request->user()));
+
+            $user = User::find($request->user()->id);
+            $user->status = "verified";
+            $user->save();
+
+            // Send Account Creation Confirmation Mail
+            Mail::to($request->user()->email)->send(new WelcomeMail($user));
         }
 
         return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');

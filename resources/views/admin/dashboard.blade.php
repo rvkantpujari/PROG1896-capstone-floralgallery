@@ -4,5 +4,8 @@
 
 @section('main-content')
     {{-- Add Main Section Here!!! --}}
-    <h1>Hi, {{Auth::guard('admin')->user()->first_name}}. This is Admin Dashboard.</h1>
+    <div class="w-full">
+        <h1 class="text-[26px] font-semibold m-8">Dashboard</h1>
+        @include('admin.dashboard.top_cards')
+    </div>
 @endsection

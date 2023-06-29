@@ -13,7 +13,7 @@
                 @include('profile.partials.update-profile')
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="p-4 bg-white shadow-md rounded-lg lg:p-0">
                 @include('profile.partials.delete-user-form')
             </div>
         </div>
