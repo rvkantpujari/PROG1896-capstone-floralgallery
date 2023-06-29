@@ -23,6 +23,7 @@
                 font-weight: bold;
             }
         </style>
+        @livewireStyles
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -59,5 +60,6 @@
                 }
             </script>
         @show
+        @livewireScripts
     </body>
 </html>
