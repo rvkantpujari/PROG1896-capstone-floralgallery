@@ -1,9 +1,9 @@
-<section class="container my-4">
+<section class="container my-8">
     <div class="flex flex-col">
         <div class="-mx-4 -my-2 overflow-x-auto md:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="overflow-hidden border border-gray-200 md:rounded-lg p-8">
-                    <table id="sellers_list" class="min-w-full p-2 divide-y divide-gray-200">
+                    <table id="customers_list" class="min-w-full p-2 divide-y divide-gray-200">
                         <thead class="bg-gray-5">
                             <tr>
                                 <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">
@@ -65,32 +65,32 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach($sellers as $seller)
+                            @foreach($users as $user)
                                 <tr>
                                     <td class="px-4 py-4 text-sm md:text-[16px] font-medium whitespace-nowrap">
                                         <div class="inline-flex items-center gap-x-3">
                                             <input type="checkbox" class="text-blue-500 rounded">
-                                            <span>#{{ $seller->id }}</span>
+                                            <span>#{{ $user->id }}</span>
                                         </div>
                                     </td>
                                     <td class="px-4 py-4 text-sm md:text-[16px] text-gray-500 whitespace-nowrap">
-                                        {{$seller->first_name}}
+                                        {{$user->first_name}}
                                     </td>
                                     <td class="px-4 py-4 text-sm md:text-[16px] text-gray-500 whitespace-nowrap">
-                                        {{$seller->last_name}}
+                                        {{$user->last_name}}
                                     </td>
                                     <td class="px-4 py-4 text-sm md:text-[16px] text-gray-500 whitespace-nowrap">
-                                        {{$seller->email}}
+                                        {{$user->email}}
                                     </td>
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                        @if($seller->status === 'pending')
+                                        @if($user->status === 'pending')
                                             <div class="inline-flex items-center px-4 py-2 rounded-full gap-x-2 text-orange-500 hover:text-black bg-orange-300/60 hover:bg-orange-300/90">
                                                 <h2 class="text-sm font-normal">Pending</h2>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                                                 </svg>                                                      
                                             </div>
-                                        @elseif ($seller->status == 'verified')
+                                        @elseif ($user->status == 'verified')
                                             <div class="inline-flex items-center px-4 py-2 rounded-full gap-x-2 text-emerald-500 hover:text-black bg-emerald-100/60 hover:bg-emerald-300/90">
                                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M10 3L4.5 8.5L2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -98,7 +98,7 @@
         
                                                 <h2 class="text-sm font-normal">Verified</h2>
                                             </div>
-                                        @elseif($seller->status === 'deleted')
+                                        @elseif($user->status === 'deleted')
                                             <div class="inline-flex items-center px-4 py-2 rounded-full gap-x-2 text-red-500 hover:text-black bg-red-100/60 hover:bg-red-300/90">
                                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -106,7 +106,7 @@
         
                                                 <h2 class="text-sm font-normal">Deleted</h2>
                                             </div>
-                                        @elseif($seller->status === 'suspended')
+                                        @elseif($user->status === 'suspended')
                                             <div class="inline-flex items-center px-4 py-2 rounded-full gap-x-2 text-gray-500 hover:text-black bg-gray-100/60 hover:bg-gray-300/90">
                                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M4.5 7L2 4.5M2 4.5L4.5 2M2 4.5H8C8.53043 4.5 9.03914 4.71071 9.41421 5.08579C9.78929 5.46086 10 5.96957 10 6.5V10" stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
