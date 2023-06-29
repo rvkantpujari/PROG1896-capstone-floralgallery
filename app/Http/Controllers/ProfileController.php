@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Admin;
+use App\Models\Seller;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +30,10 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
+
+        $this->validate($request, [
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class, 'unique:'.Admin::class, 'unique:'.Seller::class],
+        ]);
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
