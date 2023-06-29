@@ -11,11 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-use App\Mail\WelcomeMail;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Seller;
-use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
 {
@@ -53,7 +51,7 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         // Mail::to($data['email'])->send(new WelcomeMail($user));
-        Mail::to($request->email)->send(new WelcomeMail($user));
+        // Mail::to($request->email)->send(new WelcomeMail($user));
 
         Auth::login($user);
 
