@@ -50,5 +50,21 @@ class DatabaseSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')
             ]
         ]);
+
+        DB::table('provinces')->insert([
+            ['id' => 1, 'province' => 'Alberta', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 2, 'province' => 'British Columbia', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 3, 'province' => 'Manitoba', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 4, 'province' => 'New Brunswick', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 5, 'province' => 'Newfoundland and Labrador', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 6, 'province' => 'Northwest Territories', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 7, 'province' => 'Nova Scotia', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 8, 'province' => 'Nunavut', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 9, 'province' => 'Ontario', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 10, 'province' => 'Prince Edward Island', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 11, 'province' => 'Quebec', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 12, 'province' => 'Saskatchewan', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 13, 'province' => 'Yukon', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+        ]);
     }
 }
