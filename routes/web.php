@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\SellerProfileController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\SearchProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -87,6 +88,14 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::patch('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
     Route::delete('/admin/profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');
+});
+
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin/manage-provinces', [ProvinceController::class, 'index'])->name('admin.provinces');
+    Route::get('/admin/edit-province/{id}', [ProvinceController::class, 'edit'])->name('admin.province.edit');
+    Route::patch('/admin/edit-province/{id}', [ProvinceController::class, 'update'])->name('admin.province.update');
+    Route::get('/admin/delete-province/{id}', [ProvinceController::class, 'destroy'])->name('admin.province.destroy');
 });
 
 
