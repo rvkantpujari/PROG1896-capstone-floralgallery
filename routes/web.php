@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\SellerProfileController;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\ManageCustomersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\SearchProductController;
@@ -74,9 +75,9 @@ Route::get('/admin/dashboard', function () {
 })->middleware(['auth:admin'])->name('admin.dashboard');
 
 
-Route::get('/admin/manage-users', function() {
-    return view('admin.manage_users');
-})->middleware(['auth:admin'])->name('admin.manage_users');
+// Route::get('/admin/manage-customers', function() {
+//     return view('admin.manage_customers');
+// })->middleware(['auth:admin'])->name('admin.manage_customers');
 
 
 Route::get('/admin/manage-sellers', function() {
@@ -96,6 +97,14 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/edit-province/{id}', [ProvinceController::class, 'edit'])->name('admin.province.edit');
     Route::patch('/admin/edit-province/{id}', [ProvinceController::class, 'update'])->name('admin.province.update');
     Route::get('/admin/delete-province/{id}', [ProvinceController::class, 'destroy'])->name('admin.province.destroy');
+});
+
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin/manage-customers', [ManageCustomersController::class, 'index'])->name('admin.customers');
+    Route::get('/admin/edit-customer/{id}', [ManageCustomersController::class, 'edit'])->name('admin.customer.edit');
+    Route::patch('/admin/edit-customer/{id}', [ManageCustomersController::class, 'update'])->name('admin.customer.update');
+    Route::get('/admin/delete-customer/{id}', [ManageCustomersController::class, 'destroy'])->name('admin.customer.destroy');
 });
 
 

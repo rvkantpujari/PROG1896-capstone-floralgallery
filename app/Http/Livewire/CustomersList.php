@@ -11,6 +11,6 @@ class CustomersList extends Component
     public function render()
     {
         $this->customers_list = User::select('id', 'first_name', 'last_name', 'email', 'status', 'created_at')->get();
-        return view('admin.livewire.customers-list', ['users' => $this->customers_list]);
+        return view('admin.manage-customers.livewire.customers-list', ['customers' => $this->customers_list]);
     }
 }

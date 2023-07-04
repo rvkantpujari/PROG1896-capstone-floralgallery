@@ -1,4 +1,19 @@
 <section class="container my-8">
+    @if (session()->has('update-customer-info'))
+        <script>
+            swal("Updated!! 😀🎉", "{{session('update-customer-info')}}", "success", {
+                button:true,
+                button:"OK",
+            });
+        </script>
+    @elseif (session()->has('delete-customer'))
+        <script>
+            swal("Deleted!!", "{{session('delete-customer')}}", "error", {
+                button:true,
+                button:"OK",
+            });
+        </script>
+    @endif
     <div class="flex flex-col">
         <div class="-mx-4 -my-2 overflow-x-auto md:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -8,7 +23,6 @@
                             <tr>
                                 <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">
                                     <div class="flex items-center gap-x-3">
-                                        <input type="checkbox" class="text-blue-500 rounded">
                                         <button class="flex items-center gap-x-2">
                                             <span>User ID</span>
                                         </button>
@@ -65,32 +79,29 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach($users as $user)
+                            @foreach($customers as $customer)
                                 <tr>
                                     <td class="px-4 py-4 text-sm md:text-[16px] font-medium whitespace-nowrap">
-                                        <div class="inline-flex items-center gap-x-3">
-                                            <input type="checkbox" class="text-blue-500 rounded">
-                                            <span>#{{ $user->id }}</span>
-                                        </div>
+                                        {{ $customer->id }}
                                     </td>
                                     <td class="px-4 py-4 text-sm md:text-[16px] text-gray-500 whitespace-nowrap">
-                                        {{$user->first_name}}
+                                        {{$customer->first_name}}
                                     </td>
                                     <td class="px-4 py-4 text-sm md:text-[16px] text-gray-500 whitespace-nowrap">
-                                        {{$user->last_name}}
+                                        {{$customer->last_name}}
                                     </td>
                                     <td class="px-4 py-4 text-sm md:text-[16px] text-gray-500 whitespace-nowrap">
-                                        {{$user->email}}
+                                        {{$customer->email}}
                                     </td>
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                        @if($user->status === 'pending')
+                                        @if($customer->status === 'pending')
                                             <div class="inline-flex items-center px-4 py-2 rounded-full gap-x-2 text-orange-500 hover:text-black bg-orange-300/60 hover:bg-orange-300/90">
                                                 <h2 class="text-sm font-normal">Pending</h2>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                                                 </svg>                                                      
                                             </div>
-                                        @elseif ($user->status == 'verified')
+                                        @elseif ($customer->status == 'verified')
                                             <div class="inline-flex items-center px-4 py-2 rounded-full gap-x-2 text-emerald-500 hover:text-black bg-emerald-100/60 hover:bg-emerald-300/90">
                                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M10 3L4.5 8.5L2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -98,7 +109,7 @@
         
                                                 <h2 class="text-sm font-normal">Verified</h2>
                                             </div>
-                                        @elseif($user->status === 'deleted')
+                                        @elseif($customer->status === 'deleted')
                                             <div class="inline-flex items-center px-4 py-2 rounded-full gap-x-2 text-red-500 hover:text-black bg-red-100/60 hover:bg-red-300/90">
                                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -106,7 +117,7 @@
         
                                                 <h2 class="text-sm font-normal">Deleted</h2>
                                             </div>
-                                        @elseif($user->status === 'suspended')
+                                        @elseif($customer->status === 'suspended')
                                             <div class="inline-flex items-center px-4 py-2 rounded-full gap-x-2 text-gray-500 hover:text-black bg-gray-100/60 hover:bg-gray-300/90">
                                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M4.5 7L2 4.5M2 4.5L4.5 2M2 4.5H8C8.53043 4.5 9.03914 4.71071 9.41421 5.08579C9.78929 5.46086 10 5.96957 10 6.5V10" stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -118,16 +129,23 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                         <div class="flex items-center gap-x-6">
-                                            <form method="POST">
+                                            <form method="GET" action="{{route('admin.customer.edit', ['id' => $customer->id])}}">
                                                 @csrf
-                                                <button class="text-blue-700 font-semibold px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
+                                                @method('patch')
+                                                <button class="text-white bg-gray-700 hover:bg-gray-900 font-semibold px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
                                                     Edit
                                                 </button>
                                             </form>
 
-                                            <button class="text-white font-semibold bg-red-400 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
-                                                Delete
-                                            </button>
+                                            @if ($customer->status != 'deleted')
+                                                <form method="GET" id="delete_customer_{{$customer->id}}" action="{{route('admin.customer.destroy', ['id' => $customer->id])}}">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="button" data-customer-id="{{$customer->id}}" class="_delete_customer_data_ text-white font-semibold bg-red-400 hover:bg-red-600 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
@@ -138,4 +156,28 @@
             </div>
         </div>
     </div>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('._delete_customer_data_').addEventListener('click', function(e) {
+                let data_id = $(this).attr('data-customer-id');
+                swal({
+                    title: 'Are you sure? 😥',
+                    text: "You won't be able to revert this action!",
+                    icon: 'warning',
+                    buttons: {
+                        cancel: true,
+                        confirm: {
+                            text: "Yes, delete it!",
+                            value: true,
+                            className: "bg-red-500 hover:bg-red-700",
+                        },
+                    }
+                }).then((result) => {
+                    if (result) {
+                        document.getElementById('delete_customer_' + data_id).submit();
+                    }
+                })
+            });
+        }, false);
+    </script>
 </section>
