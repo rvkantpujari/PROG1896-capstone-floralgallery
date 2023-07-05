@@ -16,7 +16,7 @@
     {{-- Add Main Section Here!!! --}}
     <div class="w-full">
         <h1 class="text-center lg:text-left text-[26px] font-semibold m-8">Manage Provinces</h1>
-        <div class="w-full px-8 flex flex-col justify-center">
+        <div class="w-full px-8 flex justify-center">
             @livewire('provinces')
         </div>
     </div>
@@ -39,6 +39,7 @@
         let provinceTable = $('#provinces').DataTable({
             dom: '<"my-4 py-4"lf><"mt-4 py-8"rt><"mb-4 py-4"Bp>',
             buttons: [
+                'colvis',
                 {
                     extend: 'copyHtml5',
                     exportOptions: {
@@ -62,8 +63,7 @@
                     exportOptions: {
                         columns: ':visible'
                     }
-                },
-                'colvis'
+                }
             ],
             "lengthMenu": [ 5, 10, 15 ]
         });
