@@ -62,15 +62,15 @@
                                                 @csrf
                                                 @method('patch')
                                                 
-                                                <button type="submit" class="text-blue-700 font-semibold px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
+                                                <button type="submit" class="text-white bg-gray-700 hover:bg-gray-900 font-semibold px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
                                                     Edit
                                                 </button>
                                             </form>
                                             
-                                            <form method="GET" action="{{route('admin.province.destroy', ['id' => $province->id])}}">
+                                            <form method="GET" id="delete_province_{{$province->id}}" action="{{route('admin.province.destroy', ['id' => $province->id])}}">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="submit" class="text-white font-semibold bg-red-400 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
+                                                <button type="button" data-province-id="{{$province->id}}" class="_delete_province_data_ text-white font-semibold bg-red-400 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
                                                     Delete
                                                 </button>
                                             </form>
@@ -84,4 +84,28 @@
             </div>
         </div>
     </div>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('._delete_province_data_').addEventListener('click', function(e) {
+                let data_id = $(this).attr('data-province-id');
+                swal({
+                    title: 'Are you sure? 😥',
+                    text: "You won't be able to revert this action!",
+                    icon: 'warning',
+                    buttons: {
+                        cancel: true,
+                        confirm: {
+                            text: "Yes, delete it!",
+                            value: true,
+                            className: "bg-red-500 hover:bg-red-700",
+                        },
+                    }
+                }).then((result) => {
+                    if (result) {
+                        document.getElementById('delete_province_' + data_id).submit();
+                    }
+                })
+            });
+        }, false);
+    </script>
 </section>
