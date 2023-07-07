@@ -75,11 +75,6 @@ Route::get('/admin/dashboard', function () {
 })->middleware(['auth:admin'])->name('admin.dashboard');
 
 
-// Route::get('/admin/manage-customers', function() {
-//     return view('admin.manage_customers');
-// })->middleware(['auth:admin'])->name('admin.manage_customers');
-
-
 Route::get('/admin/manage-sellers', function() {
     return view('admin.manage_sellers');
 })->middleware(['auth:admin'])->name('admin.manage_sellers');
@@ -105,6 +100,14 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/edit-customer/{id}', [ManageCustomersController::class, 'edit'])->name('admin.customer.edit');
     Route::patch('/admin/edit-customer/{id}', [ManageCustomersController::class, 'update'])->name('admin.customer.update');
     Route::get('/admin/delete-customer/{id}', [ManageCustomersController::class, 'destroy'])->name('admin.customer.destroy');
+});
+
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin/manage-categories', [ManageCustomersController::class, 'index'])->name('admin.categories');
+    Route::get('/admin/edit-category/{id}', [ManageCustomersController::class, 'edit'])->name('admin.category.edit');
+    Route::patch('/admin/edit-category/{id}', [ManageCustomersController::class, 'update'])->name('admin.category.update');
+    Route::get('/admin/delete-category/{id}', [ManageCustomersController::class, 'destroy'])->name('admin.category.destroy');
 });
 
 
