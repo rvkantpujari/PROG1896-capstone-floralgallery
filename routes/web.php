@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\SellerProfileController;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\ManageCategoryController;
 use App\Http\Controllers\ManageCustomersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProvinceController;
@@ -104,10 +105,10 @@ Route::middleware('auth:admin')->group(function () {
 
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('/admin/manage-categories', [ManageCustomersController::class, 'index'])->name('admin.categories');
-    Route::get('/admin/edit-category/{id}', [ManageCustomersController::class, 'edit'])->name('admin.category.edit');
-    Route::patch('/admin/edit-category/{id}', [ManageCustomersController::class, 'update'])->name('admin.category.update');
-    Route::get('/admin/delete-category/{id}', [ManageCustomersController::class, 'destroy'])->name('admin.category.destroy');
+    Route::get('/admin/manage-categories', [ManageCategoryController::class, 'index'])->name('admin.categories');
+    Route::get('/admin/edit-category/{id}', [ManageCategoryController::class, 'edit'])->name('admin.category.edit');
+    Route::patch('/admin/edit-category/{id}', [ManageCategoryController::class, 'update'])->name('admin.category.update');
+    Route::get('/admin/delete-category/{id}', [ManageCategoryController::class, 'destroy'])->name('admin.category.destroy');
 });
 
 
