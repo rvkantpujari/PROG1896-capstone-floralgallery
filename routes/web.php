@@ -129,6 +129,14 @@ Route::middleware('auth:seller')->group(function () {
 });
 
 
+Route::middleware('auth:seller')->group(function () {
+    Route::get('/seller/manage-products', [ManageCategoryController::class, 'index'])->name('seller.products');
+    Route::get('/seller/edit-product/{id}', [ManageCategoryController::class, 'edit'])->name('seller.product.edit');
+    Route::patch('/seller/edit-product/{id}', [ManageCategoryController::class, 'update'])->name('seller.product.update');
+    Route::get('/seller/delete-product/{id}', [ManageCategoryController::class, 'destroy'])->name('seller.product.destroy');
+});
+
+
 require __DIR__.'/sellerauth.php';
 
 
