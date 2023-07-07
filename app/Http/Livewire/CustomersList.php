@@ -10,7 +10,7 @@ class CustomersList extends Component
     public $customers_list;
     public function render()
     {
-        $this->customers_list = User::select('id', 'first_name', 'last_name', 'email', 'status', 'created_at')->get();
+        $this->customers_list = User::select('*')->get();
         return view('admin.manage-customers.livewire.customers-list', ['customers' => $this->customers_list]);
     }
 }
