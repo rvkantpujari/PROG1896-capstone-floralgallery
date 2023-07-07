@@ -5,6 +5,7 @@ use App\Http\Controllers\SellerProfileController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\ManageCategoryController;
 use App\Http\Controllers\ManageCustomersController;
+use App\Http\Controllers\ManageProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\SearchProductController;
@@ -130,10 +131,11 @@ Route::middleware('auth:seller')->group(function () {
 
 
 Route::middleware('auth:seller')->group(function () {
-    Route::get('/seller/manage-products', [ManageCategoryController::class, 'index'])->name('seller.products');
-    Route::get('/seller/edit-product/{id}', [ManageCategoryController::class, 'edit'])->name('seller.product.edit');
-    Route::patch('/seller/edit-product/{id}', [ManageCategoryController::class, 'update'])->name('seller.product.update');
-    Route::get('/seller/delete-product/{id}', [ManageCategoryController::class, 'destroy'])->name('seller.product.destroy');
+    Route::get('/seller/manage-products', [ManageProductsController::class, 'index'])->name('seller.products');
+    Route::get('/seller/add-product', [ManageProductsController::class, 'add'])->name('seller.product.add');
+    Route::get('/seller/edit-product/{id}', [ManageProductsController::class, 'edit'])->name('seller.product.edit');
+    Route::patch('/seller/edit-product/{id}', [ManageProductsController::class, 'update'])->name('seller.product.update');
+    Route::get('/seller/delete-product/{id}', [ManageProductsController::class, 'destroy'])->name('seller.product.destroy');
 });
 
 
