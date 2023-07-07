@@ -66,5 +66,12 @@ class DatabaseSeeder extends Seeder
             ['id' => 12, 'province' => 'Saskatchewan', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['id' => 13, 'province' => 'Yukon', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
         ]);
+
+        DB::table('product_categories')->insert([
+            ['id' => 1, 'category' => 'Flowers', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 2, 'category' => 'Bouquets', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 3, 'category' => 'Pots and Containers', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 4, 'category' => 'Gardening Tools', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+        ]);
     }
 }
