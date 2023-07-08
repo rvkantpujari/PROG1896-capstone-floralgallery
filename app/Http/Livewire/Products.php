@@ -4,9 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Products extends Component
 {
+    use WithFileUploads;
+    
     public $products;
     public function render()
     {

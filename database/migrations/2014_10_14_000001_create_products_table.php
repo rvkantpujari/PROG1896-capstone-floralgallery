@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('product_name', 100);
             $table->text('product_desc', );
-            $table->string('product_price');
+            $table->double('product_price', 8, 2);
             $table->string('product_dimensions')->nullable();
             $table->string('product_img1')->nullable();
             $table->string('product_img2')->nullable();

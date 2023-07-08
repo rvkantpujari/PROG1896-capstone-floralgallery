@@ -7,7 +7,6 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -36,11 +35,24 @@ class ManageProductsController extends Controller
     public function store(ProductAddOrUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
-        $product_categories = ProductCategory::select('*')->get();
-        DB::table('products')->insert($request->except(['_token']));
+
+        $dirPath = '/sellers/seller_'.auth()->user()->id;
+
+        $imgName = 'FloralGallery-seller_'.auth()->user()->id.'-'.date('Y-m-d-H-i-s').'.'.$request->product_img1->extension();
+        
+        $request->product_img1->move(public_path().$dirPath, $imgName);
+
+        $product = new Product();
+        $product->product_name = $request->product_name;
+        $product->product_desc = $request->product_desc;
+        $product->product_price = $request->product_price;
+        $product->category_id = $request->category_id;
+        $product->seller_id = $request->seller_id;
+        $product->product_img1 = $imgName;
+
+        $product->save();
         
         return Redirect::route('seller.products')->with('add-product-info', "New Product Added Successfully.");
-        // return view('seller.manage-products.product.add', ['categories' => $product_categories]);
     }
 
     /**

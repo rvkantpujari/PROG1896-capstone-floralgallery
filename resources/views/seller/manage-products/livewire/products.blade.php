@@ -1,14 +1,14 @@
 <section class="container my-8">
     @if (session()->has('add-product-info'))
         <script>
-            swal("Added!! 😀🎉", "{{session('add-product-info')}}", "success", {
+            swal("Product Added!! 😀🎉", "{{session('add-product-info')}}", "success", {
                 button:true,
                 button:"OK",
             });
         </script>
     @elseif (session()->has('update-product-info'))
         <script>
-            swal("Updated!! 😀🎉", "{{session('update-product-info')}}", "success", {
+            swal("Product Updated!! 😀🎉", "{{session('update-product-info')}}", "success", {
                 button:true,
                 button:"OK",
             });
