@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductAddOrUpdateRequest;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -19,11 +22,25 @@ class ManageProductsController extends Controller
     }
 
     /**
-     * Add new product to your store listing.
+     * Display add new product form.
      */
     public function add(): View
     {
-        return view('seller.manage-products.product.add');
+        $product_categories = ProductCategory::select('*')->get();
+        return view('seller.manage-products.product.add', ['categories' => $product_categories]);
+    }
+
+    /**
+     * Add new product to your store listing.
+     */
+    public function store(ProductAddOrUpdateRequest $request): RedirectResponse
+    {
+        $request->user()->fill($request->validated());
+        $product_categories = ProductCategory::select('*')->get();
+        DB::table('products')->insert($request->except(['_token']));
+        
+        return Redirect::route('seller.products')->with('add-product-info', "New Product Added Successfully.");
+        // return view('seller.manage-products.product.add', ['categories' => $product_categories]);
     }
 
     /**

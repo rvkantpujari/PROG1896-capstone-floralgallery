@@ -1,5 +1,12 @@
 <section class="container my-8">
-    @if (session()->has('update-product-info'))
+    @if (session()->has('add-product-info'))
+        <script>
+            swal("Added!! 😀🎉", "{{session('add-product-info')}}", "success", {
+                button:true,
+                button:"OK",
+            });
+        </script>
+    @elseif (session()->has('update-product-info'))
         <script>
             swal("Updated!! 😀🎉", "{{session('update-product-info')}}", "success", {
                 button:true,
@@ -54,11 +61,11 @@
                                         </div>
                                     </td>
                                     <td class="px-4 py-4 text-sm md:text-[16px] text-gray-500 whitespace-nowrap">
-                                        {{$product->product}}
+                                        {{$product->product_name}}
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                         <div class="flex items-center gap-x-3">
-                                            <form method="GET" action="{{route('admin.product.edit')}}">
+                                            <form method="GET" action="{{route('seller.product.edit', ['id' => $product->id])}}">
                                                 @csrf
                                                 @method('patch')
                                                 
@@ -67,7 +74,7 @@
                                                 </button>
                                             </form>
                                             
-                                            <form method="GET" id="delete_product_" action="{{route('admin.product.destroy')}}">
+                                            <form method="GET" id="delete_product_" action="{{route('seller.product.destroy', ['id' => $product->id])}}">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="button" data-product-id="{{--$product->id--}}" class="_delete_product_data_ text-white font-semibold bg-red-400 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">

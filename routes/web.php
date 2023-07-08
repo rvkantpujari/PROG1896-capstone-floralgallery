@@ -133,6 +133,7 @@ Route::middleware('auth:seller')->group(function () {
 Route::middleware('auth:seller')->group(function () {
     Route::get('/seller/manage-products', [ManageProductsController::class, 'index'])->name('seller.products');
     Route::get('/seller/add-product', [ManageProductsController::class, 'add'])->name('seller.product.add');
+    Route::post('/seller/add-product', [ManageProductsController::class, 'store'])->name('seller.product.store');
     Route::get('/seller/edit-product/{id}', [ManageProductsController::class, 'edit'])->name('seller.product.edit');
     Route::patch('/seller/edit-product/{id}', [ManageProductsController::class, 'update'])->name('seller.product.update');
     Route::get('/seller/delete-product/{id}', [ManageProductsController::class, 'destroy'])->name('seller.product.destroy');

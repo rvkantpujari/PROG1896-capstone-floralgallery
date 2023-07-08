@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('product_desc', );
             $table->string('product_price');
             $table->string('product_dimensions')->nullable();
-            $table->string('product_img1');
+            $table->string('product_img1')->nullable();
             $table->string('product_img2')->nullable();
             $table->string('product_img3')->nullable();
             $table->string('product_img4')->nullable();
