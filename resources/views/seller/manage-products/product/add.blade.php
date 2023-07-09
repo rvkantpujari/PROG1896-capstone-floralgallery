@@ -5,7 +5,7 @@
 @section('main-content')
     <!-- Add New Product -->
     <div class="w-full">
-        <h1 class="text-center lg:text-left text-[24px] md:text-[26px] font-semibold m-8"><a href="{{url()->previous()}}">Manage Products</a> <span class="hidden md:inline">></span> <br class="md:hidden"> <span class="text-pink-500">Add Product</span></h1>
+        <h1 class="text-center lg:text-left text-[24px] md:text-[26px] font-semibold m-8"><a href="{{route('seller.products')}}">Manage Products</a> <span class="hidden md:inline">></span> <br class="md:hidden"> <span class="text-pink-500">Add Product</span></h1>
 
         <form id="send-verification" method="post" action="{{ route('verification.send') }}">
             @csrf
@@ -120,22 +120,28 @@
                                     />
                                     <span class="text-red-500 text-xs mt-2" id="error_product_images" hidden>Maximum 4 images allowed.</span>
                                     <div class="flex flex-row flex-wrap gap-4 mt-8">
-                                        <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] rounded-md border-solid border-2 border-pink-300" alt="Product Image 1" id="preview_product_image1" hidden>
-                                        <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] rounded-md border-solid border-2 border-pink-300" alt="Product Image 2" id="preview_product_image2" hidden>
-                                        <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] rounded-md border-solid border-2 border-pink-300" alt="Product Image 3" id="preview_product_image3" hidden>
-                                        <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] rounded-md border-solid border-2 border-pink-300" alt="Product Image 4" id="preview_product_image4" hidden>
+                                        <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] object-cover rounded-md border-solid border-2 border-pink-300 product_preview_image" alt="Product Image 1" id="preview_product_image1" hidden>
+                                        <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] object-cover rounded-md border-solid border-2 border-pink-300 product_preview_image" alt="Product Image 2" id="preview_product_image2" hidden>
+                                        <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] object-cover rounded-md border-solid border-2 border-pink-300 product_preview_image" alt="Product Image 3" id="preview_product_image3" hidden>
+                                        <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] object-cover rounded-md border-solid border-2 border-pink-300 product_preview_image" alt="Product Image 4" id="preview_product_image4" hidden>
                                     </div>
                                 </div>
-                                @error('product_images')
+                                @error('product_images.*')
                                     <span class="text-red-500 text-sm">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
                         <script>
                             document.getElementById('product_images').addEventListener('change', previewImage);
+                            let productPreviewImages = document.querySelectorAll('.product_preview_image');
                             function previewImage(event) {
                                 let files = event.target.files;
                                 let fileSizeErrorMsg = document.getElementById('error_product_images');
+                                // Hide image previews
+                                productPreviewImages.forEach(img => {
+                                    img.style.display = "none";
+                                });
+                                // Load image previews
                                 if(files.length > 0 && files.length < 5) {
                                     fileSizeErrorMsg.style.display = "none";
                                     let counter = 0;
@@ -153,114 +159,6 @@
                             }
                         </script>
                     </div>
-
-                    {{-- <div class="mt-10 grid grid-cols-6 gap-x-2 gap-y-4 md:grid-cols-12">                            
-                        <div class="col-span-6 md:col-span-12 lg:col-span-12">
-                            <label for="product_images" class="block text-sm font-medium leading-6 text-gray-500">
-                                Product Image(s)
-                            </label>
-
-                            <span class="text-red-500 text-xs" id="error_product_img" hidden>Maximum 4 images allowed.</span>
-
-                            <span name="product_images" class="grid grid-cols-2 gap-2">
-                                <div class="mt-2">
-                                    <input type="file" name="product_image1" id="product_image1"
-                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                    />
-
-                                    @error('product_image1')
-                                        <span class="text-red-500 text-sm">{{$message}}</span>
-                                    @enderror
-                                </div>
-                                    
-                                <div class="mt-2">
-                                    <input type="file" name="product_image2" id="product_image2"
-                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                    />
-                                    
-                                    @error('product_image2')
-                                        <span class="text-red-500 text-sm">{{$message}}</span>
-                                    @enderror
-                                </div>
-                                
-                                <div class="mt-2">
-                                    <input type="file" name="product_image3" id="product_image3"
-                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                    />
-                                    
-                                    @error('product_image3')
-                                        <span class="text-red-500 text-sm">{{$message}}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="mt-2">
-                                    <input type="file" name="product_image4" id="product_image4"
-                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                    />
-                                    
-                                    @error('product_image4')
-                                        <span class="text-red-500 text-sm">{{$message}}</span>
-                                    @enderror
-                                </div>
-                                
-                            </span>
-                            <div class="flex flex-row flex-wrap gap-4 mt-8">
-                                <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] rounded-md border-solid border-2 border-pink-300" alt="Product Image 1" id="preview_product_image1" hidden>
-                                <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] rounded-md border-solid border-2 border-pink-300" alt="Product Image 2" id="preview_product_image2" hidden>
-                                <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] rounded-md border-solid border-2 border-pink-300" alt="Product Image 3" id="preview_product_image3" hidden>
-                                <img src="" class="h-[10vh] w-[30vw] md:h-[10vh] md:w-[16vw] lg:h-[12vh] lg:w-[10vw] rounded-md border-solid border-2 border-pink-300" alt="Product Image 4" id="preview_product_image4" hidden>
-                            </div>
-                        </div>
-                        <script>
-
-                            document.getElementById('product_image1').addEventListener('change', previewImage1);
-
-                            function previewImage1(event) {
-                                let file = event.target.files;
-
-                                console.log(file);
-                                
-                                let src = URL.createObjectURL(file[0]);
-                                let preview = document.getElementById("preview_product_image1");
-                                preview.src = src;
-                                preview.style.display = "block";
-                            }
-
-                            document.getElementById('product_image2').addEventListener('change', previewImage2);
-                            
-                            function previewImage2(event) {
-                                let file = event.target.files;
-                                
-                                let src = URL.createObjectURL(file[0]);
-                                let preview = document.getElementById("preview_product_image2");
-                                preview.src = src;
-                                preview.style.display = "block";
-                            }
-
-                            document.getElementById('product_image3').addEventListener('change', previewImage3);
-                            
-                            function previewImage3(event) {
-                                let file = event.target.files;
-                                
-                                let src = URL.createObjectURL(file[0]);
-                                let preview = document.getElementById("preview_product_image3");
-                                preview.src = src;
-                                preview.style.display = "block";
-                            }
-
-                            document.getElementById('product_image4').addEventListener('change', previewImage4);
-                            
-                            function previewImage4(event) {
-                                let file = event.target.files;
-                                
-                                let src = URL.createObjectURL(file[0]);
-                                let preview = document.getElementById("preview_product_image4");
-                                preview.src = src;
-                                preview.style.display = "block";
-                            }
-
-                        </script>
-                    </div> --}}
                     
                 </div>
             </div>
