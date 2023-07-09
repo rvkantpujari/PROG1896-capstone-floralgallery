@@ -17,7 +17,7 @@ class ProductAddOrUpdateRequest extends FormRequest
             'product_name' => ['required', 'string'],
             'product_price' => ['required', 'string'],
             'product_desc' => ['required', 'string'],
-            'product_img1' => ['required', 'mimes:jpeg,jpg,png', 'min:50', 'max:10240'],
+            'product_images.*' => ['required', 'mimes:jpeg,jpg,png,JPEG,JPG,PNG', 'min:50', 'max:15360'],
             'category_id' => ['required'],
             'seller_id' => ['required'],
         ];
