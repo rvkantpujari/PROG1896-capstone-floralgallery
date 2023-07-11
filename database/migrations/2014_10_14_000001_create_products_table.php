@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('product_img2')->nullable();
             $table->string('product_img3')->nullable();
             $table->string('product_img4')->nullable();
+            $table->string('product_status')->default('draft');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('product_categories')
                 ->onUpdate('cascade');

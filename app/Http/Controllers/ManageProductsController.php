@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductAddOrUpdateRequest;
+use App\Http\Requests\ProductAddRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\RedirectResponse;
@@ -33,7 +34,7 @@ class ManageProductsController extends Controller
     /**
      * Add new product to your store listing.
      */
-    public function store(ProductAddOrUpdateRequest $request): RedirectResponse
+    public function store(ProductAddRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
 
@@ -76,7 +77,6 @@ class ManageProductsController extends Controller
      */
     public function edit(Request $request): View
     {
-        // dd($request->route('id'));
         $product = DB::table('products')
                     ->join('product_categories', 'products.category_id',"=",'product_categories.id')
                     ->select("products.*", 'product_categories.category')->where('products.id', $request->route('id'))->first();
@@ -87,9 +87,10 @@ class ManageProductsController extends Controller
     /**
      * Update the product information.
     */
-    public function update(ProductAddOrUpdateRequest $request): RedirectResponse
+    public function update(ProductUpdateRequest $request): RedirectResponse
     {
-        
+        $request->user()->fill($request->validated());
+
         if(isset($request->product_images)) {
             // Get paths of existing images.
             $allExistingImgPaths = DB::table('products')->select('product_img1','product_img2', 'product_img3', 'product_img4')
@@ -156,7 +157,7 @@ class ManageProductsController extends Controller
     */
     public function destroy(Request $request): RedirectResponse
     {
-        Product::where('id', $request->route('id'))->delete();
+        Product::where('id', $request->route('id'))->update(['product_status' => 'deleted']);
         return Redirect::route('seller.products')->with('delete-product-info', "Product Information Deleted Successfully.");
     }
 }

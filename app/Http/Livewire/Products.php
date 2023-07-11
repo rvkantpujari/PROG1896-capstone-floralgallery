@@ -17,6 +17,7 @@ class Products extends Component
         $this->products = DB::table('product_categories')
             ->join('products', 'products.category_id',"=",'product_categories.id')
             ->select("*")
+            ->where('products.product_status', '!=', 'deleted')
             ->get();
         return view('seller.manage-products.livewire.products');
     }
