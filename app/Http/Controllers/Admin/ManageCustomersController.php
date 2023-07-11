@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,7 +25,6 @@ class ManageCustomersController extends Controller
     public function edit(Request $request): View
     {
         $customer = User::where('id', $request->route('id'))->first();
-        // dd($customer);
         return view('admin.manage-customers.customer.edit', ['customer' => $customer]);
     }
 
@@ -42,10 +42,7 @@ class ManageCustomersController extends Controller
     */
     public function destroy(Request $request): RedirectResponse
     {
-        // dd($request);
-        // User::where('id', $request->route('id'))->delete();
         User::where('id', $request->route('id'))->update(['status' => 'deleted']);
-
         return Redirect::route('admin.customers')->with('delete-customer', "Customer Information Deleted Successfully.");
     }
 }

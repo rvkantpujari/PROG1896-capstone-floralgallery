@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\SellerProfileUpdateRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-class SellerProfileController extends Controller
+class AdminProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
-        return view('seller.profile.edit', [
+        return view('admin.profile.edit', [
             'user' => $request->user(),
         ]);
     }
@@ -24,7 +25,7 @@ class SellerProfileController extends Controller
     /**
      * Update the user's profile information.
     */
-    public function update(SellerProfileUpdateRequest $request): RedirectResponse
+    public function update(AdminProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
 
@@ -34,7 +35,7 @@ class SellerProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('seller.profile.edit')->with('update-personal-info', "Personal Infromation Updated Successfully.");
+        return Redirect::route('admin.profile.edit')->with('update-personal-info', "Personal Infromation Updated Successfully.");
     }
 
     /**
@@ -48,7 +49,7 @@ class SellerProfileController extends Controller
 
         $user = $request->user();
 
-        Auth::guard('seller')->logout();
+        Auth::guard('admin')->logout();
 
         $user->delete();
 

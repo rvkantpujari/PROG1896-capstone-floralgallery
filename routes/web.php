@@ -1,15 +1,18 @@
 <?php
 
-use App\Http\Controllers\AdminProfileController;
-use App\Http\Controllers\SellerProfileController;
-use App\Http\Controllers\ContactFormController;
-use App\Http\Controllers\ManageCategoryController;
-use App\Http\Controllers\ManageCustomersController;
-use App\Http\Controllers\ManageProductsController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProvinceController;
-use App\Http\Controllers\SearchProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\SearchProductController;
+
+use App\Http\Controllers\ProfileController as CustomerProfileController;
+
+use App\Http\Controllers\Admin\ManageProvinceController as AdminManageProvinceController;
+use App\Http\Controllers\Admin\AdminProfileController as AdminProfileController;
+use App\Http\Controllers\Admin\ManageCategoryController as AdminManageCategoryController;
+use App\Http\Controllers\Admin\ManageCustomersController as AdminManageCustomersController;
+
+use App\Http\Controllers\Seller\SellerProfileController as SellerProfileController;
+use App\Http\Controllers\Seller\ManageProductsController as SellerManageProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,9 +59,9 @@ Route::get('/home', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [CustomerProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [CustomerProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [CustomerProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 
@@ -90,26 +93,26 @@ Route::middleware('auth:admin')->group(function () {
 
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('/admin/manage-provinces', [ProvinceController::class, 'index'])->name('admin.provinces');
-    Route::get('/admin/edit-province/{id}', [ProvinceController::class, 'edit'])->name('admin.province.edit');
-    Route::patch('/admin/edit-province/{id}', [ProvinceController::class, 'update'])->name('admin.province.update');
-    Route::get('/admin/delete-province/{id}', [ProvinceController::class, 'destroy'])->name('admin.province.destroy');
+    Route::get('/admin/manage-provinces', [AdminManageProvinceController::class, 'index'])->name('admin.provinces');
+    Route::get('/admin/edit-province/{id}', [AdminManageProvinceController::class, 'edit'])->name('admin.province.edit');
+    Route::patch('/admin/edit-province/{id}', [AdminManageProvinceController::class, 'update'])->name('admin.province.update');
+    Route::get('/admin/delete-province/{id}', [AdminManageProvinceController::class, 'destroy'])->name('admin.province.destroy');
 });
 
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('/admin/manage-customers', [ManageCustomersController::class, 'index'])->name('admin.customers');
-    Route::get('/admin/edit-customer/{id}', [ManageCustomersController::class, 'edit'])->name('admin.customer.edit');
-    Route::patch('/admin/edit-customer/{id}', [ManageCustomersController::class, 'update'])->name('admin.customer.update');
-    Route::get('/admin/delete-customer/{id}', [ManageCustomersController::class, 'destroy'])->name('admin.customer.destroy');
+    Route::get('/admin/manage-customers', [AdminManageCustomersController::class, 'index'])->name('admin.customers');
+    Route::get('/admin/edit-customer/{id}', [AdminManageCustomersController::class, 'edit'])->name('admin.customer.edit');
+    Route::patch('/admin/edit-customer/{id}', [AdminManageCustomersController::class, 'update'])->name('admin.customer.update');
+    Route::get('/admin/delete-customer/{id}', [AdminManageCustomersController::class, 'destroy'])->name('admin.customer.destroy');
 });
 
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('/admin/manage-categories', [ManageCategoryController::class, 'index'])->name('admin.categories');
-    Route::get('/admin/edit-category/{id}', [ManageCategoryController::class, 'edit'])->name('admin.category.edit');
-    Route::patch('/admin/edit-category/{id}', [ManageCategoryController::class, 'update'])->name('admin.category.update');
-    Route::get('/admin/delete-category/{id}', [ManageCategoryController::class, 'destroy'])->name('admin.category.destroy');
+    Route::get('/admin/manage-categories', [AdminManageCategoryController::class, 'index'])->name('admin.categories');
+    Route::get('/admin/edit-category/{id}', [AdminManageCategoryController::class, 'edit'])->name('admin.category.edit');
+    Route::patch('/admin/edit-category/{id}', [AdminManageCategoryController::class, 'update'])->name('admin.category.update');
+    Route::get('/admin/delete-category/{id}', [AdminManageCategoryController::class, 'destroy'])->name('admin.category.destroy');
 });
 
 
@@ -131,12 +134,12 @@ Route::middleware('auth:seller')->group(function () {
 
 
 Route::middleware('auth:seller')->group(function () {
-    Route::get('/seller/manage-products', [ManageProductsController::class, 'index'])->name('seller.products');
-    Route::get('/seller/add-product', [ManageProductsController::class, 'add'])->name('seller.product.add');
-    Route::post('/seller/add-product', [ManageProductsController::class, 'store'])->name('seller.product.store');
-    Route::get('/seller/edit-product/{id}', [ManageProductsController::class, 'edit'])->name('seller.product.edit');
-    Route::patch('/seller/edit-product/{id}', [ManageProductsController::class, 'update'])->name('seller.product.update');
-    Route::get('/seller/delete-product/{id}', [ManageProductsController::class, 'destroy'])->name('seller.product.destroy');
+    Route::get('/seller/manage-products', [SellerManageProductsController::class, 'index'])->name('seller.products');
+    Route::get('/seller/add-product', [SellerManageProductsController::class, 'add'])->name('seller.product.add');
+    Route::post('/seller/add-product', [SellerManageProductsController::class, 'store'])->name('seller.product.store');
+    Route::get('/seller/edit-product/{id}', [SellerManageProductsController::class, 'edit'])->name('seller.product.edit');
+    Route::patch('/seller/edit-product/{id}', [SellerManageProductsController::class, 'update'])->name('seller.product.update');
+    Route::get('/seller/delete-product/{id}', [SellerManageProductsController::class, 'destroy'])->name('seller.product.destroy');
 });
 
 
