@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\Province;
 use Livewire\Component;
 
-class Provinces extends Component
+class ProvincesList extends Component
 {
     public $provinces;
     public function render()

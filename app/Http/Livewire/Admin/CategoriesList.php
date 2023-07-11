@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\ProductCategory;
 use Livewire\Component;
 
-class Categories extends Component
+class CategoriesList extends Component
 {
     public $categories;
     public function render()

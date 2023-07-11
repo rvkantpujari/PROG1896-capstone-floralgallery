@@ -20,7 +20,7 @@
             <a href="{{route('seller.product.add')}}" class="px-[16px] py-[8px] md:mr-8 rounded-md text-white bg-pink-500">Add Product</a>
         </div>
         <div class="w-full px-8 flex justify-center">
-            @livewire('products')
+            @livewire('seller.products')
         </div>
     </div>
 @endsection

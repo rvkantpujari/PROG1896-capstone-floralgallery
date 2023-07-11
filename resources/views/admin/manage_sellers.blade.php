@@ -12,7 +12,7 @@
     <div class="w-full">
         <h1 class="text-center lg:text-left text-[26px] font-semibold m-8">Manage Sellers</h1>
         <div class="w-full px-8 flex flex-col justify-center">
-            @livewire('sellers-list')
+            @livewire('admin.sellers-list')
         </div>
     </div>
 @endsection
