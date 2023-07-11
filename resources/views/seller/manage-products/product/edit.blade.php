@@ -99,6 +99,38 @@
                                 <span class="text-red-500 text-sm">{{$message}}</span>
                             @enderror
                         </div>
+                        <div class="col-span-6 md:col-span-12 mt-4">
+                            <label for="product_status" class="block text-sm font-medium leading-6 text-gray-500">
+                                Product Status
+                            </label>
+                            <span class="flex flex-wrap gap-x-6 gap-y-2 md:gap-6 mt-2">
+                                @if ($product->product_status === 'draft')
+                                    <div class="mt-2 flex items-center gap-x-2">
+                                        <input type="radio" name="product_status" id="draft_status" value="draft" checked
+                                            class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        /> Draft
+                                    </div>
+                                @endif
+                                <div class="mt-2 flex items-center gap-x-2">
+                                    <input type="radio" name="product_status" id="published_status" value="published"
+                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        {{$product->product_status === 'published' ? 'checked' : ''}}
+                                    /> Publish
+                                </div>
+                                <div class="mt-2 flex items-center gap-x-2">
+                                    <input type="radio" name="product_status" id="private_status" value="private"
+                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        {{$product->product_status === 'private' ? 'checked' : ''}}
+                                    /> Private
+                                </div>
+                                <div class="mt-2 flex items-center gap-x-2">
+                                    <input type="radio" name="product_status" id="deleted_status" value="deleted"
+                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        {{$product->product_status === 'deleted' ? 'checked' : ''}}
+                                    /> Delete
+                                </div>
+                            </span>
+                        </div>
                         <input type="hidden" name="seller_id" id="seller_id" value="{{auth()->user()->id}}"/>
                     </div>
                 </div>
