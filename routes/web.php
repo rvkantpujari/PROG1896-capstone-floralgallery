@@ -56,7 +56,7 @@ Route::get('/view_product', function () {
 
 Route::get('/home', function () {
     return view('home');
-})->middleware(['auth', 'verified'])->name('loggedIn');
+})->middleware(['auth'])->name('loggedIn');
 
 
 Route::middleware('auth')->group(function () {
