@@ -66,11 +66,13 @@
                                                     Edit
                                                 </button>
                                             </form>
-                                            
-                                            <form method="GET" id="delete_province_{{$province->id}}" action="{{route('admin.province.destroy', ['id' => $province->id])}}">
+
+                                            <form method="POST" action="{{route('admin.province.destroy', ['id' => $province->id])}}">
                                                 @csrf
-                                                @method('delete')
-                                                <button type="button" data-province-id="{{$province->id}}" class="_delete_province_data_ text-white font-semibold bg-red-400 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
+                                                @method('patch')
+                                                
+                                                <button type="submit" class="show_confirm text-white font-semibold bg-red-400 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none" 
+                                                    data-toggle="tooltip" title='Delete'>
                                                     Delete
                                                 </button>
                                             </form>
@@ -86,8 +88,10 @@
     </div>
     <script defer>
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('._delete_province_data_').addEventListener('click', function(e) {
-                let data_id = $(this).attr('data-province-id');
+            $('.show_confirm').click(function(event) {
+                var form =  $(this).closest("form");
+                var name = $(this).data("name");
+                event.preventDefault();
                 swal({
                     title: 'Are you sure? 😥',
                     text: "You won't be able to revert this action!",
@@ -100,11 +104,12 @@
                             className: "bg-red-500 hover:bg-red-700",
                         },
                     }
-                }).then((result) => {
-                    if (result) {
-                        document.getElementById('delete_province_' + data_id).submit();
-                    }
                 })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
             });
         }, false);
     </script>
