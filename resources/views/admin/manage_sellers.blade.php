@@ -39,6 +39,7 @@
         $('#sellers_list').DataTable({
             dom: '<"my-4 py-4"lf><"mt-4 py-8"rt><"mb-4 py-4"Bp>',
             buttons: [
+                'colvis',
                 {
                     extend: 'copyHtml5',
                     exportOptions: {
@@ -62,8 +63,7 @@
                     exportOptions: {
                         columns: ':visible'
                     }
-                },
-                'colvis'
+                }
             ],
             "lengthMenu": [ [5, 10, 25, 50, -1], [5, 10, 25, 50, "All"] ]
         });
