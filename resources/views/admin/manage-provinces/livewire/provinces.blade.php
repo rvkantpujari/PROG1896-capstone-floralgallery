@@ -57,7 +57,7 @@
                                         {{$province->province}}
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                        <div class="flex items-center gap-x-6">
+                                        <div class="flex items-center justify-center gap-x-6">
                                             <form method="GET" action="{{route('admin.province.edit', ['id' => $province->id])}}">
                                                 @csrf
                                                 @method('patch')

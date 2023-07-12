@@ -5,6 +5,11 @@
 @section('css-styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+    <style>
+        select {
+            width: 50px;
+        }
+    </style>
 @endsection
 
 @section('main-content')
@@ -34,6 +39,7 @@
         $('#sellers_list').DataTable({
             dom: '<"my-4 py-4"lf><"mt-4 py-8"rt><"mb-4 py-4"Bp>',
             buttons: [
+                'colvis',
                 {
                     extend: 'copyHtml5',
                     exportOptions: {
@@ -57,8 +63,7 @@
                     exportOptions: {
                         columns: ':visible'
                     }
-                },
-                'colvis'
+                }
             ],
             "lengthMenu": [ [5, 10, 25, 50, -1], [5, 10, 25, 50, "All"] ]
         });
