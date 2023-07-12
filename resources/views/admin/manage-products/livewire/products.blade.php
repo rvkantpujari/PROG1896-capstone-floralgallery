@@ -125,32 +125,31 @@
 
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                         @if($product->product_status === 'draft')
-                                            <div class="w-full text-sm inline-flex items-center px-[10px] py-[5px] rounded-full gap-x-2 text-red-500 hover:text-black bg-red-100/60 hover:bg-red-300/90">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                            <div class="w-full text-sm inline-flex items-center px-[16px] py-[5px] rounded-full gap-x-2 text-orange-500 hover:text-black bg-orange-300/60 hover:bg-orange-300/90">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                                 </svg>
                                                 <h2 class="font-semibold">Draft</h2>
                                             </div>
                                         @elseif ($product->product_status == 'published')
-                                            <div class="w-full text-sm inline-flex items-center px-[10px] py-[5px] rounded-full gap-x-2 text-emerald-500 hover:text-black bg-emerald-100/60 hover:bg-emerald-300/90">
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M10 3L4.5 8.5L2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <div class="w-full text-sm inline-flex items-center px-[16px] py-[5px] rounded-full gap-x-2 text-emerald-500 hover:text-black bg-emerald-100/60 hover:bg-emerald-300/90">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
                                                 <h2 class="font-semibold">Published</h2>
                                             </div>
                                         @elseif($product->product_status === 'private')
-                                            <div class="w-full text-sm inline-flex items-center px-[10px] py-[5px] rounded-full gap-x-2 text-gray-500 hover:text-black bg-gray-100/60 hover:bg-gray-300/90">
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M4.5 7L2 4.5M2 4.5L4.5 2M2 4.5H8C8.53043 4.5 9.03914 4.71071 9.41421 5.08579C9.78929 5.46086 10 5.96957 10 6.5V10" stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <div class="w-full text-sm inline-flex items-center px-[16px] py-[5px] rounded-full gap-x-2 text-gray-500 hover:text-black bg-gray-100/60 hover:bg-gray-300/90">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                                                 </svg>
                                                 <h2 class="font-semibold">Private</h2>
                                             </div>
                                         @elseif($product->product_status === 'deleted')
-                                            <div class="w-full text-sm inline-flex items-center px-[10px] py-[5px] rounded-full gap-x-2 text-red-500 hover:text-black bg-red-100/60 hover:bg-red-300/90">
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <div class="w-full text-sm inline-flex items-center px-[16px] py-[5px] rounded-full gap-x-2 text-red-500 hover:text-black bg-red-100/60 hover:bg-red-300/90">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
-        
                                                 <h2 class="font-semibold">Deleted</h2>
                                             </div>
                                         @endif
@@ -165,7 +164,7 @@
                                     </td>
                                     
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                        <div class="flex items-center gap-x-3">
+                                        <div class="flex items-center justify-center gap-x-3">
                                             <form method="GET" action="{{route('admin.product.edit', ['id' => $product->product_id])}}">
                                                 @csrf
                                                 @method('patch')

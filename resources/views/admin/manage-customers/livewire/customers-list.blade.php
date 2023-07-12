@@ -133,32 +133,32 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                         @if($customer->status === 'pending')
-                                            <div class="w-full text-xs inline-flex items-center px-[10px] py-[5px] rounded-full gap-x-2 text-orange-500 hover:text-black bg-orange-300/60 hover:bg-orange-300/90">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <div class="w-full text-sm inline-flex items-center px-[16px] py-[5px] rounded-full gap-x-2 text-orange-500 hover:text-black bg-orange-300/60 hover:bg-orange-300/90">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                                                 </svg>
 
                                                 <h2 class="font-semibold">Pending</h2>
                                             </div>
                                         @elseif ($customer->status === 'verified')
-                                            <div class="w-full text-xs inline-flex items-center px-[10px] py-[5px] rounded-full gap-x-2 text-emerald-500 hover:text-black bg-emerald-100/60 hover:bg-emerald-300/90">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <div class="w-full text-sm inline-flex items-center px-[16px] py-[5px] rounded-full gap-x-2 text-emerald-500 hover:text-black bg-emerald-100/60 hover:bg-emerald-300/90">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
         
                                                 <h2 class="font-semibold">Verified</h2>
                                             </div>
                                         @elseif($customer->status === 'deleted')
-                                            <div class="w-full text-xs inline-flex items-center px-[10px] py-[5px] rounded-full gap-x-2 text-red-500 hover:text-black bg-red-100/60 hover:bg-red-300/90">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <div class="w-full text-sm inline-flex items-center px-[16px] py-[5px] rounded-full gap-x-2 text-red-500 hover:text-black bg-red-100/60 hover:bg-red-300/90">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
         
                                                 <h2 class="font-semibold">Deleted</h2>
                                             </div>
                                         @elseif($customer->status === 'suspended')
-                                            <div class="w-full text-xs inline-flex items-center px-[10px] py-[5px] rounded-full gap-x-2 text-gray-500 hover:text-black bg-gray-100/60 hover:bg-gray-300/90">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <div class="w-full text-sm inline-flex items-center px-[16px] py-[5px] rounded-full gap-x-2 text-gray-500 hover:text-black bg-gray-100/60 hover:bg-gray-300/90">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                                                 </svg>
         
@@ -167,7 +167,7 @@
                                         @endif
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                        <div class="flex items-center gap-x-3">
+                                        <div class="flex items-center justify-center gap-x-3">
                                             <form method="GET" action="{{route('admin.customer.edit', ['id' => $customer->id])}}">
                                                 @csrf
                                                 @method('patch')

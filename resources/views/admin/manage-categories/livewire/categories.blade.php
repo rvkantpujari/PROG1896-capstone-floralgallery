@@ -57,7 +57,7 @@
                                         {{$category->category}}
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                        <div class="flex items-center gap-x-3">
+                                        <div class="flex items-center justify-center gap-x-3">
                                             <form method="GET" action="{{route('admin.category.edit', ['id' => $category->id])}}">
                                                 @csrf
                                                 @method('patch')
