@@ -57,6 +57,7 @@ class ManageProductsController extends Controller
         $product->product_price = $request->product_price;
         $product->category_id = $request->category_id;
         $product->seller_id = $request->seller_id;
+
         $product->product_img1 = $imgs[0];
 
         if(count($request->product_images) > 1)
@@ -67,6 +68,8 @@ class ManageProductsController extends Controller
 
         if(count($request->product_images) > 3)
             $product->product_img4 = $imgName[3];
+
+        $product->product_status = $request->product_status;
 
         $product->save();
         
