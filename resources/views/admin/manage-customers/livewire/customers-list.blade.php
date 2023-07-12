@@ -176,10 +176,12 @@
                                             </form>
 
                                             @if ($customer->status != 'deleted')
-                                                <form method="GET" id="delete_customer_{{$customer->id}}" action="{{route('admin.customer.destroy', ['id' => $customer->id])}}">
+                                                <form method="GET" action="{{route('admin.customer.destroy', ['id' => $customer->id])}}">
                                                     @csrf
-                                                    @method('delete')
-                                                    <button type="button" data-customer-id="{{$customer->id}}" class="_delete_customer_data_ text-white font-semibold bg-red-400 hover:bg-red-600 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
+                                                    @method('patch')
+                                                    
+                                                    <button type="submit" class="show_confirm text-white font-semibold bg-red-400 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none" 
+                                                        data-toggle="tooltip" title='Delete'>
                                                         Delete
                                                     </button>
                                                 </form>
@@ -196,8 +198,10 @@
     </div>
     <script defer>
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('._delete_customer_data_').addEventListener('click', function(e) {
-                let data_id = $(this).attr('data-customer-id');
+            $('.show_confirm').click(function(event) {
+                var form =  $(this).closest("form");
+                var name = $(this).data("name");
+                event.preventDefault();
                 swal({
                     title: 'Are you sure? 😥',
                     text: "You won't be able to revert this action!",
@@ -210,11 +214,12 @@
                             className: "bg-red-500 hover:bg-red-700",
                         },
                     }
-                }).then((result) => {
-                    if (result) {
-                        document.getElementById('delete_customer_' + data_id).submit();
-                    }
                 })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
             });
         }, false);
     </script>

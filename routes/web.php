@@ -97,7 +97,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/manage-provinces', [AdminManageProvinceController::class, 'index'])->name('admin.provinces');
     Route::get('/admin/edit-province/{id}', [AdminManageProvinceController::class, 'edit'])->name('admin.province.edit');
     Route::patch('/admin/edit-province/{id}', [AdminManageProvinceController::class, 'update'])->name('admin.province.update');
-    Route::get('/admin/delete-province/{id}', [AdminManageProvinceController::class, 'destroy'])->name('admin.province.destroy');
+    Route::patch('/admin/delete-province/{id}', [AdminManageProvinceController::class, 'destroy'])->name('admin.province.destroy');
 });
 
 
@@ -148,7 +148,7 @@ Route::middleware('auth:seller')->group(function () {
     Route::post('/seller/add-product', [SellerManageProductsController::class, 'store'])->name('seller.product.store');
     Route::get('/seller/edit-product/{id}', [SellerManageProductsController::class, 'edit'])->name('seller.product.edit');
     Route::patch('/seller/edit-product/{id}', [SellerManageProductsController::class, 'update'])->name('seller.product.update');
-    Route::get('/seller/delete-product/{id}', [SellerManageProductsController::class, 'destroy'])->name('seller.product.destroy');
+    Route::patch('/seller/delete-product/{id}', [SellerManageProductsController::class, 'destroy'])->name('seller.product.destroy');
 });
 
 
