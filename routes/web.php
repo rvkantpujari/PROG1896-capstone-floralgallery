@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ManageProvinceController as AdminManageProvinceCo
 use App\Http\Controllers\Admin\AdminProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\ManageCategoryController as AdminManageCategoryController;
 use App\Http\Controllers\Admin\ManageCustomersController as AdminManageCustomersController;
+use App\Http\Controllers\Admin\ManageProductsController as AdminManageProductsController;
 
 use App\Http\Controllers\Seller\SellerProfileController as SellerProfileController;
 use App\Http\Controllers\Seller\ManageProductsController as SellerManageProductsController;
@@ -113,6 +114,14 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/edit-category/{id}', [AdminManageCategoryController::class, 'edit'])->name('admin.category.edit');
     Route::patch('/admin/edit-category/{id}', [AdminManageCategoryController::class, 'update'])->name('admin.category.update');
     Route::get('/admin/delete-category/{id}', [AdminManageCategoryController::class, 'destroy'])->name('admin.category.destroy');
+});
+
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin/manage-products', [AdminManageProductsController::class, 'index'])->name('admin.products');
+    Route::get('/admin/edit-product/{id}', [AdminManageProductsController::class, 'edit'])->name('admin.product.edit');
+    Route::patch('/admin/edit-product/{id}', [AdminManageProductsController::class, 'update'])->name('admin.product.update');
+    Route::patch('/admin/delete-product/{id}', [AdminManageProductsController::class, 'destroy'])->name('admin.product.destroy');
 });
 
 
