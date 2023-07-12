@@ -132,13 +132,17 @@
                                                 </button>
                                             </form>
                                             
-                                            <form method="GET" id="delete_product_{{$product->id}}" action="{{route('seller.product.destroy', ['id' => $product->id])}}">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="button" data-product-id="{{$product->id}}" class="_delete_product_data_ text-white font-semibold bg-red-400 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
-                                                    Delete
-                                                </button>
-                                            </form>
+                                            @if ($product->product_status !== 'deleted')
+                                                <form method="POST" action="{{route('seller.product.destroy', ['id' => $product->id])}}">
+                                                    @csrf
+                                                    @method('patch')
+                                                    
+                                                    <button type="submit" class="show_confirm text-white font-semibold bg-red-400 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none" 
+                                                        data-toggle="tooltip" title='Delete'>
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
@@ -151,8 +155,10 @@
     </div>
     <script defer>
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('._delete_product_data_').addEventListener('click', function(e) {
-                let data_id = $(this).attr('data-product-id');
+            $('.show_confirm').click(function(event) {
+                var form =  $(this).closest("form");
+                var name = $(this).data("name");
+                event.preventDefault();
                 swal({
                     title: 'Are you sure? 😥',
                     text: "You won't be able to revert this action!",
@@ -165,11 +171,12 @@
                             className: "bg-red-500 hover:bg-red-700",
                         },
                     }
-                }).then((result) => {
-                    if (result) {
-                        document.getElementById('delete_product_' + data_id).submit();
-                    }
                 })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
             });
         }, false);
     </script>

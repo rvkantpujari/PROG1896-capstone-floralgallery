@@ -148,7 +148,7 @@ Route::middleware('auth:seller')->group(function () {
     Route::post('/seller/add-product', [SellerManageProductsController::class, 'store'])->name('seller.product.store');
     Route::get('/seller/edit-product/{id}', [SellerManageProductsController::class, 'edit'])->name('seller.product.edit');
     Route::patch('/seller/edit-product/{id}', [SellerManageProductsController::class, 'update'])->name('seller.product.update');
-    Route::get('/seller/delete-product/{id}', [SellerManageProductsController::class, 'destroy'])->name('seller.product.destroy');
+    Route::patch('/seller/delete-product/{id}', [SellerManageProductsController::class, 'destroy'])->name('seller.product.destroy');
 });
 
 
