@@ -31,10 +31,6 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
-        $this->validate($request, [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class, 'unique:'.Admin::class, 'unique:'.Seller::class],
-        ]);
-
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
