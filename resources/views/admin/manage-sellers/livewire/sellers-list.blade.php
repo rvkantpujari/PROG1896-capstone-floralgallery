@@ -1,4 +1,19 @@
 <section class="container my-8">
+    @if (session()->has('update-seller-info'))
+        <script>
+            swal("Product Updated!! 😀🎉", "{{session('update-seller-info')}}", "success", {
+                button:true,
+                button:"OK",
+            });
+        </script>
+    @elseif (session()->has('delete-seller-info'))
+        <script>
+            swal("Deleted!!", "{{session('delete-seller-info')}}", "error", {
+                button:true,
+                button:"OK",
+            });
+        </script>
+    @endif
     <div class="flex flex-col">
         <div class="-mx-4 -my-2 overflow-x-auto md:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -115,7 +130,7 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <form method="GET">
+                                            <form method="GET" action="{{route('admin.seller.edit', ['id' => $seller->id])}}">
                                                 @csrf
                                                 @method('patch')
                                                 <button class="text-white bg-gray-700 hover:bg-gray-900 font-semibold px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
@@ -123,7 +138,8 @@
                                                 </button>
                                             </form>
 
-                                            <form method="GET">
+                                            @if ($seller->status !== 'deleted')
+                                                <form method="GET" action="{{route('admin.seller.destroy', ['id' => $seller->id])}}">
                                                     @csrf
                                                     @method('patch')
                                                     
@@ -131,7 +147,8 @@
                                                         data-toggle="tooltip" title='Delete'>
                                                         Delete
                                                     </button>
-                                            </form>
+                                                </form>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
@@ -142,4 +159,31 @@
             </div>
         </div>
     </div>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            $('.show_confirm').click(function(event) {
+                var form =  $(this).closest("form");
+                var name = $(this).data("name");
+                event.preventDefault();
+                swal({
+                    title: 'Are you sure? 😥',
+                    text: "You won't be able to revert this action!",
+                    icon: 'warning',
+                    buttons: {
+                        cancel: true,
+                        confirm: {
+                            text: "Yes, delete it!",
+                            value: true,
+                            className: "bg-red-500 hover:bg-red-700",
+                        },
+                    }
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+            });
+        }, false);
+    </script>
 </section>

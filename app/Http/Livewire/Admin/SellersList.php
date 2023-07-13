@@ -11,6 +11,6 @@ class SellersList extends Component
     public function render()
     {
         $this->sellers_list = Seller::select('id', 'first_name', 'last_name', 'email', 'status', 'created_at')->get();
-        return view('admin.livewire.sellers-list', ['sellers' => $this->sellers_list]);
+        return view('admin.manage-sellers.livewire.sellers-list', ['sellers' => $this->sellers_list]);
     }
 }
