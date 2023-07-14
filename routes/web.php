@@ -16,21 +16,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Seller\SellerProfileController as SellerProfileController;
 use App\Http\Controllers\Seller\ManageProductsController as SellerManageProductsController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 
 // Visitor Routes
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/', [HomeController::class, 'applyFilter'])->name('home.filter.search');
 
 
 Route::get('/about_us', function () {
