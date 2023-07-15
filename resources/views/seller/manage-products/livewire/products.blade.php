@@ -123,9 +123,8 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <form method="GET" action="{{route('seller.product.edit', ['id' => $product->id])}}">
+                                            <form method="POST" action="{{route('seller.product.edit', ['id' => $product->id])}}">
                                                 @csrf
-                                                @method('patch')
                                                 
                                                 <button type="submit" class="text-white bg-gray-700 hover:bg-gray-900 font-semibold px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
                                                     Edit
