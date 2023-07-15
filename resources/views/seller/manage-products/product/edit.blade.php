@@ -107,27 +107,31 @@
                                 @if ($product->product_status === 'draft')
                                     <div class="mt-2 flex items-center gap-x-2">
                                         <input type="radio" name="product_status" id="draft_status" value="draft" checked
-                                            class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                        /> Draft
+                                            class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 checked:text-pink-500 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        /> 
+                                        <label for="draft_status">Draft</label>
                                     </div>
                                 @endif
                                 <div class="mt-2 flex items-center gap-x-2">
                                     <input type="radio" name="product_status" id="published_status" value="published"
-                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 checked:text-pink-500 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                         {{$product->product_status === 'published' ? 'checked' : ''}}
-                                    /> Publish
+                                    /> 
+                                    <label for="published_status">Publish</label>
                                 </div>
                                 <div class="mt-2 flex items-center gap-x-2">
                                     <input type="radio" name="product_status" id="private_status" value="private"
-                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 checked:text-pink-500 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                         {{$product->product_status === 'private' ? 'checked' : ''}}
-                                    /> Private
+                                    /> 
+                                    <label for="private_status">Private</label>
                                 </div>
                                 <div class="mt-2 flex items-center gap-x-2">
                                     <input type="radio" name="product_status" id="deleted_status" value="deleted"
-                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 checked:text-pink-500 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                         {{$product->product_status === 'deleted' ? 'checked' : ''}}
-                                    /> Delete
+                                    /> 
+                                    <label for="deleted_status">Delete</label>
                                 </div>
                             </span>
                         </div>

@@ -100,18 +100,21 @@
                             <span class="flex flex-wrap gap-x-6 gap-y-2 md:gap-6 mt-2">
                                 <div class="mt-2 flex items-center gap-x-2">
                                     <input type="radio" name="product_status" id="draft_status" value="draft" checked
-                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                    /> Draft
+                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 checked:text-pink-500 focus:ring-2 focus:ring-outset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                    />
+                                    <label for="draft_status">Draft</label>
                                 </div>
                                 <div class="mt-2 flex items-center gap-x-2">
                                     <input type="radio" name="product_status" id="published_status" value="published"
-                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                    /> Publish
+                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 checked:text-pink-500 focus:ring-2 focus:ring-outset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                    />
+                                    <label for="published_status">Publish</label>
                                 </div>
                                 <div class="mt-2 flex items-center gap-x-2">
                                     <input type="radio" name="product_status" id="private_status" value="private"
-                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                    /> Private
+                                        class="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 checked:text-pink-500 focus:ring-2 focus:ring-outset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                    />
+                                    <label for="private_status">Private</label>
                                 </div>
                             </span>
                         </div>
@@ -139,9 +142,6 @@
                                     <span class="text-red-500 text-xs" id="error_product_images" hidden>(Maximum 4 allowed.)</span>
                                 </label>
                                 <div class="mt-2">
-                                    {{-- <input type="file" name="product_images[]" id="product_images" multiple
-                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                    /> --}}
                                     <label for="product_images" class="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                                         <div class="flex flex-col items-center justify-center py-2">
                                             <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
