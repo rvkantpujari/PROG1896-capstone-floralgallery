@@ -33,7 +33,7 @@ class SearchProductController extends Controller
                         })
                         ->get();
         
-        return view('search', ['categories' => $categories, 'products' => $products]);
+        return view('search', ['categories' => $categories, 'products' => $products, 'search' => $request->input('search')]);
     }
 
     // show search results
@@ -44,11 +44,17 @@ class SearchProductController extends Controller
         ]);
         
         $categories = DB::table('product_categories')->select()->get();
-
-        $products = DB::table('product_categories')
-                        ->join('products', 'products.category_id',"=",'product_categories.id')
-                        ->select('products.id as product_id', 'products.*', 'product_categories.id as category_id', 'product_categories.category as category')
+        
+        $products = DB::table('product_categories')->join('products', 'products.category_id',"=",'product_categories.id')
+        ->select('products.id as product_id', 'products.product_name', 'products.product_price', 'products.product_img1', 'products.product_status', 'product_categories.id as category_id', 'product_categories.category as category')
                         ->where('products.product_status', '=', 'published')
+                        ->when($request->product_category != null, function($q) use ($request) {
+                            return $q->whereIn('product_categories.category', $request->product_category);
+                        })
+                        ->when($request->search != null, function($q) use ($request) {
+                            $q->where('products.product_name', "like", "%" . $request->search . "%");
+                            $q->orWhere('products.product_desc', "like", "%" . $request->search . "%");
+                        })
                         ->get();
         
         return view('search', ['categories' => $categories, 'products' => $products, 'search' => $request->input('search')]);
@@ -66,6 +72,10 @@ class SearchProductController extends Controller
         $products = DB::table('product_categories')->join('products', 'products.category_id',"=",'product_categories.id')
                         ->select('products.id as product_id', 'products.product_name', 'products.product_price', 'products.product_img1', 'products.product_status', 'product_categories.id as category_id', 'product_categories.category as category')
                         ->where('products.product_status', '=', 'published')
+                        ->when($request->search != null, function($q) use ($request) {
+                            $q->where('products.product_name', "like", "%" . $request->search . "%");
+                            $q->orWhere('products.product_desc', "like", "%" . $request->search . "%");
+                        })
                         ->when($request->product_category != null, function($q) use ($request) {
                             return $q->whereIn('product_categories.category', $request->product_category);
                         })
@@ -78,7 +88,7 @@ class SearchProductController extends Controller
                             $q->whereRaw("products.product_price BETWEEN $price_min AND $request->price_max");//, [$request->price_min == null ? 0 : $request->price_min, $request->product_max]);
                         })
                         ->get();
-        // dd($products);
-        return view('search', ['categories' => $categories, 'products' => $products]);
+        
+        return view('search', ['categories' => $categories, 'products' => $products, 'search' => $request->search]);
     }
 }

@@ -30,6 +30,11 @@
                         <!-- Filters -->
                         <form method="POST" action={{route('search.filter')}} class="hidden md:block md:col-span-3">
                             @csrf
+                            
+                            @isset($search)
+                                <input type="hidden" name="searchKeywords" value="{{$search}}">
+                            @endisset
+
                             <div class="py-6">
                                 <!-- Category section -->
                                 <h3 class="-my-3 flow-root">
