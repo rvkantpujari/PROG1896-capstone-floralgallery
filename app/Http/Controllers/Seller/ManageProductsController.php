@@ -45,7 +45,7 @@ class ManageProductsController extends Controller
             foreach($request->product_images as $key => $value) {
                 $string = sha1(rand());
                 $randomString = substr($string, 0, 6);
-                $imgName = 'FloralGallery-seller_'.auth()->user()->id.'-'.date('Y-m-d-H-i-s-u').'-'.$randomString.'.'.$value->extension();
+                $imgName = 'FloralGallery-seller_'.auth()->user()->id.'-'.date('Y-m-d-H-i-s').'-'.$randomString.'.'.$value->extension();
                 $value->move(public_path().'/'.$dirPath, $imgName);
                 $imgs[] = $dirPath.'/'.$imgName;
             }

@@ -12,27 +12,15 @@ use App\Http\Controllers\Admin\ManageCustomersController as AdminManageCustomers
 use App\Http\Controllers\Admin\ManageProductsController as AdminManageProductsController;
 use App\Http\Controllers\Admin\ManageSellersController as AdminManageSellersController;
 use App\Http\Controllers\Admin\AdminProfileController as AdminProfileController;
-
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Seller\SellerProfileController as SellerProfileController;
 use App\Http\Controllers\Seller\ManageProductsController as SellerManageProductsController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 
 // Visitor Routes
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/', [HomeController::class, 'applyFilter'])->name('home.filter.search');
 
 
 Route::get('/about_us', function () {
@@ -45,7 +33,8 @@ Route::post('/contact_us', [ContactFormController::class, 'contactFormValidation
 
 
 Route::get('/search', [SearchProductController::class, 'showSearchForm'])->name('search');
-Route::post('/search', [SearchProductController::class, 'showResults'])->name('search');
+Route::post('/search', [SearchProductController::class, 'showResults'])->name('search.results');
+Route::post('/search/filter', [SearchProductController::class, 'applyFilter'])->name('search.filter');
 
 
 Route::get('/view_product', function () {
