@@ -3,28 +3,6 @@
 @section('title', 'FlowerGallery - Flowers for all occasions')
 
 @section('main-content')
-    <style>
-        .card:hover .overlay {
-            opacity: 1;
-            background: rgb(0, 0, 0);
-            background: rgba(0, 0, 0, 0.7);
-            color: #f1f1f1;
-            padding: 10px;
-        }
-
-        .overlay {
-            text-align: left;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            width: 100%;
-            opacity: 0;
-            transition: 0.4s ease;
-        }
-    </style>
     <!-- Carousel -->
     <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl">
         <template x-for="(image, index) in images">
@@ -188,7 +166,7 @@
                                             <img
                                                 alt="{{$product->product_name}}" title="{{$product->product_name}}"
                                                 class="object-cover object-center w-full h-full block hover:scale-110 hover:duration-500"
-                                                src="{{$product->product_img1}}" loading="lazy"
+                                                src="{{URL::asset($product->product_img1)}}" loading="lazy"
                                             />
                                         </a>
                                         <div class="mt-4 px-2">

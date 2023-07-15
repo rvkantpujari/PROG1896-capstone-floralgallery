@@ -116,7 +116,7 @@
                                                 <img
                                                     alt="{{$product->product_name}}" title="{{$product->product_name}}"
                                                     class="object-cover object-center w-full h-full block hover:scale-110 hover:duration-500"
-                                                    src="{{$product->product_img1}}"
+                                                    src="{{URL::asset($product->product_img1)}}" loading="lazy"
                                                 />
                                             </a>
                                             <div class="mt-4 px-2">
