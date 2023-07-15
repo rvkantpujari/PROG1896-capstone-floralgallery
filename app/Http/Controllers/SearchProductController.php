@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 
 class SearchProductController extends Controller
 {
@@ -75,6 +74,9 @@ class SearchProductController extends Controller
                         ->when($request->search != null, function($q) use ($request) {
                             $q->where('products.product_name', "like", "%" . $request->search . "%");
                             $q->orWhere('products.product_desc', "like", "%" . $request->search . "%");
+                        }, function($q) use ($request) {
+                            $q->where('products.product_name', "like", "%" . $request->searchKeywords . "%");
+                            $q->orWhere('products.product_desc', "like", "%" . $request->searchKeywords . "%");
                         })
                         ->when($request->product_category != null, function($q) use ($request) {
                             return $q->whereIn('product_categories.category', $request->product_category);
@@ -89,6 +91,8 @@ class SearchProductController extends Controller
                         })
                         ->get();
         
-        return view('search', ['categories' => $categories, 'products' => $products, 'search' => $request->search]);
+        $search = $request->search == null ? $request->searchKeywords : $request->search;
+        
+        return view('search', ['categories' => $categories, 'products' => $products, 'search' => $search]);
     }
 }
