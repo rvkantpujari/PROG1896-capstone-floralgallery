@@ -33,7 +33,8 @@ Route::post('/contact_us', [ContactFormController::class, 'contactFormValidation
 
 
 Route::get('/search', [SearchProductController::class, 'showSearchForm'])->name('search');
-Route::post('/search', [SearchProductController::class, 'showResults'])->name('search');
+Route::post('/search', [SearchProductController::class, 'showResults'])->name('search.results');
+Route::post('/search/filter', [SearchProductController::class, 'applyFilter'])->name('search.filter');
 
 
 Route::get('/view_product', function () {
