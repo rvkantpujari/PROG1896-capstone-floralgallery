@@ -15,7 +15,7 @@
 @section('main-content')
     {{-- Add Main Section Here!!! --}}
     <div class="w-full">
-        <div class="flex flex-col md:flex-row items-center md:justify-between">
+        <div class="flex flex-col md:flex-row items-center md:justify-between pt-4">
             <h1 class="text-center lg:text-left text-[26px] font-semibold m-8">Manage Products</h1>
             <a href="{{route('seller.product.add')}}" class="px-[16px] py-[8px] md:mr-8 rounded-md text-white bg-pink-500">Add Product</a>
         </div>

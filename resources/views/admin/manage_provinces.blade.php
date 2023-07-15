@@ -15,7 +15,7 @@
 @section('main-content')
     {{-- Add Main Section Here!!! --}}
     <div class="w-full">
-        <h1 class="text-center lg:text-left text-[26px] font-semibold m-8">Manage Provinces</h1>
+        <h1 class="text-center lg:text-left text-[26px] font-semibold m-8 pt-4">Manage Provinces</h1>
         <div class="w-full px-8 flex justify-center">
             @livewire('admin.provinces-list')
         </div>

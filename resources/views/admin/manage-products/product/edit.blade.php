@@ -5,7 +5,7 @@
 @section('main-content')
     <!-- Edit Product -->
     <div class="w-full">
-        <h1 class="text-center lg:text-left text-[24px] md:text-[26px] font-semibold m-8"><a href="{{route('admin.products')}}">Manage Products</a> <span class="hidden md:inline">></span> <br class="md:hidden"> <span class="text-pink-500">Edit Product</span></h1>
+        <h1 class="text-center lg:text-left text-[24px] md:text-[26px] font-semibold m-8 pt-4"><a href="{{route('admin.products')}}">Manage Products</a> <span class="hidden md:inline">></span> <br class="md:hidden"> <span class="text-pink-500">Edit Product</span></h1>
 
         <form id="send-verification" method="post" action="{{ route('verification.send') }}">
             @csrf

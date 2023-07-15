@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\SearchProductController;
 
@@ -12,7 +14,6 @@ use App\Http\Controllers\Admin\ManageCustomersController as AdminManageCustomers
 use App\Http\Controllers\Admin\ManageProductsController as AdminManageProductsController;
 use App\Http\Controllers\Admin\ManageSellersController as AdminManageSellersController;
 use App\Http\Controllers\Admin\AdminProfileController as AdminProfileController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Seller\SellerProfileController as SellerProfileController;
 use App\Http\Controllers\Seller\ManageProductsController as SellerManageProductsController;
 
