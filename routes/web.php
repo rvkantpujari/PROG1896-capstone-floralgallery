@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\SearchProductController;
+use App\Http\Controllers\ViewProductController;
 
 use App\Http\Controllers\ProfileController as CustomerProfileController;
 
@@ -38,9 +39,7 @@ Route::post('/search', [SearchProductController::class, 'showResults'])->name('s
 Route::post('/search/filter', [SearchProductController::class, 'applyFilter'])->name('search.filter');
 
 
-Route::get('/view_product', function () {
-    return view('view_product');
-})->name('view_product');
+Route::get('/product/{product_id}', [ViewProductController::class, 'index'])->whereNumber('product_id')->name('product.view');
 
 
 // Customer Routes
