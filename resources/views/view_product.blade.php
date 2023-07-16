@@ -9,33 +9,33 @@
             <main class="mx-auto max-w-7xl px-6 lg:px-4 lg:pt-8">
                 <section class="text-gray-600 body-font overflow-hidden">
                     <div class="container px-5 pt-12 pb-24 mx-auto">
-                        <div class="lg:w-4/5 mx-auto flex flex-wrap gap-x-10">
+                        <div class="lg:w-full mx-auto flex flex-wrap gap-x-10">
                             <div class="md:mx-auto">
                                 <img src="{{asset($product->product_img1)}}" alt="{{$product->product_name}}" title="{{$product->product_name}}"
-                                    class="lg:w-[28vw] lg:h-96 md:h-[40vh] md:w-full w-96 h-80 object-cover object-center rounded" id="large-product-image"
+                                    class="lg:w-[34vw] lg:h-96 md:h-[40vh] md:w-full w-96 h-80 object-cover object-center rounded" id="large-product-image"
                                 />
                                 <div class="mt-2 lg:w-full flex justify-center gap-x-2">
                                     @if ($product->product_img2)
                                         <img alt="{{$product->product_name}}"
-                                            class="lg:w-1/4 lg:h-28 w-full md:h-64 h-32 object-cover object-center rounded product-img hover:border-1 hover:shadow-lg hover:shadow-pink-200"
+                                            class="lg:w-[8vw] lg:h-28 w-full md:h-64 h-32 object-cover object-center rounded product-img hover:border-1 hover:shadow-lg hover:shadow-pink-200"
                                             src="{{asset($product->product_img1)}}" loading="lazy"
                                         />
                                     @endif
                                     @if ($product->product_img2)
                                         <img alt="{{$product->product_name}}"
-                                            class="lg:w-1/4 lg:h-28 w-full md:h-64 h-32 object-cover object-center rounded product-img hover:border-1 hover:shadow-lg hover:shadow-pink-200"
+                                            class="lg:w-[8vw] lg:h-28 w-full md:h-64 h-32 object-cover object-center rounded product-img hover:border-1 hover:shadow-lg hover:shadow-pink-200"
                                             src="{{asset($product->product_img2)}}" loading="lazy"
                                         />
                                     @endif
                                     @if ($product->product_img3)
                                         <img alt="{{$product->product_name}}"
-                                            class="lg:w-1/4 lg:h-28 w-full md:h-64 h-32 object-cover object-center rounded product-img hover:border-1 hover:shadow-lg hover:shadow-pink-200"
+                                            class="lg:w-[8vw] lg:h-28 w-full md:h-64 h-32 object-cover object-center rounded product-img hover:border-1 hover:shadow-lg hover:shadow-pink-200"
                                             src="{{asset($product->product_img3)}}" loading="lazy"
                                         />
                                     @endif
                                     @if ($product->product_img4)
                                         <img alt="{{$product->product_name}}"
-                                            class="lg:w-1/4 lg:h-28 w-full md:h-64 h-32 object-cover object-center rounded product-img hover:border-1 hover:shadow-lg hover:shadow-pink-200"
+                                            class="lg:w-[8vw] lg:h-28 w-full md:h-64 h-32 object-cover object-center rounded product-img hover:border-1 hover:shadow-lg hover:shadow-pink-200"
                                             src="{{asset($product->product_img4)}}" loading="lazy"
                                         />
                                     @endif
