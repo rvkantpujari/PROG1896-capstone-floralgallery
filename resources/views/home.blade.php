@@ -91,24 +91,25 @@
                                             </svg>
                                         </span>
                                     </button>
-                                    <div x-cloak x-show="isOpen" x-on:keydown.escape.window="isOpen = false" class="border-t border-gray-200 bg-white">
-                                        <span class="mt-12 pt-40 text-md font-semibold">Category</span>
+                                    <div x-cloak x-show="isOpen" x-on:keydown.escape.window="isOpen = false" class="m-4 pt-6 border-t border-gray-200 bg-white">
+                                        <span class="pl-2 text-md font-semibold">Category</span>
                                         <div class="p-6 border-gray-300" id="filter-section-0">
                                             <div class="space-y-4 text-sm">
                                                 @foreach ($categories as $category)
                                                     <div class="flex items-center">
                                                         @if(Request()->product_category)
-                                                            <input id="filter-color-{{$category->category}}" {{ in_array($category->category, Request()->product_category) ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
-                                                            <label for="filter-color-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
+                                                            <input id="filter-category-mobile-{{$category->category}}" {{ in_array($category->category, Request()->product_category) ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
+                                                            <label for="filter-category-mobile-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
                                                         @else
-                                                            <input id="filter-color-{{$category->category}}" name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
-                                                            <label for="filter-color-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
+                                                            <input id="filter-category-mobile-{{$category->category}}" name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
+                                                            <label for="filter-category-mobile-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
                                                         @endif
                                                     </div>
                                                 @endforeach
                                             </div>
                                         </div>
-                                        <div class="border-gray-300 p-4">
+                                        <span class="pl-2 text-md font-semibold">Price</span>
+                                        <div class="p-6 border-gray-300">
                                             <!-- Price section -->
                                             <div class="space-y-4">
                                                 <div class="flex items-center">
@@ -169,11 +170,11 @@
                                         @foreach ($categories as $category)
                                             <div class="flex items-center">
                                                 @if(Request()->product_category)
-                                                    <input id="filter-color-{{$category->category}}" {{ in_array($category->category, Request()->product_category) ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
-                                                    <label for="filter-color-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
+                                                    <input id="filter-category-{{$category->category}}" {{ in_array($category->category, Request()->product_category) ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
+                                                    <label for="filter-category-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
                                                 @else
-                                                    <input id="filter-color-{{$category->category}}" name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
-                                                    <label for="filter-color-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
+                                                    <input id="filter-category-{{$category->category}}" name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
+                                                    <label for="filter-category-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
                                                 @endif
                                             </div>
                                         @endforeach
