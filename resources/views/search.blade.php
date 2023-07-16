@@ -5,7 +5,7 @@
 @section('main-content')
     <!-- Search Results -->
     @isset($search)
-        <section class="text-gray-600 body-font mx-12 pt-20 pb-4 lg:mx-40">
+        <section class="text-gray-600 body-font mx-12 pt-12 pb-4 lg:mx-40">
             <div class="container px-5 mx-auto">
                 <div class="flex flex-wrap w-full mb-16 lg:mb-0">
                     <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
@@ -22,7 +22,7 @@
     <!-- Products -->
     <section class="container">
         <div class="bg-white">
-            <main class="mx-auto max-w-7xl px-6 lg:px-4 lg:pt-8">
+            <main class="mx-auto max-w-7xl px-6 lg:px-4 lg:pt-0">
                 <section aria-labelledby="products-heading" class="pb-24 pt-6">
                     <h2 id="products-heading" class="sr-only">Products</h2>
             
