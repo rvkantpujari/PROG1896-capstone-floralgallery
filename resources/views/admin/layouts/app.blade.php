@@ -23,6 +23,8 @@
                 font-weight: bold;
             }
         </style>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         @section('css-styles')
             {{-- Include CSS Styles here!!! --}}
         @show
