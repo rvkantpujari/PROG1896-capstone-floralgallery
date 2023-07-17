@@ -39,7 +39,7 @@
             let options = {
                 legend: { position: "none" },
                 chart: {
-                    title: 'New Customers Joined in ' + (new Date().getFullYear()),
+                    title: 'Customers Joined in ' + (new Date().getFullYear()),
                 },
             };
 
