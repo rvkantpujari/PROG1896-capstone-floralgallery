@@ -21,6 +21,25 @@
             });
         </script>
     @endif
+    
+    @if (auth()->user()->status == 'suspended')
+        <div role="alert" class="h-auto md:h-[8vh] lg:h-[12vh] w-auto rounded border-b-4 md:border-s-4 md:border-b-0 border-orange-500 bg-red-50 mx-4 px-6 py-4 text-justify absolute top-40 md:top-24 md:right-0 transition duration-300"
+            x-data="{ show: true }" x-show="show" x-transition
+            x-init="setTimeout(() => show = false, 5000)"
+        >
+            <div class="flex items-center gap-2 text-orange-800">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                    <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd"/>
+                </svg>
+                <strong class="block font-medium"> Account Suspended! </strong>
+            </div>
+            
+            <p class="mt-2 text-sm text-orange-700">
+                Please contact <span class="text-black font-semibold">FlowerGallery</span> for more details.
+            </p>
+        </div>
+    @endif
+
     <div class="flex flex-col">
         <div class="-mx-4 -my-2 overflow-x-auto md:-mx-6 lg:-mx-8 lg:-my-6">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -123,24 +142,28 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <form method="POST" action="{{route('seller.product.edit', ['id' => $product->id])}}">
-                                                @csrf
-                                                
-                                                <button type="submit" class="text-white bg-gray-700 hover:bg-gray-900 font-semibold px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
-                                                    Edit
-                                                </button>
-                                            </form>
-                                            
-                                            @if ($product->product_status !== 'deleted')
-                                                <form method="POST" action="{{route('seller.product.destroy', ['id' => $product->id])}}">
+                                            @if (auth()->user()->status != 'suspended')
+                                                <form method="POST" action="{{route('seller.product.edit', ['id' => $product->id])}}">
                                                     @csrf
-                                                    @method('patch')
-                                                    
-                                                    <button type="submit" class="show_confirm text-white font-semibold bg-red-400 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none" 
-                                                        data-toggle="tooltip" title='Delete'>
-                                                        Delete
+                                                    <button type="submit" class="text-white bg-gray-700 hover:bg-gray-900 font-semibold px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none">
+                                                        Edit
                                                     </button>
                                                 </form>
+                                                
+                                                @if ($product->product_status !== 'deleted')
+                                                    <form method="POST" action="{{route('seller.product.destroy', ['id' => $product->id])}}">
+                                                        @csrf
+                                                        @method('patch')
+                                                        <button type="submit" class="show_confirm text-white font-semibold bg-red-400 px-[16px] py-[8px] rounded-md transition-colors duration-200 focus:outline-none" 
+                                                            data-toggle="tooltip" title='Delete'>
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            @else
+                                                <div class="w-full text-sm inline-flex items-center px-[16px] py-[5px] rounded-full gap-x-2 text-orange-500 hover:text-black bg-orange-300/60 hover:bg-orange-300/90">
+                                                    Suspended
+                                                </div>
                                             @endif
                                         </div>
                                     </td>
