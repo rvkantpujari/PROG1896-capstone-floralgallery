@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\ManageCustomersController as AdminManageCustomers
 use App\Http\Controllers\Admin\ManageProductsController as AdminManageProductsController;
 use App\Http\Controllers\Admin\ManageSellersController as AdminManageSellersController;
 use App\Http\Controllers\Admin\AdminProfileController as AdminProfileController;
+use App\Http\Controllers\AdminAuth\AdminVerifyCustomerEmailController;
+
 use App\Http\Controllers\Seller\SellerProfileController as SellerProfileController;
 use App\Http\Controllers\Seller\ManageProductsController as SellerManageProductsController;
 
@@ -44,9 +46,7 @@ Route::get('/product/{product_id}', [ViewProductController::class, 'index'])->wh
 
 // Customer Routes
 
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth'])->name('loggedIn');
+Route::get('/home', [HomeController::class, 'index'])->middleware(['auth'])->name('loggedIn');
 
 
 Route::middleware('auth')->group(function () {
@@ -121,6 +121,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::patch('/admin/edit-product/{id}', [AdminManageProductsController::class, 'update'])->name('admin.product.update');
     Route::patch('/admin/delete-product/{id}', [AdminManageProductsController::class, 'destroy'])->name('admin.product.destroy');
 });
+
+
+Route::post('email/verify-customer-email', [AdminVerifyCustomerEmailController::class, 'store'])
+        ->middleware(['auth:admin', 'throttle:6,1'])
+        ->name('customer.verification.send');
 
 
 require __DIR__.'/adminauth.php';
