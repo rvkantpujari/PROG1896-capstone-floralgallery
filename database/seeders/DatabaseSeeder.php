@@ -32,22 +32,22 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 1, 'first_name' => 'John', 'last_name' => 'Smith', 'store_name' => 'Blossom Florals',
                 'email' => 'johnsmith@blossomflorals.com', 'password' => Hash::make('Seller@1234'), 'status' => 'pending',
-                'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')
+                'email_verified_at' => null, 'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'id' => 2, 'first_name' => 'Emily', 'last_name' => 'Davis', 'store_name' => 'Petal Paradise',
                 'email' => 'emilydavis@petalparadise.com', 'password' => Hash::make('Seller@1234'), 'status' => 'verified',
-                'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')
+                'email_verified_at' => date('Y-m-d H:i:s'), 'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'id' => 3, 'first_name' => 'Michael', 'last_name' => 'Johnson', 'store_name' => 'Fragrant Blooms',
                 'email' => 'michaeljohnson@fragrantblooms.com', 'password' => Hash::make('Seller@1234'), 'status' => 'pending',
-                'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')
+                'email_verified_at' => null, 'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'id' => 4, 'first_name' => 'Sarah', 'last_name' => 'Thompson', 'store_name' => 'Garden of Roses',
                 'email' => 'sarahthompson@gardenofroses.com', 'password' => Hash::make('Seller@1234'), 'status' => 'verified',
-                'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')
+                'email_verified_at' => date('Y-m-d H:i:s'), 'created_at' => date('Y-m-d H:i:s'),  'updated_at' => date('Y-m-d H:i:s')
             ]
         ]);
 

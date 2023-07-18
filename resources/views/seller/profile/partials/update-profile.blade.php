@@ -1,8 +1,8 @@
 <!-- Profile -->
-<div class="flex flex-col md:px-8 md:py-4 lg:py-0 lg:px-4 lg:pb-12 lg:flex-row lg:justify-center">
+{{-- <div class="flex flex-col md:px-8 md:py-4 lg:py-0 lg:pb-12 lg:flex-row lg:justify-center"> --}}
+<div class="flex flex-col lg:flex-row lg:justify-center">
     <form id="send-verification" method="post" action="{{ route('send.seller.verification') }}">
         @csrf
-        {{-- <input type="hidden" name="seller_id" value={{$seller->id}}> --}}
     </form>
 
     @if (session()->has('update-personal-info'))
@@ -23,12 +23,12 @@
         </script>
     @endif
 
-    <div class="flex flex-col md:flex-row">
-        <form method="post" action="{{route('seller.profile.update')}}" class="w-4/7">
+    <div class="w-full flex flex-col md:flex-row gap-x-12 px-6 py-8 md:p-12">
+        <form method="post" action="{{route('seller.profile.update')}}" class="md:w-1/2">
             @csrf
             @method('patch')
             
-            <div class="py-4 px-8 w-full lg:min-h-[40vh]">
+            <div class="lg:min-h-[45vh] md:min-h-[42vh]">
                 
                 <h2 class="pt-8 text-base font-semibold leading-7 text-gray-900">
                     Personal Information
@@ -38,8 +38,8 @@
                     Manage your personal information such as name and contact information.
                 </p>
     
-                <div class="mt-10 grid grid-cols-6 gap-x-2 gap-y-4 md:grid-cols-12">
-                    <div class="col-span-6 md:col-span-6 lg:col-span-6">
+                <div class="mt-10 grid grid-cols-12 gap-x-2 gap-y-4 md:grid-cols-12">
+                    <div class="col-span-12 md:col-span-6 lg:col-span-6">
                         <label for="first_name" class="block text-sm font-medium leading-6 text-gray-500">
                             First name
                         </label>
@@ -54,7 +54,7 @@
                         @enderror
                     </div>
     
-                    <div class="col-span-6 md:col-span-6 lg:col-span-6">
+                    <div class="col-span-12 md:col-span-6 lg:col-span-6">
                         <label for="last_name" class="block text-sm font-medium leading-6 text-gray-500">
                             Last name
                         </label>
@@ -69,7 +69,7 @@
                         @enderror
                     </div>
                     
-                    <div class="col-span-6 md:col-span-6 lg:col-span-6">
+                    <div class="col-span-12 md:col-span-12 lg:col-span-6">
                         <label for="store_name" class="block text-sm font-medium leading-6 text-gray-500">
                             Store name
                         </label>
@@ -84,7 +84,7 @@
                         @enderror
                     </div>
                     
-                    <div class="col-span-6 md:col-span-6 lg:col-span-6">
+                    <div class="col-span-12 md:col-span-12 lg:col-span-6">
                         <label for="email" class="{{$seller->hasVerifiedEmail() ? 'flex gap-x-2' : 'block'}} text-sm font-medium leading-6 text-gray-500">
                                 Email
                                 @if ($seller->hasVerifiedEmail())
@@ -102,13 +102,13 @@
                     </div>
                 </div>
     
-                <div class="col-span-12">
+                <div class="col-span-12 my-8">
                     @if ($seller instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $seller->hasVerifiedEmail())
                         <div class="text-center">
-                            <p class="text-sm mt-4 text-red-500 font-semibold">
+                            <p class="text-sm text-red-500 font-semibold">
                                 Your email address is unverified.
 
-                                <button form="send-verification" class="underline text-xs md:text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <button form="send-verification" class="mt-2 underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     <span class="hidden md:inline">Click</span><span class="md:hidden">Tap</span> here to re-send the verification email.
                                 </button>
                             </p>
@@ -123,7 +123,7 @@
                 </div>
             </div>
     
-            <div class="py-8 flex justify-end md:gap-x-4">
+            <div class="flex justify-end md:gap-x-4">
                 @if (session('status') === 'profile-updated')
                     <p x-data="{ show: true }" x-show="show" x-transition
                         x-init="setTimeout(() => show = false, 2000)"
@@ -132,7 +132,7 @@
                     </p>
                 @endif
     
-                <div class="px-8 flex flex-row gap-x-12 items-center md:justify-between">
+                <div class="flex flex-row gap-x-12 items-center md:justify-between">
                     <a href="{{url()->previous()}}" class="rounded-md px-[20px] py-[8px] text-sm text-white bg-black font-semibold shadow-sm hover:bg-gray-800 focus-visible:outline-offset-2">
                         Cancel
                     </a>
@@ -146,11 +146,11 @@
         {{-- </div>
         <div class="flex md:px-8 md:py-4 lg:px-0 lg:pb-24 lg:flex-row lg:justify-center"> --}}
         
-        <form method="post" action="{{route('seller.password.update')}}" class="w-3/7">
+        <form method="post" action="{{route('seller.password.update')}}" class="md:w-1/2 mt-12 mb-8 md:my-0">
             @csrf
             @method('put')
             
-            <div class="py-4 px-8 w-full lg:min-h-[40vh]">
+            <div class="lg:min-h-[45vh] md:min-h-[42vh]">
                 
                 <h2 class="pt-8 text-base font-semibold leading-7 text-gray-900">
                     Update Password
@@ -160,9 +160,9 @@
                     Ensure your account is using a long, random password to stay secure.
                 </p>
     
-                <div class="mt-10 grid grid-cols-6 gap-x-2 gap-y-4 md:grid-cols-10 lg:grid-cols-12">
+                <div class="mt-10 grid grid-cols-12 gap-x-2 gap-y-4 md:grid-cols-10 lg:grid-cols-12">
     
-                    <div class="col-span-6 md:col-span-12 lg:col-span-12">
+                    <div class="col-span-12 md:col-span-12 lg:col-span-12">
                         <label for="current_password" class="block text-sm font-medium leading-6 text-gray-500">
                             Current Password
                         </label>
@@ -174,7 +174,7 @@
                         <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
                     </div>
                     
-                    <div class="col-span-6 md:col-span-6 lg:col-span-6">
+                    <div class="col-span-12 md:col-span-12 lg:col-span-6">
                         <label for="password" class="block text-sm font-medium leading-6 text-gray-500">
                             New Password
                         </label>
@@ -186,7 +186,7 @@
                         <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
                     </div>
                     
-                    <div class="col-span-6 md:col-span-6 lg:col-span-6">
+                    <div class="col-span-12 md:col-span-12 lg:col-span-6">
                         <label for="password_confirmation" class="block text-sm font-medium leading-6 text-gray-500">
                             Confirm Password
                         </label>
@@ -200,7 +200,7 @@
                 </div>
             </div>
     
-            <div class="py-8 flex justify-end md:gap-x-4">
+            <div class="flex justify-end md:gap-x-4 pt-12 md:pt-0">
                 @if (session('status') === 'profile-updated')
                     <p x-data="{ show: true }" x-show="show" x-transition
                         x-init="setTimeout(() => show = false, 2000)"
@@ -209,7 +209,7 @@
                     </p>
                 @endif
     
-                <div class="px-8 flex flex-row gap-x-12 items-center md:justify-between">
+                <div class="flex flex-row gap-x-12 items-center md:justify-between">
                     <a href="{{url()->previous()}}" class="rounded-md px-[20px] py-[8px] text-sm text-white bg-black font-semibold shadow-sm hover:bg-gray-800 focus-visible:outline-offset-2">
                         Cancel
                     </a>
