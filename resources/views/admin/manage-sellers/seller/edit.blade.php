@@ -59,8 +59,8 @@
                         <div class="col-span-6 md:col-span-6">
                             <label for="email" class="flex gap-x-2 text-sm font-medium leading-6 text-gray-500">
                                 Primary Email
-                                <span class="{{auth()->user()->hasVerifiedEmail() ? 'text-green-500' : 'text-red-400'}}">
-                                    @if (auth()->user()->hasVerifiedEmail())
+                                <span class="{{$seller->hasVerifiedEmail() ? 'text-green-500' : 'text-red-400'}}">
+                                    @if ($seller->hasVerifiedEmail())
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-700">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                                         </svg>
@@ -73,7 +73,7 @@
                             </label>
                             <div class="mt-2">
                                 <input type="text" id="email" name="email" autocomplete="email" title="{{$seller->hasVerifiedEmail() ? 'Email Verified' : 'Verification Pending'}}"
-                                    class="{{auth()->user()->hasVerifiedEmail() ? 'ring-green-500' : 'ring-red-400'}} block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                    class="{{$seller->hasVerifiedEmail() ? 'ring-green-500' : 'ring-red-400'}} block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                     value="{{old('email', $seller->email)}}"
                                 />
                             </div>
