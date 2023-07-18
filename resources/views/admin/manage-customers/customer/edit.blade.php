@@ -7,6 +7,10 @@
     <div class="w-full">
         <h1 class="text-center lg:text-left text-[26px] font-semibold m-8 pt-4"><a href="{{url()->previous()}}">Manage Customers</a> > <span class="text-pink-500">Edit Profile</span></h1>
         <div class="lg:w-4/5 mx-8 my-16 lg:mx-auto lg:my-20 p-4 bg-white shadow-md rounded-lg lg:p-0">
+            <form id="send-verification" method="post" action="{{ route('customer.verification.send') }}">
+                @csrf
+                <input type="hidden" name="customer_id" value={{$customer->id}}>
+            </form>
             <!-- Profile -->
             <div class="flex flex-col md:px-8 md:py-4 lg:py-0 lg:px-4 lg:pb-12 lg:flex-row lg:justify-center">
                 <span class="lg:w-3/5">
@@ -120,8 +124,28 @@
                                         <span class="text-red-500 text-sm">{{$message}}</span>
                                     @enderror
                                 </div>
+                                
+                                <div class="col-span-12">
+                                    @if ($customer instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $customer->hasVerifiedEmail())
+                                        <div class="text-center">
+                                            <p class="text-sm my-2 text-red-500 font-semibold">
+                                                Your email address is unverified.
 
-                                <div class="col-span-6 md:col-span-12 mt-4">
+                                                <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                    Click here to re-send the verification email.
+                                                </button>
+                                            </p>
+
+                                            @if (session('status') === 'verification-link-sent')
+                                                <p class="font-medium text-sm text-green-600">
+                                                    A new verification link has been sent to customer's email address.
+                                                </p>
+                                            @endif
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <div class="col-span-6 md:col-span-12">
                                     <label for="status" class="block text-sm font-medium leading-6 text-gray-500">
                                         Account Status
                                     </label>
