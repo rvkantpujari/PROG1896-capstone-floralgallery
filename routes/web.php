@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ManageProductsController as AdminManageProductsCo
 use App\Http\Controllers\Admin\ManageSellersController as AdminManageSellersController;
 use App\Http\Controllers\Admin\AdminProfileController as AdminProfileController;
 use App\Http\Controllers\AdminAuth\AdminVerifyCustomerEmailController;
+use App\Http\Controllers\AdminAuth\AdminVerifySellerEmailController;
 
 use App\Http\Controllers\Seller\SellerProfileController as SellerProfileController;
 use App\Http\Controllers\Seller\ManageProductsController as SellerManageProductsController;
@@ -126,6 +127,10 @@ Route::middleware('auth:admin')->group(function () {
 Route::post('email/verify-customer-email', [AdminVerifyCustomerEmailController::class, 'store'])
         ->middleware(['auth:admin', 'throttle:6,1'])
         ->name('customer.verification.send');
+
+
+Route::post('email/verify-seller-email', [AdminVerifySellerEmailController::class, 'store'])
+        ->middleware(['auth:admin'])->name('send.seller.verification');
 
 
 require __DIR__.'/adminauth.php';

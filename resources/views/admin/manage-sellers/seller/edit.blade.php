@@ -5,13 +5,14 @@
 @section('main-content')
     <!-- Manage Seller and Store Information -->
     <div class="w-full">
-        <h1 class="text-center lg:text-left text-[24px] md:text-[26px] font-semibold m-8 pt-4"><a href="{{route('seller.products')}}">Manage Products</a> <span class="hidden md:inline">></span> <br class="md:hidden"> <span class="text-pink-500">Add Product</span></h1>
+        <h1 class="text-center lg:text-left text-[24px] md:text-[26px] font-semibold m-8 pt-4"><a href="{{route('admin.seller.edit', ['id' => $seller->id])}}">Manage Sellers</a> <span class="hidden md:inline">></span> <br class="md:hidden"> <span class="text-pink-500">Edit Seller</span></h1>
 
-        <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+        <form id="send-verification" method="post" action="{{ route('send.seller.verification') }}">
             @csrf
+            <input type="hidden" name="seller_id" value={{$seller->id}}>
         </form>
 
-        <form method="POST" enctype="multipart/form-data" class="bg-white shadow-md mx-8 my-16 lg:mx-12 lg:my-20 md:px-8 md:py-4 lg:p-0 lg:px-4 lg:pb-12">
+        <form method="POST" class="bg-white shadow-md mx-8 my-16 lg:mx-12 lg:my-20 md:px-8 md:py-4 lg:p-0 lg:px-4 lg:pb-12">
             @csrf
             <div class="w-full flex flex-col lg:flex-row lg:justify-center p-8">
                 <div class="lg:w-1/2 py-4 px-8 lg:min-h-[40vh]">
@@ -76,28 +77,9 @@
                                     value="{{old('email', $seller->email)}}"
                                 />
                             </div>
-
                             @error('email')
                                 <span class="text-red-500 text-sm">{{$message}}</span>
                             @enderror
-                            
-                            @if(!auth()->user()->hasVerifiedEmail())
-                                <div class="text-center">
-                                    <p class="text-sm my-8 text-red-500 font-semibold">
-                                        Your email address is unverified.
-        
-                                        <button form="send-verification" class="underline text-xs text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Click here to re-send the verification email.
-                                        </button>
-                                    </p>
-        
-                                    @if (session('status') === 'verification-link-sent')
-                                        <p class="mt-2 font-medium text-xs text-green-600">
-                                            A new verification link has been sent to your email address.
-                                        </p>
-                                    @endif
-                                </div>
-                            @endif
                         </div>
                                                         
                         <div class="col-span-6 md:col-span-6">
@@ -113,6 +95,26 @@
                             @error('phone')
                                 <span class="text-red-500 text-sm">{{$message}}</span>
                             @enderror
+                        </div>
+
+                        <div class="col-span-12">
+                            @if ($seller instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $seller->hasVerifiedEmail())
+                                <div class="text-center">
+                                    <p class="text-sm my-2 text-red-500 font-semibold">
+                                        Your email address is unverified.
+
+                                        <button form="send-verification" class="underline text-xs md:text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <span class="hidden md:inline">Click</span><span class="md:hidden">Tap</span> here to re-send the verification email.
+                                        </button>
+                                    </p>
+
+                                    @if (session('status') === 'verification-link-sent')
+                                        <p class="font-medium text-sm text-green-600">
+                                            A new verification link has been sent to the seller's email address.
+                                        </p>
+                                    @endif
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
