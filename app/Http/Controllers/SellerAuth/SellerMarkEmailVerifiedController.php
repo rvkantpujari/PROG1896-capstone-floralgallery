@@ -8,7 +8,7 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\RedirectResponse;
 
-class VerifyEmailController extends Controller
+class SellerMarkEmailVerifiedController extends Controller
 {
     /**
      * Mark the authenticated user's email address as verified.
@@ -20,7 +20,9 @@ class VerifyEmailController extends Controller
         }
 
         if ($request->user()->markEmailAsVerified()) {
+            $request->user()->status = "verified";
             event(new Verified($request->user()));
+            $request->user()->update();
         }
 
         return redirect()->intended(RouteServiceProvider::SELLER_HOME.'?verified=1');

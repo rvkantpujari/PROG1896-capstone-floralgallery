@@ -13,33 +13,33 @@ use Illuminate\View\View;
 class SellerProfileController extends Controller
 {
     /**
-     * Display the user's profile form.
+     * Display the seller's profile form.
      */
     public function edit(Request $request): View
     {
         return view('seller.profile.edit', [
-            'user' => $request->user(),
+            'seller' => $request->user(),
         ]);
     }
 
     /**
-     * Update the user's profile information.
+     * Update the seller's profile information.
     */
     public function update(SellerProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $request->seller()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($request->seller()->isDirty('email')) {
+            $request->seller()->email_verified_at = null;
         }
 
-        $request->user()->save();
+        $request->seller()->save();
 
         return Redirect::route('seller.profile.edit')->with('update-personal-info', "Personal Infromation Updated Successfully.");
     }
 
     /**
-     * Delete the user's account.
+     * Delete the seller's account.
     */
     public function destroy(Request $request): RedirectResponse
     {
@@ -47,11 +47,11 @@ class SellerProfileController extends Controller
             'password' => ['required', 'current_password'],
         ]);
 
-        $user = $request->user();
+        $seller = $request->seller();
 
         Auth::guard('seller')->logout();
 
-        $user->delete();
+        $seller->delete();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
