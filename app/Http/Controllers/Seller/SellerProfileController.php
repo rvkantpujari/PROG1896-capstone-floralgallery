@@ -27,13 +27,13 @@ class SellerProfileController extends Controller
     */
     public function update(SellerProfileUpdateRequest $request): RedirectResponse
     {
-        $request->seller()->fill($request->validated());
+        $request->user()->fill($request->validated());
 
-        if ($request->seller()->isDirty('email')) {
-            $request->seller()->email_verified_at = null;
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
         }
 
-        $request->seller()->save();
+        $request->user()->save();
 
         return Redirect::route('seller.profile.edit')->with('update-personal-info', "Personal Infromation Updated Successfully.");
     }
@@ -47,7 +47,7 @@ class SellerProfileController extends Controller
             'password' => ['required', 'current_password'],
         ]);
 
-        $seller = $request->seller();
+        $seller = $request->user();
 
         Auth::guard('seller')->logout();
 
