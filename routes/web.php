@@ -44,9 +44,7 @@ Route::get('/product/{product_id}', [ViewProductController::class, 'index'])->wh
 
 // Customer Routes
 
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth'])->name('loggedIn');
+Route::get('/home', [HomeController::class, 'index'])->middleware(['auth'])->name('loggedIn');
 
 
 Route::middleware('auth')->group(function () {
