@@ -7,7 +7,7 @@
     <div class="w-full">
         <h1 class="text-center lg:text-left text-[24px] md:text-[26px] font-semibold m-8 pt-4"><a href="{{route('admin.seller.edit', ['id' => $seller->id])}}">Manage Sellers</a> <span class="hidden md:inline">></span> <br class="md:hidden"> <span class="text-pink-500">Edit Seller</span></h1>
 
-        <form id="send-verification" method="post" action="{{ route('send.seller.verification') }}">
+        <form id="send-verification" method="post" action="{{ route('admin.send.seller.verification') }}">
             @csrf
             <input type="hidden" name="seller_id" value={{$seller->id}}>
         </form>

@@ -131,7 +131,7 @@ Route::post('email/verify-customer-email', [AdminVerifyCustomerEmailController::
 
 
 Route::post('email/verify-seller-email', [AdminVerifySellerEmailController::class, 'store'])
-        ->middleware(['auth:admin'])->name('send.seller.verification');
+        ->middleware(['auth:admin'])->name('admin.send.seller.verification');
 
 
 require __DIR__.'/adminauth.php';
