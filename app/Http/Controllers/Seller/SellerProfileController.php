@@ -13,17 +13,17 @@ use Illuminate\View\View;
 class SellerProfileController extends Controller
 {
     /**
-     * Display the user's profile form.
+     * Display the seller's profile form.
      */
     public function edit(Request $request): View
     {
         return view('seller.profile.edit', [
-            'user' => $request->user(),
+            'seller' => $request->user(),
         ]);
     }
 
     /**
-     * Update the user's profile information.
+     * Update the seller's profile information.
     */
     public function update(SellerProfileUpdateRequest $request): RedirectResponse
     {
@@ -39,7 +39,7 @@ class SellerProfileController extends Controller
     }
 
     /**
-     * Delete the user's account.
+     * Delete the seller's account.
     */
     public function destroy(Request $request): RedirectResponse
     {
@@ -47,11 +47,11 @@ class SellerProfileController extends Controller
             'password' => ['required', 'current_password'],
         ]);
 
-        $user = $request->user();
+        $seller = $request->user();
 
         Auth::guard('seller')->logout();
 
-        $user->delete();
+        $seller->delete();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
