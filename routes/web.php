@@ -151,7 +151,7 @@ Route::middleware('auth:seller')->group(function () {
 });
 
 
-Route::middleware('auth:seller')->group(function () {
+Route::middleware(['auth:seller', 'verified'])->group(function () {
     Route::get('/seller/manage-products', [SellerManageProductsController::class, 'index'])->name('seller.products');
     Route::get('/seller/add-product', [SellerManageProductsController::class, 'add'])->name('seller.product.add');
     Route::post('/seller/add-product', [SellerManageProductsController::class, 'store'])->name('seller.product.store');
