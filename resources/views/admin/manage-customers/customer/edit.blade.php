@@ -7,7 +7,7 @@
     <div class="w-full">
         <h1 class="text-center lg:text-left text-[26px] font-semibold m-8 pt-4"><a href="{{url()->previous()}}">Manage Customers</a> > <span class="text-pink-500">Edit Profile</span></h1>
         <div class="mx-8 my-16 lg:mx-auto lg:my-20 p-4 bg-white shadow-md rounded-lg lg:p-0">
-            <form id="send-verification" method="post" action="{{ route('customer.verification.send') }}">
+            <form id="send-verification" method="post" action="{{ route('admin.send.customer.verification') }}">
                 @csrf
                 <input type="hidden" name="customer_id" value={{$customer->id}}>
             </form>

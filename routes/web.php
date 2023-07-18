@@ -126,8 +126,7 @@ Route::middleware('auth:admin')->group(function () {
 
 
 Route::post('email/verify-customer-email', [AdminVerifyCustomerEmailController::class, 'store'])
-        ->middleware(['auth:admin', 'throttle:6,1'])
-        ->name('customer.verification.send');
+        ->middleware(['auth:admin', 'throttle:6,1'])->name('admin.send.customer.verification');
 
 
 Route::post('email/verify-seller-email', [AdminVerifySellerEmailController::class, 'store'])
