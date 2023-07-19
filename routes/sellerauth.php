@@ -2,13 +2,12 @@
 
 use App\Http\Controllers\SellerAuth\AuthenticatedSessionController;
 use App\Http\Controllers\SellerAuth\ConfirmablePasswordController;
-use App\Http\Controllers\SellerAuth\EmailVerificationNotificationController;
 use App\Http\Controllers\SellerAuth\EmailVerificationPromptController;
 use App\Http\Controllers\SellerAuth\NewPasswordController;
 use App\Http\Controllers\SellerAuth\PasswordController;
 use App\Http\Controllers\SellerAuth\PasswordResetLinkController;
 use App\Http\Controllers\SellerAuth\RegisteredUserController;
-use App\Http\Controllers\SellerAuth\VerifyEmailController;
+use App\Http\Controllers\SellerAuth\SellerMarkEmailVerifiedController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:seller'], 'prefix' => 'seller', 'as' => 'seller.'], function() {
@@ -40,13 +39,8 @@ Route::group(['middleware' => ['auth:seller'], 'prefix' => 'seller', 'as' => 'se
     Route::get('verify-email', EmailVerificationPromptController::class)
                 ->name('verification.notice');
 
-    // Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
-    //             ->middleware(['signed', 'throttle:6,1'])
-    //             ->name('verification.verify');
-
-    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-                ->middleware('throttle:6,1')
-                ->name('verification.send');
+    Route::get('seller-verify-email/{id}/{hash}', SellerMarkEmailVerifiedController::class)
+        ->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
 
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
                 ->name('password.confirm');
