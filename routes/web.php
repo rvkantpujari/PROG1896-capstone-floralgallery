@@ -161,7 +161,7 @@ Route::middleware(['auth:seller', 'verified'])->group(function () {
 
 
 Route::get('seller-verify-email/{id}/{hash}', SellerMarkEmailVerifiedController::class)
-        ->middleware(['auth:seller', 'signed', 'throttle:6,1'])->name('verification.verify');
+        ->middleware(['auth:seller', 'signed', 'throttle:6,1'])->name('seller.verification.verify');
 
 Route::post('email/seller-verification', [VerifySellerEmailController::class, 'store'])
         ->middleware(['auth:seller', 'throttle:6,1'])->name('send.seller.verification');
