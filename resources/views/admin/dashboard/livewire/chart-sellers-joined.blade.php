@@ -23,7 +23,7 @@
             let d = 0;
             labelsAlpha.forEach((label, i) => {
                 chart['month'].push(label);
-                chart['count'].push(months.includes(i+1) ? count[d++] : 0);
+                chart['count'].push(months.includes(i+1) ? Number(count[d++]) : 0);
             });
 
             let dataTable = new google.visualization.DataTable();
