@@ -20,7 +20,6 @@ use App\Http\Controllers\AdminAuth\AdminVerifySellerEmailController;
 
 use App\Http\Controllers\Seller\SellerProfileController as SellerProfileController;
 use App\Http\Controllers\Seller\ManageProductsController as SellerManageProductsController;
-use App\Http\Controllers\SellerAuth\SellerMarkEmailVerifiedController;
 use App\Http\Controllers\SellerAuth\VerifySellerEmailController;
 
 // Visitor Routes
@@ -159,9 +158,6 @@ Route::middleware(['auth:seller', 'verified'])->group(function () {
     Route::patch('/seller/delete-product/{id}', [SellerManageProductsController::class, 'destroy'])->name('seller.product.destroy');
 });
 
-
-Route::get('seller-verify-email/{id}/{hash}', SellerMarkEmailVerifiedController::class)
-        ->middleware(['auth:seller', 'signed', 'throttle:6,1'])->name('seller.verification.verify');
 
 Route::post('email/seller-verification', [VerifySellerEmailController::class, 'store'])
         ->middleware(['auth:seller', 'throttle:6,1'])->name('send.seller.verification');
