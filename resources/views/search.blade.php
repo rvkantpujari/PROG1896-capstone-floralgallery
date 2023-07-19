@@ -201,7 +201,7 @@
                                 @if (!empty($products))
                                     @foreach ($products as $product)
                                         <div class="lg:w-1/3 md:w-1/2 p-4 w-full">
-                                            <a href="#" class="block relative h-48 rounded overflow-hidden hover:shadow-lg">
+                                            <a href="{{route('product.view', ['product_id' => $product->product_id])}}" class="block relative h-48 rounded overflow-hidden hover:shadow-lg">
                                                 <img
                                                     alt="{{$product->product_name}}" title="{{$product->product_name}}"
                                                     class="object-cover object-center w-full h-full block hover:scale-110 hover:duration-500"
