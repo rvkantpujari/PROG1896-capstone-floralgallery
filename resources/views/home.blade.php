@@ -248,7 +248,7 @@
                                                     <h3 class="text-pink-400 text-sm tracking-widest font-semibold title-font mb-1">{{$product->category}}</h3>
                                                     <p class="font-semibold">CAD$ {{$product->product_price}}</p>
                                                 </div>
-                                                <h2 class="text-black title-font text-lg font-semibold">{{$product->product_name}}</h2>
+                                                <h2 class="text-black title-font text-lg font-semibold">{{Str::limit($product->product_name, 24)}}</h2>
                                             </div>
                                         </div>
                                     @endforeach
