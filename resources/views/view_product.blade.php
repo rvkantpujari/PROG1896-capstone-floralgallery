@@ -41,7 +41,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="lg:w-1/2 w-full lg:py-6 lg:mt-0 md:mt-12 mt-6">
+                            <div class="lg:w-1/2 w-full lg:py-6 lg:mt-0 mt-12">
                                 <h2 class="text-sm title-font text-gray-500 tracking-widest">
                                     {{ Str::upper(Str::limit($product->category, 80)) }}
                                 </h2>
@@ -49,7 +49,7 @@
                                     {{ $product->product_name }}
                                 </h1>
                                 <div class="flex mb-4">
-                                    Product by &nbsp;<span class="font-semibold text-pink-500">{{$product->store_name}}</span>
+                                    Product by&nbsp;<span class="font-semibold text-pink-500" title="{{$product->store_name}}">{{Str::limit($product->store_name, 50)}}</span>
                                 </div>
                                 <p class="leading-relaxed lg:min-h-[10vh] md:min-h-[5vh]">{{$product->product_desc}}</p>
                                 <div class="flex mt-4 items-center pb-5 border-b-2 border-gray-100 mb-5">
