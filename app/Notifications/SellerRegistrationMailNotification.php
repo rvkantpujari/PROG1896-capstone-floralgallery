@@ -50,7 +50,7 @@ class SellerRegistrationMailNotification extends Notification
             return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
         }
 
-        return $this->buildMailMessage($verificationUrl);
+        return $this->buildMailMessage($verificationUrl, $notifiable);
     }
 
     /**
@@ -59,13 +59,15 @@ class SellerRegistrationMailNotification extends Notification
      * @param  string  $url
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    protected function buildMailMessage($url)
+    protected function buildMailMessage($url, $notifiable)
     {
         return (new MailMessage)
-            ->subject(Lang::get('Seller Verify Email Address'))
-            ->line(Lang::get('Please click the button below to verify your email address.'))
-            ->action(Lang::get('Seller Verify Email Address'), $url)
-            ->line(Lang::get('If you did not create an account, no further action is required.'));
+            ->greeting('Hello '. $notifiable->first_name.',')
+            ->subject(Lang::get("Seller Verify Email Address"))
+            ->line(Lang::get("Congratulations 🎉 you are only one-step away from joining FloralGallery."))
+            ->line(Lang::get("Please click the button below to verify your email address."))
+            ->action(Lang::get("Seller Verify Email Address"), $url)
+            ->line(Lang::get("If you did not create the account, no further action is required."));
     }
 
     /**
