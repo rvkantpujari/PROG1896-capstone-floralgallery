@@ -47,6 +47,7 @@
                 document.querySelector('.sidebarMenu').classList.remove('md:hidden');
                 document.querySelector('.sidebarBtn').classList.remove('md:visible');
                 document.querySelector('.sidebarBtn').classList.add('md:hidden');
+                document.querySelector('#main').classList.add('hidden')
                 
                 document.querySelector('.sidebarMenu').classList.remove('hidden');
                 document.querySelector('.sidebarBtn').classList.remove('visible');
@@ -57,6 +58,7 @@
                 document.querySelector('.sidebarMenu').classList.add('md:hidden');
                 document.querySelector('.sidebarBtn').classList.add('md:visible');
                 document.querySelector('.sidebarBtn').classList.remove('md:hidden');
+                document.querySelector('#main').classList.remove('hidden')
                 
                 document.querySelector('.sidebarMenu').classList.add('hidden');
                 document.querySelector('.sidebarBtn').classList.add('visible');
