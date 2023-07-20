@@ -63,8 +63,7 @@ class SellerRegistrationMailNotification extends Notification
     {
         return (new MailMessage)
             ->greeting('Hello '. $notifiable->first_name.',')
-            ->subject(Lang::get("Seller Verify Email Address"))
-            ->line(Lang::get("Congratulations 🎉 you are only one-step away from joining FloralGallery."))
+            ->subject(Lang::get("FloralGallery - Seller Verify Email Address"))
             ->line(Lang::get("Please click the button below to verify your email address."))
             ->action(Lang::get("Seller Verify Email Address"), $url)
             ->line(Lang::get("If you did not create the account, no further action is required."));
