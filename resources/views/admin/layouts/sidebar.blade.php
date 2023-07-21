@@ -1,7 +1,6 @@
 @auth('admin')
     <div class="sidebarMenu hidden md:hidden lg:flex">
         <aside class="bg-[#1e3050] border-r overflow-x-auto transition ease-in duration-300">
-            {{-- <div class="flex flex-col justify-between flex-1 mt-2 w-screen md:w-56 h-screen pl-12 py-8 md:p-8"> --}}
             <div class="flex flex-col justify-between flex-1 w-screen md:w-56 h-screen mt-2">
                 <nav class="w-full px-8 md:w-auto space-y-6 md:px-2 lg:px-4">
                     <div class="space-y-3 pt-8 md:mt-0 px-0 text-lg text-white flex justify-center items-center justify-items-center" title="{{Auth::guard('admin')->user()->first_name}} {{Auth::guard('admin')->user()->last_name}}">
