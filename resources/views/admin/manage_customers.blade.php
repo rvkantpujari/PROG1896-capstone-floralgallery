@@ -14,7 +14,7 @@
 
 @section('main-content')
     {{-- Add Main Section Here!!! --}}
-    <div class="w-full">
+    <div class="w-full md:block" id="main">
         <h1 class="text-center lg:text-left text-[26px] font-semibold m-8 pt-4">Manage Customers</h1>
         <div class="w-full px-8 flex flex-col justify-center">
             @livewire('admin.customers-list')
