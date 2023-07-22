@@ -3,6 +3,21 @@
 @section('title', 'View Product - FlowerGallery')
 
 @section('main-content')
+    @if (session()->has('cart-product-added'))
+        <script>
+            swal("Product Added!! 🛒😀🎉", "{{session('cart-product-added')}}", "success", {
+                button:true,
+                button:"OK",
+            });
+        </script>
+    @elseif (session()->has('cart-product-updated'))
+        <script>
+            swal("Cart Updated!! 🛒😀🎉", "{{session('cart-product-updated')}}", "success", {
+                button:true,
+                button:"OK",
+            });
+        </script>
+    @endif
     <!-- Product Details -->
     <section class="container">
         <div class="bg-white">
@@ -42,37 +57,40 @@
                                 </div>
                             </div>
                             <div class="lg:w-1/2 w-full lg:py-6 lg:mt-0 mt-12">
-                                <h2 class="text-sm title-font text-gray-500 tracking-widest">
-                                    {{ Str::upper(Str::limit($product->category, 80)) }}
-                                </h2>
-                                <h1 class="text-gray-900 text-3xl title-font font-medium mb-1 capitalize">
-                                    {{ $product->product_name }}
-                                </h1>
-                                <div class="flex mb-4">
-                                    Product by&nbsp;<span class="font-semibold text-pink-500" title="{{$product->store_name}}">{{Str::limit($product->store_name, 50)}}</span>
-                                </div>
-                                <p class="leading-relaxed lg:min-h-[10vh] md:min-h-[5vh]">{{$product->product_desc}}</p>
-                                <div class="flex mt-4 items-center pb-5 border-b-2 border-gray-100 mb-5">
-                                    <div class="flex m-2 items-center">
-                                        <span class="mr-3">Quantity</span>
-                                        <div x-data="{ productQuantity: 1 }">
-                                            <label for="Quantity" class="sr-only"> Quantity </label>
-                                            <div class="flex items-center border border-gray-200 rounded">
-                                                <button type="button" x-on:click="productQuantity--" :disabled="productQuantity === 0" class="w-10 h-10 leading-10 font-semibold text-[22px] text-gray-600 transition hover:opacity-75">&minus;</button>
-                                                <input type="number" id="product_quantity" x-model="productQuantity" class="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"/>
-                                                <button type="button" x-on:click="productQuantity++" class="w-10 h-10 leading-10 font-semibold text-[22px] text-gray-600 transition hover:opacity-75">&plus;</button>
+                                <form action="{{route('cart.add.product', ['product_id' => $product->id])}}" method="post">
+                                    @csrf
+                                    <h2 class="text-sm title-font text-gray-500 tracking-widest">
+                                        {{ Str::upper(Str::limit($product->category, 80)) }}
+                                    </h2>
+                                    <h1 class="text-gray-900 text-3xl title-font font-medium mb-1 capitalize">
+                                        {{ $product->product_name }}
+                                    </h1>
+                                    <div class="flex mb-4">
+                                        Product by&nbsp;<span class="font-semibold text-pink-500" title="{{$product->store_name}}">{{Str::limit($product->store_name, 50)}}</span>
+                                    </div>
+                                    <p class="leading-relaxed lg:min-h-[10vh] md:min-h-[5vh]">{{$product->product_desc}}</p>
+                                    <div class="flex mt-4 items-center pb-5 border-b-2 border-gray-100 mb-5">
+                                        <div class="flex m-2 items-center">
+                                            <span class="mr-3">Quantity</span>
+                                            <div x-data="{ productQuantity: 1 }">
+                                                <label for="Quantity" class="sr-only"> Quantity </label>
+                                                <div class="flex items-center border border-gray-200 rounded">
+                                                    <button type="button" x-on:click="productQuantity--" :disabled="productQuantity === 0" class="w-10 h-10 leading-10 font-semibold text-[22px] text-gray-600 transition hover:opacity-75">&minus;</button>
+                                                    <input type="number" id="product_quantity" name="product_quantity" x-model="productQuantity" class="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"/>
+                                                    <button type="button" x-on:click="productQuantity++" class="w-10 h-10 leading-10 font-semibold text-[22px] text-gray-600 transition hover:opacity-75">&plus;</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="flex">
-                                    <span class="title-font font-semibold text-2xl text-gray-900">
-                                        CAD$ {{$product->product_price}}
-                                    </span>
-                                    <button class="flex ml-auto text-white bg-pink-400 border-0 py-2 px-6 focus:outline-none hover:bg-pink-500 rounded">
-                                        Add to Cart
-                                    </button>
-                                </div>
+                                    <div class="flex">
+                                        <span class="title-font font-semibold text-2xl text-gray-900">
+                                            CAD$ {{$product->product_price}}
+                                        </span>
+                                        <button class="flex ml-auto text-white bg-pink-400 border-0 py-2 px-6 focus:outline-none hover:bg-pink-500 rounded">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

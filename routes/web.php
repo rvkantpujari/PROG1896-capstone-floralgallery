@@ -8,6 +8,7 @@ use App\Http\Controllers\SearchProductController;
 use App\Http\Controllers\ViewProductController;
 
 use App\Http\Controllers\ProfileController as CustomerProfileController;
+use App\Http\Controllers\CartController;
 
 use App\Http\Controllers\Admin\ManageProvinceController as AdminManageProvinceController;
 use App\Http\Controllers\Admin\ManageCategoryController as AdminManageCategoryController;
@@ -56,10 +57,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [CustomerProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+Route::middleware('auth:web')->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart/add-product', [CartController::class, 'add'])->name('cart.add.product');
+    Route::patch('/cart/update-product', [CartController::class, 'update'])->name('cart.update.product.quantity');
+    Route::delete('/cart/remove-product', [CartController::class, 'remove'])->name('cart.remove.product');
+});
 
 
 require __DIR__.'/auth.php';
