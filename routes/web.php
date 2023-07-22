@@ -56,8 +56,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [CustomerProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::middleware('auth:web')->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart', [CartController::class, 'add'])->name('cart.add.product');
+});
 
 
 require __DIR__.'/auth.php';
