@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\ManageSellersController as AdminManageSellersCont
 use App\Http\Controllers\Admin\AdminProfileController as AdminProfileController;
 use App\Http\Controllers\AdminAuth\AdminVerifyCustomerEmailController;
 use App\Http\Controllers\AdminAuth\AdminVerifySellerEmailController;
-
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Seller\SellerProfileController as SellerProfileController;
 use App\Http\Controllers\Seller\ManageProductsController as SellerManageProductsController;
 use App\Http\Controllers\SellerAuth\VerifySellerEmailController;
@@ -57,9 +57,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 
 require __DIR__.'/auth.php';
