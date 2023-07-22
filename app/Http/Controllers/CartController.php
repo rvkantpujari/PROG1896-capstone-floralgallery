@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class CartController extends Controller
 {
-    function index() : View
+    function index()
     {
+        $product_count = Cart::where('user_id', auth()->user()->id)->count();
+        
+        if($product_count == 0)
+            return Redirect::back();
+
         return view('cart');
     }
 
@@ -50,6 +54,12 @@ class CartController extends Controller
     function remove(Request $request)
     {
         DB::table('cart')->where([['product_id', $request->product_id], ['user_id', auth()->user()->id]])->delete();
+
+        $product_count = Cart::where('user_id', auth()->user()->id)->count();
+        
+        if($product_count == 0)
+            return Redirect::route('home');
+
         return Redirect::back()->with('cart-product-removed','Product removed from your cart.');
     }
 }
