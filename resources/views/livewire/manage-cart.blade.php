@@ -36,15 +36,20 @@
                         </button>
                     </form>
 
-                    <form class="md:order-2">
+                    <form method="post" action="{{route('cart.update.product.quantity')}}" class="md:order-2">
+                        @csrf
+                        @method('patch')
+                        
                         <label for="Line2Qty" class="sr-only"> Quantity </label>
+
+                        <input type="hidden" name="product_id" value="{{$product->product_id}}">
 
                         <div x-data="{ productQuantity: {{$product->quantity}} }">
                             <label for="Quantity" class="sr-only"> Quantity </label>
                             <div class="flex items-center border border-gray-200 rounded">
-                                <button type="button" x-on:click="productQuantity--" :disabled="productQuantity === 1" class="w-10 h-10 leading-10 font-semibold text-[22px] text-gray-600 transition hover:opacity-75">&minus;</button>
-                                <input type="number" id="product_quantity" x-model="productQuantity" readonly class="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm"/>
-                                <button type="button" x-on:click="productQuantity++" class="w-10 h-10 leading-10 font-semibold text-[22px] text-gray-600 transition hover:opacity-75">&plus;</button>
+                                <button type="submit" x-on:click="productQuantity--" :disabled="productQuantity === 1" class="w-10 h-10 leading-10 font-semibold text-[22px] text-gray-600 transition hover:opacity-75">&minus;</button>
+                                <input type="number" id="product_quantity" name="product_quantity" x-model="productQuantity" readonly class="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm"/>
+                                <button type="submit" x-on:click="productQuantity++" class="w-10 h-10 leading-10 font-semibold text-[22px] text-gray-600 transition hover:opacity-75">&plus;</button>
                             </div>
                         </div>
                     </form>
@@ -67,7 +72,7 @@
             </dl>
 
             <div class="flex justify-end gap-4">
-                <button class="rounded-md bg-pink-400 px-5 py-3 text-md text-gray-100 font-semibold hover:transition hover:scale-105 hover:bg-pink-500">
+                <button class="rounded-md bg-pink-400 px-5 py-3 text-md text-white font-semibold hover:transition hover:scale-105 hover:bg-pink-500">
                     Proceed to Buy
                 </button>
             </div>

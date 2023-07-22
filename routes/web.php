@@ -59,7 +59,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth:web')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
-    Route::post('/cart', [CartController::class, 'add'])->name('cart.add.product');
+    Route::post('/cart/add-product', [CartController::class, 'add'])->name('cart.add.product');
+    Route::patch('/cart/update-product', [CartController::class, 'update'])->name('cart.update.product.quantity');
     Route::delete('/cart/remove-product', [CartController::class, 'remove'])->name('cart.remove.product');
 });
 

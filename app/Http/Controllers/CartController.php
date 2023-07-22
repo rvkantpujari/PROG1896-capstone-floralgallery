@@ -62,4 +62,12 @@ class CartController extends Controller
 
         return Redirect::back()->with('cart-product-removed','Product removed from your cart.');
     }
+
+    function update(Request $request)
+    {
+        DB::table('cart')->where([['product_id', $request->product_id], ['user_id', auth()->user()->id]])
+                        ->update(['quantity' => $request->product_quantity]);
+
+        return Redirect::back()->with('cart-product-qty-updated','Product quantity updated in your cart.');
+    }
 }
