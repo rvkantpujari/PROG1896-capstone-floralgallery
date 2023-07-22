@@ -8,6 +8,7 @@ use App\Http\Controllers\SearchProductController;
 use App\Http\Controllers\ViewProductController;
 
 use App\Http\Controllers\ProfileController as CustomerProfileController;
+use App\Http\Controllers\CartController;
 
 use App\Http\Controllers\Admin\ManageProvinceController as AdminManageProvinceController;
 use App\Http\Controllers\Admin\ManageCategoryController as AdminManageCategoryController;
@@ -17,7 +18,7 @@ use App\Http\Controllers\Admin\ManageSellersController as AdminManageSellersCont
 use App\Http\Controllers\Admin\AdminProfileController as AdminProfileController;
 use App\Http\Controllers\AdminAuth\AdminVerifyCustomerEmailController;
 use App\Http\Controllers\AdminAuth\AdminVerifySellerEmailController;
-use App\Http\Controllers\CartController;
+
 use App\Http\Controllers\Seller\SellerProfileController as SellerProfileController;
 use App\Http\Controllers\Seller\ManageProductsController as SellerManageProductsController;
 use App\Http\Controllers\SellerAuth\VerifySellerEmailController;
@@ -59,6 +60,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth:web')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::post('/cart', [CartController::class, 'add'])->name('cart.add.product');
+    Route::delete('/cart/remove-product', [CartController::class, 'remove'])->name('cart.remove.product');
 });
 
 
