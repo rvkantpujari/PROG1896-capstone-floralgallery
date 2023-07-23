@@ -7,7 +7,7 @@ use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\SearchProductController;
 use App\Http\Controllers\ViewProductController;
 
-use App\Http\Controllers\ProfileController as CustomerProfileController;
+use App\Http\Controllers\Customer\ProfileController as CustomerProfileController;
 use App\Http\Controllers\CartController;
 
 use App\Http\Controllers\Admin\ManageProvinceController as AdminManageProvinceController;
