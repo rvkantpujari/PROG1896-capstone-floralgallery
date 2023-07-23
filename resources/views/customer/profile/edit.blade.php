@@ -10,11 +10,11 @@
         </h2>
         <div class="max-w-7xl mx-auto px-6 lg:px-8 space-y-6">
             <div class="p-4 bg-white shadow-md rounded-lg lg:p-0">
-                @include('profile.partials.update-profile')
+                @include('customer.profile.partials.update-profile')
             </div>
 
             <div class="p-4 bg-white shadow-md rounded-lg lg:p-0">
-                @include('profile.partials.delete-user-form')
+                @include('customer.profile.partials.delete-user-form')
             </div>
         </div>
     </div>
