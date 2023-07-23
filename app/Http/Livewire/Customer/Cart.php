@@ -9,7 +9,17 @@ class Cart extends Component
 {
     public function render()
     {
-        $product_count = DB::table('cart')->where('user_id', auth()->user()->id)->count();
-        return view('livewire.cart', ['product_count' => $product_count]);
+        $products = DB::table('cart')->join('products', 'products.id',"=",'cart.product_id')
+                        ->join('product_categories', 'product_categories.id',"=",'products.category_id')
+                        ->select('cart.*', 'products.product_name', 'products.product_price', 'products.product_img1', 'product_categories.category')
+                        ->where('user_id', auth()->user()->id)->get();
+        
+        $price_subtotal = 0;
+
+        foreach($products as $product) {
+            $price_subtotal += ($product->product_price * $product->quantity);
+        }
+        
+        return view('customer.manage-cart.livewire.cart', ['products' => $products, 'subtotal' => $price_subtotal]);
     }
 }

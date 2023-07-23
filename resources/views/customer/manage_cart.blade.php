@@ -12,7 +12,7 @@
                     <div class="h-1 w-20 bg-pink-500 rounded"></div>
                 </header>
 
-                @livewire('customer.manage-cart')
+                @livewire('customer.cart')
             </div>
         </div>
     </section>

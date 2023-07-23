@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
+use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,7 @@ class CartController extends Controller
         if($product_count == 0)
             return Redirect::back();
 
-        return view('cart');
+        return view('customer.manage_cart');
     }
 
     function add(Request $request)
