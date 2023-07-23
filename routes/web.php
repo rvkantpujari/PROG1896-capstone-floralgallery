@@ -7,8 +7,8 @@ use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\SearchProductController;
 use App\Http\Controllers\ViewProductController;
 
-use App\Http\Controllers\Customer\ProfileController as CustomerProfileController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\Customer\ProfileController as CustomerManageProfileController;
+use App\Http\Controllers\Customer\CartController as CustomerManageCartController;
 
 use App\Http\Controllers\Admin\ManageProvinceController as AdminManageProvinceController;
 use App\Http\Controllers\Admin\ManageCategoryController as AdminManageCategoryController;
@@ -52,16 +52,16 @@ Route::get('/home', [HomeController::class, 'index'])->middleware(['auth'])->nam
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [CustomerProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [CustomerProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [CustomerProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [CustomerManageProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [CustomerManageProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [CustomerManageProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::middleware('auth:web')->group(function () {
-    Route::get('/cart', [CartController::class, 'index'])->name('cart');
-    Route::post('/cart/add-product', [CartController::class, 'add'])->name('cart.add.product');
-    Route::patch('/cart/update-product', [CartController::class, 'update'])->name('cart.update.product.quantity');
-    Route::delete('/cart/remove-product', [CartController::class, 'remove'])->name('cart.remove.product');
+    Route::get('/cart', [CustomerManageCartController::class, 'index'])->name('cart');
+    Route::post('/cart/add-product', [CustomerManageCartController::class, 'add'])->name('cart.add.product');
+    Route::patch('/cart/update-product', [CustomerManageCartController::class, 'update'])->name('cart.update.product.quantity');
+    Route::delete('/cart/remove-product', [CustomerManageCartController::class, 'remove'])->name('cart.remove.product');
 });
 
 
