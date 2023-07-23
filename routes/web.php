@@ -8,6 +8,7 @@ use App\Http\Controllers\SearchProductController;
 use App\Http\Controllers\ViewProductController;
 
 use App\Http\Controllers\Customer\ProfileController as CustomerManageProfileController;
+use App\Http\Controllers\Customer\ManageAddressesController as CustomerManageAddressesController;
 use App\Http\Controllers\Customer\CartController as CustomerManageCartController;
 
 use App\Http\Controllers\Admin\ManageProvinceController as AdminManageProvinceController;
@@ -55,6 +56,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [CustomerManageProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [CustomerManageProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [CustomerManageProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/addresses', [CustomerManageAddressesController::class, 'index'])->name('customer.addresses');
+    Route::post('/address/add', [CustomerManageAddressesController::class, 'edit'])->name('customer.address.add');
+    Route::patch('/address/edit', [CustomerManageAddressesController::class, 'update'])->name('customer.address.edit');
+    Route::delete('/address/delete', [CustomerManageAddressesController::class, 'destroy'])->name('customer.address.destroy');
 });
 
 Route::middleware('auth:web')->group(function () {

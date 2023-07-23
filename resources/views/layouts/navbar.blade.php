@@ -201,6 +201,10 @@
                                         Manage profile
                                     </a>
 
+                                    <a href="{{route('customer.addresses')}}" class="block px-4 py-3 text-sm capitalize transition-colors duration-300 transform text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                                        Manage Addresses
+                                    </a>
+
                                     <a href="#" class="block px-4 py-3 text-sm capitalize transition-colors duration-300 transform text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                                         Order History
                                     </a>
