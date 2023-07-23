@@ -17,7 +17,7 @@ class CartController extends Controller
         if($product_count == 0)
             return Redirect::back();
 
-        return view('cart');
+        return view('customer.manage_cart');
     }
 
     function add(Request $request)
