@@ -23,7 +23,9 @@
                     <button type="submit" class="hover:text-pink-400">Edit</button>
                 </form>
                 <div class="hover:text-pink-400">Remove</div>
-                <div class="hover:text-pink-400">Default</div>
+                @if ($address->is_default)
+                    <div class="hover:text-pink-400">Default</div>
+                @endif
             </div>
         </div>
     @endforeach
