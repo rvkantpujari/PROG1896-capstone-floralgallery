@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('street_number', 5);
             $table->string('street_name', 100);
             $table->string('street_direction', 75)->nullable();
-            $table->string('street_type', 75)->nullable();
             $table->string('unit')->nullable();
             $table->string('city');
             $table->string('postal_code', 8);
