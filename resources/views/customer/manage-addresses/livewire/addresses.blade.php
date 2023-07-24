@@ -11,8 +11,8 @@
         </button>
     </form>
     @foreach ($addresses as $address)
-        <div class="h-[20vh] md:h-[16vh] lg:h-[25vh] col-span-12 md:col-span-4 lg:col-span-3 border border-gray-500 rounded-md flex flex-col justify-between items-center hover:shadow-xl">
-            <div class="w-full h-full flex flex-col p-8">
+        <div class="mx-auto h-[20vh] w-full md:h-[16vh] lg:h-[25vh] col-span-12 md:col-span-4 lg:col-span-3 border border-gray-500 rounded-md flex flex-col justify-between items-center hover:shadow-xl">
+            <div class="h-full flex flex-col p-8">
                 <span class="font-semibold">{{$address->user_full_name}}</span>
                 <span>@if ($address->unit) House/Unit No. {{$address->unit}}, @endif</span>
                 <span>{{$address->street_number}} {{$address->street_name}} {{$address->street_direction}}</span>
