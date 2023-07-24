@@ -1,5 +1,5 @@
 <div class="mx-2 my-8 grid grid-cols-12 gap-8 md:gap-6">
-    <form action="{{route('customer.address.add')}}" method="post" class="col-span-12 md:col-span-4 lg:col-span-3 border-2 border-dashed rounded-md border-gray-500">
+    <form action="{{route('customer.address.show')}}" method="get" class="col-span-12 md:col-span-4 lg:col-span-3 border-2 border-dashed rounded-md border-gray-500">
         @csrf
         <button type="submit" class="h-[10vh] md:h-[16vh] lg:h-[25vh] w-full transition duration-300 hover:scale-105 hover:text-pink-400">
             <div class="flex flex-col justify-center">

@@ -14,6 +14,12 @@ class ManageAddressesController extends Controller
         return view('customer.manage_addresses');
     }
 
+    function show()
+    {
+        $provinces = DB::table('provinces')->get();
+        return view('customer.manage-addresses.address.add', ['provinces' => $provinces]);
+    }
+
     function add(Request $request)
     {
         
