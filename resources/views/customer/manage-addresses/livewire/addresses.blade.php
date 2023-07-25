@@ -12,10 +12,9 @@
     </form>
     @foreach ($addresses as $address)
         <div class="mx-auto h-[20vh] w-full md:h-[16vh] lg:h-[25vh] col-span-12 md:col-span-4 lg:col-span-3 border border-gray-500 rounded-md flex flex-col justify-between items-center hover:shadow-xl">
-            <div class="h-full flex flex-col p-8">
+            <div class="h-full flex flex-col px-6 py-8">
                 <span class="font-semibold">{{$address->user_full_name}}</span>
-                <span>@if ($address->unit) House/Unit No. {{$address->unit}}, @endif</span>
-                <span>{{$address->street_number}} {{$address->street_name}} {{$address->street_direction}}</span>
+                <span>@if ($address->unit){{$address->unit}}-@endif{{$address->street_number}} {{$address->street_name}}</span>
                 <span>{{$address->city}}, {{$address->province}} {{$address->postal_code}}</span>
             </div>
             <div class="w-full flex gap-x-4 items-center justify-around px-4 py-1.5 text-center text-gray-200 bg-gray-700 rounded-b-md">
