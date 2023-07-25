@@ -14,6 +14,8 @@ use Illuminate\View\View;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Seller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
 
 class RegisteredUserController extends Controller
 {
@@ -32,13 +34,11 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // dd($request);
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class, 'unique:'.Admin::class, 'unique:'.Seller::class],
             'password' => ['required', 'confirmed', Rules\Password::min(8)->mixedCase()->numbers()->symbols()],
-            // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
@@ -51,7 +51,7 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         // Mail::to($data['email'])->send(new WelcomeMail($user));
-        // Mail::to($request->email)->send(new WelcomeMail($user));
+        Mail::to($request->email)->send(new WelcomeMail($user));
 
         Auth::login($user);
 
