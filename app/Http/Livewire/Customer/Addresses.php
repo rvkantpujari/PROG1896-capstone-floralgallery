@@ -12,7 +12,7 @@ class Addresses extends Component
     {
         $this->addresses = DB::table('user_addresses')
                             ->join('provinces', 'provinces.id',"=",'user_addresses.province_id')
-                            ->select('user_addresses.*', 'provinces.id as province_id', 'provinces.*')
+                            ->select('user_addresses.*', 'provinces.id as province_id', 'provinces.province')
                             ->where('user_id', auth()->user()->id)->get();
         return view('customer.manage-addresses.livewire.addresses');
     }

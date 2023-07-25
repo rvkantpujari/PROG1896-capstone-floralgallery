@@ -18,7 +18,7 @@ class ManageAddressesController extends Controller
 
     function show()
     {
-        $provinces = DB::table('provinces')->get();
+        $provinces = DB::table('provinces')->select('provinces.id as province_id', 'provinces.province')->get();
         return view('customer.manage-addresses.address.add', ['provinces' => $provinces]);
     }
 
@@ -47,6 +47,7 @@ class ManageAddressesController extends Controller
     
     function destroy(Request $request)
     {
-        
+        UserAddresses::where([['id', $request->user_address_id], ['user_id', auth()->user()->id]])->delete();
+        return Redirect::route('customer.addresses')->with('deleted-user-address', "Delivery Address Deleted Successfully.");
     }
 }

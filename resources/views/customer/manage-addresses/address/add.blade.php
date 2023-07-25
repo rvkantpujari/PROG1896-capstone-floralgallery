@@ -117,8 +117,8 @@
                                         <select name="province" id="province" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6">
                                             <option value="-1" selected disabled>Select Province</option>
                                             @foreach ($provinces as $province)
-                                                <option type="text" name="province_{{$province->id}}" 
-                                                    id="province_{{$province->id}}" value="{{$province->id}}">
+                                                <option type="text" name="province_{{$province->province_id}}" 
+                                                    id="province_{{$province->province_id}}" value="{{$province->province_id}}">
                                                     {{$province->province}}
                                                 </option>
                                             @endforeach

@@ -1,4 +1,19 @@
 <div class="mx-2 my-8 grid grid-cols-12 gap-8 md:gap-6">
+    @if (session()->has('added-user-address'))
+        <script>
+            swal("Address Added!! 😀🎉", "{{session('added-user-address')}}", "success", {
+                button:true,
+                button:"OK",
+            });
+        </script>
+    @elseif (session()->has('deleted-user-address'))
+        <script>
+            swal("Address Deleted!!", "{{session('deleted-user-address')}}", "error", {
+                button:true,
+                button:"OK",
+            });
+        </script>
+    @endif
     <form action="{{route('customer.address.show')}}" method="get" class="col-span-12 md:col-span-4 lg:col-span-3 border-2 border-dashed rounded-md border-gray-500">
         @csrf
         <button type="submit" class="h-[10vh] md:h-[16vh] lg:h-[25vh] w-full transition duration-300 hover:scale-105 hover:text-pink-400">
@@ -19,13 +34,47 @@
             </div>
             <div class="w-full flex gap-x-4 items-center justify-around px-4 py-1.5 text-center text-gray-200 bg-gray-700 rounded-b-md">
                 <form action="{{route('customer.address.edit')}}" method="post">
+                    @csrf
                     <button type="submit" class="hover:text-pink-400">Edit</button>
                 </form>
-                <div class="hover:text-pink-400">Remove</div>
+                <form action="{{route('customer.address.destroy')}}" method="post">
+                    @csrf
+                    @method('delete')
+                    <input type="hidden" name="user_address_id" value="{{$address->id}}">
+                    <button type="submit" class="show_confirm hover:text-pink-400" data-toggle="tooltip" title='Remove'>Remove</button>
+                </form>
                 @if ($address->is_default)
                     <div class="hover:text-pink-400">Default</div>
                 @endif
             </div>
         </div>
     @endforeach
+    
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            $('.show_confirm').click(function(event) {
+                var form =  $(this).closest("form");
+                var name = $(this).data("name");
+                event.preventDefault();
+                swal({
+                    title: 'Are you sure? 😥',
+                    text: "You won't be able to revert this action!",
+                    icon: 'warning',
+                    buttons: {
+                        cancel: true,
+                        confirm: {
+                            text: "Yes, delete it!",
+                            value: true,
+                            className: "bg-red-500 hover:bg-red-700",
+                        },
+                    }
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+            });
+        }, false);
+    </script>
 </div>
