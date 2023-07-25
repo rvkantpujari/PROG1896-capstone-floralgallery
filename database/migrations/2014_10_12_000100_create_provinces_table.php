@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('province');
             $table->string('province_alpha_code');
+            $table->double('gst', 5, 2)->default(0.00);
+            $table->double('pst', 5, 2)->default(0.00);
+            $table->double('hst', 5, 2)->default(0.00);
             $table->timestamps();
         });
     }
