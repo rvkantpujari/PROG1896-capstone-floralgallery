@@ -63,7 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/addresses', [CustomerManageAddressesController::class, 'index'])->name('customer.addresses');
     Route::get('/address/add', [CustomerManageAddressesController::class, 'show'])->name('customer.address.show');
     Route::post('/address/add', [CustomerManageAddressesController::class, 'add'])->name('customer.address.add');
-    Route::patch('/address/edit', [CustomerManageAddressesController::class, 'update'])->name('customer.address.edit');
+    Route::get('/address/edit', [CustomerManageAddressesController::class, 'edit'])->name('customer.address.edit');
+    Route::patch('/address/update', [CustomerManageAddressesController::class, 'update'])->name('customer.address.update');
     Route::delete('/address/delete', [CustomerManageAddressesController::class, 'destroy'])->name('customer.address.destroy');
 });
 
