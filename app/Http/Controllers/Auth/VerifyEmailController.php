@@ -31,7 +31,7 @@ class VerifyEmailController extends Controller
             $user->save();
 
             // Send Account Creation Confirmation Mail
-            Mail::to($request->user()->email)->send(new WelcomeMail($user));
+            // Mail::to($request->user()->email)->send(new WelcomeMail($user));
         }
 
         return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
