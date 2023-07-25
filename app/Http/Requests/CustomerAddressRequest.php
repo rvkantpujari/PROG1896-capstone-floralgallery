@@ -14,13 +14,13 @@ class CustomerAddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name' => ['required', 'string', 'max:100'],
+            'user_full_name' => ['required', 'string', 'max:100'],
             'unit' => ['numeric', 'nullable'],
             'street_number' => ['required', 'numeric'],
             'street_name' => ['required', 'string', 'max:120'],
             'city' => ['required', 'string', 'max:100'],
             'postal_code' => ['required', 'regex:/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i'],
-            'province' => ['required'],
+            'province_id' => ['required'],
         ];
     }
 }

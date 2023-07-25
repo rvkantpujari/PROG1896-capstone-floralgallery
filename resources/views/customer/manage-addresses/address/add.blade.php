@@ -26,15 +26,15 @@
                             <div class="mt-8 grid grid-cols-6 gap-x-2 gap-y-4 md:grid-cols-12">
                 
                                 <div class="col-span-6 md:col-span-12">
-                                    <label for="full_name" class="block text-sm font-medium leading-6 text-gray-500">
+                                    <label for="user_full_name" class="block text-sm font-medium leading-6 text-gray-500">
                                         Full name
                                     </label>
                                     <div class="mt-2">
-                                        <input type="text" name="full_name" id="full_name" autocomplete="given-name"
+                                        <input type="text" name="user_full_name" id="user_full_name" autocomplete="given-name"
                                             class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                         />
                                     </div>
-                                    @error('full_name')
+                                    @error('user_full_name')
                                         <span class="text-red-500 text-sm">{{$message}}</span>
                                     @enderror
                                 </div>
@@ -114,7 +114,7 @@
                                         Province
                                     </label>
                                     <div class="mt-2">
-                                        <select name="province" id="province" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6">
+                                        <select name="province_id" id="province_id" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6">
                                             <option value="-1" selected disabled>Select Province</option>
                                             @foreach ($provinces as $province)
                                                 <option type="text" name="province_{{$province->province_id}}" 
@@ -124,7 +124,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @error('province')
+                                    @error('province_id')
                                         <span class="text-red-500 text-sm">{{$message}}</span>
                                     @enderror
                                 </div>
