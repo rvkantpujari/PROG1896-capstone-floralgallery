@@ -59,13 +59,15 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:web')->group(function () {
     Route::get('/addresses', [CustomerManageAddressesController::class, 'index'])->name('customer.addresses');
     Route::get('/address/add', [CustomerManageAddressesController::class, 'show'])->name('customer.address.show');
     Route::post('/address/add', [CustomerManageAddressesController::class, 'add'])->name('customer.address.add');
     Route::get('/address/edit', [CustomerManageAddressesController::class, 'edit'])->name('customer.address.edit');
     Route::patch('/address/update', [CustomerManageAddressesController::class, 'update'])->name('customer.address.update');
     Route::delete('/address/delete', [CustomerManageAddressesController::class, 'destroy'])->name('customer.address.destroy');
+    
+    Route::post('/address/set-default-address', [CustomerManageAddressesController::class, 'setAddress'])->name('customer.set.defualt.address');
 });
 
 Route::middleware('auth:web')->group(function () {

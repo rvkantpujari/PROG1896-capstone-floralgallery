@@ -29,8 +29,14 @@
                     <input type="hidden" name="user_address_id" value="{{$address->id}}">
                     <button type="submit" class="show_confirm hover:text-pink-400" data-toggle="tooltip" title='Remove'>Remove</button>
                 </form>
-                @if ($address->is_default)
-                    <div class="hover:text-pink-400">Default</div>
+                @if ($user->default_address_id == $address->id)
+                    <span class="font-semibold text-pink-400">Default</span>
+                @else
+                    <form action="{{route('customer.set.defualt.address')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="default_address_id" value="{{$address->id}}">
+                        <button type="submit" class="hover:text-pink-400">Set Default</button>
+                    </form>
                 @endif
             </div>
         </div>
@@ -54,6 +60,13 @@
 @elseif (session()->has('deleted-user-address'))
     <script>
         swal("Address Deleted!!", "{{session('deleted-user-address')}}", "error", {
+            button:true,
+            button:"OK",
+        });
+    </script>
+@elseif (session()->has('set-default-user-address'))
+    <script>
+        swal("Default Address Set!! ✅", "{{session('set-default-user-address')}}", "success", {
             button:true,
             button:"OK",
         });

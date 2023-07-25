@@ -14,6 +14,9 @@ class Addresses extends Component
                             ->join('provinces', 'provinces.id',"=",'user_addresses.province_id')
                             ->select('user_addresses.*', 'provinces.id as province_id', 'provinces.province')
                             ->where('user_id', auth()->user()->id)->get();
-        return view('customer.manage-addresses.livewire.addresses');
+        
+        $user = DB::table('users')->select('default_address_id')->where('id', auth()->user()->id)->first();
+        
+        return view('customer.manage-addresses.livewire.addresses', ['user' => $user]);
     }
 }

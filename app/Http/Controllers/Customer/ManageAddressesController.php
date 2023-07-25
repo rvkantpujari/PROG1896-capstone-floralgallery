@@ -55,7 +55,6 @@ class ManageAddressesController extends Controller
     {
         $request->validated();
 
-        // dd($request->all());
         UserAddresses::where('id', $request->id)->update($request->except(['_token', '_method']));
 
         return Redirect::route('customer.addresses')->with('updated-user-address', "Delivery Address Updated Successfully.");
@@ -63,7 +62,26 @@ class ManageAddressesController extends Controller
     
     function destroy(Request $request)
     {
-        UserAddresses::where([['id', $request->user_address_id], ['user_id', auth()->user()->id]])->delete();
+        DB::beginTransaction();
+        try {
+            $user = DB::table('users')->select('default_address_id')->where('id', auth()->user()->id)->first();
+            // check if given address is default address or not
+            if($user->default_address_id == $request->user_address_id)
+                DB::table('users')->where('id', auth()->user()->id)->update(['default_address_id' => null]);
+            // delete given address
+            UserAddresses::where([['id', $request->user_address_id], ['user_id', auth()->user()->id]])->delete();
+            DB::commit();
+        } 
+        catch (\Exception $e) {
+            DB::rollback();
+        }
+
         return Redirect::route('customer.addresses')->with('deleted-user-address', "Delivery Address Deleted Successfully.");
+    }
+
+    function setAddress(Request $request)
+    {
+        DB::table('users')->where('id', auth()->user()->id)->update($request->except(['_token', '_method']));
+        return Redirect::route('customer.addresses')->with('set-default-user-address', "Default Delivery Address Set Successfully.");
     }
 }

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('unit')->nullable();
             $table->string('city');
             $table->string('postal_code', 8);
-            $table->boolean('is_default')->default(0);
             $table->unsignedBigInteger('province_id');
             $table->foreign('province_id')->references('id')->on('provinces')
                 ->onUpdate('cascade');

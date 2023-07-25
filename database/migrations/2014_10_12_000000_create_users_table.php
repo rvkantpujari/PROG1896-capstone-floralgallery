@@ -23,6 +23,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('phone', 15)->nullable();
             $table->string('status', 20)->default('pending');
+            $table->boolean('default_address_id')->nullable();
             $table->timestamps();
         });
     }
