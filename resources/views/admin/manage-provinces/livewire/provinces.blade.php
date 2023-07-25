@@ -1,5 +1,12 @@
 <section class="container my-8">
-    @if (session()->has('update-province-info'))
+    @if (session()->has('add-province-info'))
+        <script>
+            swal("Added!! 😀🎉", "{{session('add-province-info')}}", "success", {
+                button:true,
+                button:"OK",
+            });
+        </script>
+    @elseif (session()->has('update-province-info'))
         <script>
             swal("Updated!! 😀🎉", "{{session('update-province-info')}}", "success", {
                 button:true,

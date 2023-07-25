@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-class ManageProvinceController extends Controller
+class ManageProvincesController extends Controller
 {
     /**
      * Display the province list.
@@ -17,6 +17,26 @@ class ManageProvinceController extends Controller
     public function index(): View
     {
         return view('admin.manage_provinces');
+    }
+
+    public function add(): View
+    {
+        return view('admin.manage-provinces.province.add');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'province' => ['required', 'string', 'min:4'],
+            'province_code' => ['required', 'string', 'min:2'],
+        ]);
+
+        $province = new Province();
+        $province->province = $request->province;
+        $province->province_alpha_code = $request->province_code;
+        $province->save();
+
+        return Redirect::route('admin.provinces')->with('add-province-info', "New Province Infromation Added Successfully.");
     }
 
     /**

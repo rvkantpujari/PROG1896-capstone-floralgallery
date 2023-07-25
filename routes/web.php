@@ -11,7 +11,7 @@ use App\Http\Controllers\Customer\ProfileController as CustomerManageProfileCont
 use App\Http\Controllers\Customer\ManageAddressesController as CustomerManageAddressesController;
 use App\Http\Controllers\Customer\CartController as CustomerManageCartController;
 
-use App\Http\Controllers\Admin\ManageProvinceController as AdminManageProvinceController;
+use App\Http\Controllers\Admin\ManageProvincesController as AdminManageProvinceController;
 use App\Http\Controllers\Admin\ManageCategoryController as AdminManageCategoryController;
 use App\Http\Controllers\Admin\ManageCustomersController as AdminManageCustomersController;
 use App\Http\Controllers\Admin\ManageProductsController as AdminManageProductsController;
@@ -102,6 +102,8 @@ Route::middleware('auth:admin')->group(function () {
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/manage-provinces', [AdminManageProvinceController::class, 'index'])->name('admin.provinces');
+    Route::get('/admin/add-province', [AdminManageProvinceController::class, 'add'])->name('admin.province.add');
+    Route::post('/admin/add-province', [AdminManageProvinceController::class, 'store'])->name('admin.province.store');
     Route::get('/admin/edit-province/{id}', [AdminManageProvinceController::class, 'edit'])->name('admin.province.edit');
     Route::patch('/admin/edit-province/{id}', [AdminManageProvinceController::class, 'update'])->name('admin.province.update');
     Route::patch('/admin/delete-province/{id}', [AdminManageProvinceController::class, 'destroy'])->name('admin.province.destroy');
