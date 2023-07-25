@@ -10,7 +10,7 @@ class ProvincesList extends Component
     public $provinces;
     public function render()
     {
-        $this->provinces = Province::select('id', 'province')->get();
+        $this->provinces = Province::select('provinces.*')->get();
         return view('admin.manage-provinces.livewire.provinces', ['provinces' => $this->provinces]);
     }
 }
