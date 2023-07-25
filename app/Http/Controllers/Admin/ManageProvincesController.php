@@ -53,7 +53,7 @@ class ManageProvincesController extends Controller
     */
     public function update(Request $request): RedirectResponse
     {
-        Province::where('id', $request->route('id'))->update(['province' => $request->province]);
+        Province::where('id', $request->route('id'))->update($request->except(['_token', '_method']));
 
         return Redirect::route('admin.provinces')->with('update-province-info', "Province Infromation Updated Successfully.");
     }
