@@ -91,7 +91,7 @@
         Already have an account?
     </span>
 
-    <a href="{{url('admin.login')}}" class="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:no-underline hover:text-pink-500">
+    <a href="{{route('admin.login')}}" class="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:no-underline hover:text-pink-500">
         Sign In
     </a>
 @endsection
