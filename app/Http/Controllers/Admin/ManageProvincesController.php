@@ -29,11 +29,26 @@ class ManageProvincesController extends Controller
         $request->validate([
             'province' => ['required', 'string', 'min:4'],
             'province_code' => ['required', 'string', 'min:2'],
+            'pst' => ['numeric', 'nullable'],
+            'gst' => ['numeric', 'nullable'],
+            'hst' => ['numeric', 'nullable'],
         ]);
 
         $province = new Province();
         $province->province = $request->province;
         $province->province_alpha_code = $request->province_code;
+
+        if($request->is_hst_applicable == 1) {
+            $province->hst = $request->hst;
+            $province->pst = null;
+            $province->gst = null;
+        }
+        else {
+            $province->hst = null;
+            $province->pst = $request->pst;
+            $province->gst = $request->gst;
+        }
+        
         $province->save();
 
         return Redirect::route('admin.provinces')->with('add-province-info', "New Province Infromation Added Successfully.");
