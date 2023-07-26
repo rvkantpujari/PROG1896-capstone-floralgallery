@@ -15,7 +15,10 @@
 @section('main-content')
     {{-- Add Main Section Here!!! --}}
     <div class="w-full md:block" id="main">
-        <h1 class="text-center lg:text-left text-[26px] font-semibold m-8 pt-4">Manage Provinces</h1>
+        <div class="flex flex-col md:flex-row items-center md:justify-between pt-4">
+            <h1 class="text-center lg:text-left text-[26px] font-semibold m-8 pt-4">Manage Provinces</h1>
+            <a href="{{route('admin.province.add')}}" class="px-[16px] py-[8px] md:mr-8 rounded-md text-white bg-pink-500">Add Province</a>
+        </div>
         <div class="w-full px-8 flex justify-center">
             @livewire('admin.provinces-list')
         </div>
@@ -23,7 +26,6 @@
 @endsection
 
 @section('js-scripts')
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
@@ -37,6 +39,43 @@
 
     <script>
         let provinceTable = $('#provinces').DataTable({
+            drawCallback: function(){
+                function deleteButtonAddListener(btns) {
+                    btns.forEach(btn => {
+                        btn.addEventListener('click', deleteModal);
+                    });
+                }
+
+                function deleteModal(event) {
+                    var form =  $(this).closest("form");
+                    var name = $(this).data("name");
+                    event.preventDefault();
+                    swal({
+                        title: 'Are you sure? 😥',
+                        text: "You won't be able to revert this action!",
+                        icon: 'warning',
+                        buttons: {
+                            cancel: true,
+                            confirm: {
+                                text: "Yes, delete it!",
+                                value: true,
+                                className: "bg-red-500 hover:bg-red-700",
+                            },
+                        }
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            form.submit();
+                        }
+                    });
+                }
+
+                $('.paginate_button', this.api().table().container())          
+                    .on('click', function(){
+                        let deleteButtons = document.querySelectorAll('.show_confirm');
+                        deleteButtonAddListener(deleteButtons);
+                });
+            },
             dom: '<"my-4 py-4"lf><"mt-4 py-8"rt><"mb-4 py-4"Bp>',
             buttons: [
                 'colvis',

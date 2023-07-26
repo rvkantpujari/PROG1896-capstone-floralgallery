@@ -52,19 +52,19 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('provinces')->insert([
-            ['id' => 1, 'province' => 'Alberta', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 2, 'province' => 'British Columbia', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 3, 'province' => 'Manitoba', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 4, 'province' => 'New Brunswick', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 5, 'province' => 'Newfoundland and Labrador', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 6, 'province' => 'Northwest Territories', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 7, 'province' => 'Nova Scotia', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 8, 'province' => 'Nunavut', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 9, 'province' => 'Ontario', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 10, 'province' => 'Prince Edward Island', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 11, 'province' => 'Quebec', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 12, 'province' => 'Saskatchewan', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 13, 'province' => 'Yukon', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 1, 'province' => 'Alberta', 'province_alpha_code' => 'AB', 'pst' => null, 'gst' => 5, 'hst' => null, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 2, 'province' => 'British Columbia', 'province_alpha_code' => 'BC', 'pst' => 7, 'gst' => 5, 'hst' => null, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 3, 'province' => 'Manitoba', 'province_alpha_code' => 'MB', 'pst' => 7, 'gst' => 5, 'hst' => null, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 4, 'province' => 'New Brunswick', 'province_alpha_code' => 'NB', 'pst' => null, 'gst' => null, 'hst' => 15, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 5, 'province' => 'Newfoundland and Labrador', 'province_alpha_code' => 'NL', 'pst' => null, 'gst' => null, 'hst' => 15, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 6, 'province' => 'Northwest Territories', 'province_alpha_code' => 'NT', 'pst' => null, 'gst' => 5, 'hst' => null, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 7, 'province' => 'Nova Scotia', 'province_alpha_code' => 'NS', 'pst' => null, 'gst' => null, 'hst' => 15, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 8, 'province' => 'Nunavut', 'province_alpha_code' => 'NU', 'pst' => null, 'gst' => 5, 'hst' => null, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 9, 'province' => 'Ontario', 'province_alpha_code' => 'ON', 'pst' => null, 'gst' => null, 'hst' => 13, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 10, 'province' => 'Prince Edward Island', 'province_alpha_code' => 'PE', 'pst' => null, 'gst' => null, 'hst' => 15, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 11, 'province' => 'Quebec', 'province_alpha_code' => 'QC', 'pst' => 9.975, 'gst' => 5, 'hst' => null, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 12, 'province' => 'Saskatchewan', 'province_alpha_code' => 'SK', 'pst' => 6, 'gst' => 5, 'hst' => null, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 13, 'province' => 'Yukon', 'province_alpha_code' => 'YT', 'pst' => null, 'gst' => 5, 'hst' => null, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
         ]);
 
         DB::table('product_categories')->insert([
