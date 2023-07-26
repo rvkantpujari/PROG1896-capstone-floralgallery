@@ -57,6 +57,30 @@
                                         </svg>
                                     </button>
                                 </th>
+                                
+                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">
+                                    <div class="flex items-center gap-x-3">
+                                        <button class="flex items-center gap-x-2">
+                                            <span>PST</span>
+                                        </button>
+                                    </div>
+                                </th>
+                                
+                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">
+                                    <div class="flex items-center gap-x-3">
+                                        <button class="flex items-center gap-x-2">
+                                            <span>GST</span>
+                                        </button>
+                                    </div>
+                                </th>
+                                
+                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">
+                                    <div class="flex items-center gap-x-3">
+                                        <button class="flex items-center gap-x-2">
+                                            <span>HST</span>
+                                        </button>
+                                    </div>
+                                </th>
 
                                 <th scope="col" class="px-4 py-3.5 text-sm md:text-[16px] font-normal text-left rtl:text-right text-gray-500">
                                     Actions
@@ -77,6 +101,15 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm md:text-[16px] text-gray-500 whitespace-nowrap">
                                         {{$province->province_alpha_code}}
+                                    </td>
+                                    <td class="px-4 py-4 text-sm md:text-[16px] text-gray-500 whitespace-nowrap">
+                                        {{$province->pst == null ? '0' : $province->pst.'%'}}
+                                    </td>
+                                    <td class="px-4 py-4 text-sm md:text-[16px] text-gray-500 whitespace-nowrap">
+                                        {{$province->gst == null ? '0' : $province->gst.'%'}}
+                                    </td>
+                                    <td class="px-4 py-4 text-sm md:text-[16px] text-gray-500 whitespace-nowrap">
+                                        {{$province->hst == null ? '0' : $province->hst.'%'}}
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                         <div class="flex items-center justify-center gap-x-6">
