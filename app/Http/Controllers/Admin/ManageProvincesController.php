@@ -48,7 +48,7 @@ class ManageProvincesController extends Controller
             $province->pst = $request->pst;
             $province->gst = $request->gst;
         }
-        
+
         $province->save();
 
         return Redirect::route('admin.provinces')->with('add-province-info', "New Province Infromation Added Successfully.");
@@ -68,7 +68,18 @@ class ManageProvincesController extends Controller
     */
     public function update(Request $request): RedirectResponse
     {
-        Province::where('id', $request->route('id'))->update($request->except(['_token', '_method']));
+        if($request->is_hst_applicable == 1) {
+            $request['hst'] = $request->hst;
+            $request['pst'] = null;
+            $request['gst'] = null;
+        }
+        else {
+            $request['hst'] = null;
+            $request['pst'] = $request->pst;
+            $request['gst'] = $request->gst;
+        }
+
+        Province::where('id', $request->route('id'))->update($request->except(['_token', '_method', 'is_hst_applicable']));
 
         return Redirect::route('admin.provinces')->with('update-province-info', "Province Infromation Updated Successfully.");
     }

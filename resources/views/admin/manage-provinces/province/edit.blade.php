@@ -22,23 +22,13 @@
                         <p class="mt-1 text-sm leading-6 text-gray-600">
                             Manage your personal information such as name and contact information.
                         </p>
+                        
+                        <input type="hidden" id="province_id" name="id"
+                            class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                            value="{{old('id', $province->id)}}" readonly
+                        />
 
                         <div class="mt-10 grid grid-cols-6 gap-x-2 gap-y-4 md:grid-cols-12">
-                            <div class="col-span-6 md:col-span-12 lg:col-span-12">
-                                <label for="email" class="block text-sm font-medium leading-6 text-gray-500">
-                                    Province ID
-                                </label>
-                                <div class="mt-2">
-                                    <input type="text" id="province_id" name="id"
-                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                        value="{{old('id', $province->id)}}" readonly
-                                    />
-                                </div>
-                                @error('id')
-                                    <span class="text-red-500 text-sm">{{$message}}</span>
-                                @enderror
-                            </div>
-
                             <div class="col-span-6 md:col-span-6 lg:col-span-12">
                                 <label for="province" class="block text-sm font-medium leading-6 text-gray-500">
                                     Province name
@@ -68,6 +58,71 @@
                                     <span class="text-red-500 text-sm">{{$message}}</span>
                                 @enderror
                             </div>
+
+                            <div class="col-span-6 md:col-span-12 lg:col-span-12">
+                                <label for="is_hst_applicable" class="block text-sm font-medium leading-6 text-gray-500">
+                                    Is HST applicable?
+                                </label>
+                                <span class="flex items-center gap-x-4">
+                                    <div class="mt-2 flex items-center gap-x-2">
+                                        <input type="radio" id="hst_applicable" name="is_hst_applicable" value="1"
+                                            class="is_hst_applicable block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 checked:text-pink-500 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        />
+                                        <label for="hst_applicable">Yes</label>
+                                    </div>
+                                    <div class="mt-2 flex items-center gap-x-2">
+                                        <input type="radio" id="hst_not_applicable" name="is_hst_applicable" value="0" checked
+                                            class="is_hst_applicable block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 checked:text-pink-500 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        />
+                                        <label for="hst_not_applicable">No</label>
+                                    </div>
+                                </span>
+                            </div>
+    
+                            <div class="col-span-6 md:col-span-6 lg:col-span-6" id="div_pst">
+                                <label for="pst" class="block text-sm font-medium leading-6 text-gray-500">
+                                    PST
+                                </label>
+                                <div class="mt-2">
+                                    <input type="text" id="pst" name="pst"
+                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        value="{{old('pst', $province->pst)}}"
+                                    />
+                                </div>
+                                @error('pst')
+                                    <span class="text-red-500 text-sm">{{$message}}</span>
+                                @enderror
+                            </div>
+    
+                            <div class="col-span-6 md:col-span-6 lg:col-span-6" id="div_gst">
+                                <label for="gst" class="block text-sm font-medium leading-6 text-gray-500">
+                                    GST
+                                </label>
+                                <div class="mt-2">
+                                    <input type="text" id="gst" name="gst"
+                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        value="{{old('gst', $province->gst)}}"
+                                    />
+                                </div>
+                                @error('gst')
+                                    <span class="text-red-500 text-sm">{{$message}}</span>
+                                @enderror
+                            </div>
+    
+                            <div class="col-span-6 md:col-span-4 lg:col-span-12" id="div_hst">
+                                <label for="hst" class="block text-sm font-medium leading-6 text-gray-500">
+                                    HST
+                                </label>
+                                <div class="mt-2">
+                                    <input type="text" id="hst" name="hst"
+                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                        value="{{old('hst', $province->hst)}}"
+                                    />
+                                </div>
+                                @error('hst')
+                                    <span class="text-red-500 text-sm">{{$message}}</span>
+                                @enderror
+                            </div>
                         </div>
                     </div>
 
@@ -93,4 +148,33 @@
             </div>
         </div>
     </div>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            if({{Js::from($province->hst)}} == null)
+                $('#div_hst').hide();
+            else {
+                $('#div_gst').hide();
+                $('#div_pst').hide();
+                $('#hst_applicable').prop('checked', true);
+            }
+            let rad = document.querySelectorAll('.is_hst_applicable');
+            let prev = null;
+            for (let i = 0; i < rad.length; i++) {
+                rad[i].addEventListener('change', function() {
+                    if (this !== prev)
+                        prev = this;
+
+                    if(this.value == 1) {
+                        $('#div_hst').show();
+                        $('#div_gst').hide();
+                        $('#div_pst').hide();
+                    } else {
+                        $('#div_hst').hide();
+                        $('#div_gst').show();
+                        $('#div_pst').show();
+                    }
+                });
+            }
+        }, false);
+    </script>
 @endsection
