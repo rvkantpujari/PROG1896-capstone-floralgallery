@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Manage Users - FlowerGallery')
+@section('title', 'Admin - Manage Customers | FloralGallery')
 
 @section('css-styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">

@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin Dashboard - FlowerGallery')
+@section('title', 'Admin Dashboard - FloralGallery')
 
 @section('main-content')
     {{-- Add Main Section Here!!! --}}

@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin Manage Profile - FlowerGallery')
+@section('title', 'Admin - Manage Profile | FloralGallery')
 
 @section('main-content')
     <div class="py-20 mx-auto">

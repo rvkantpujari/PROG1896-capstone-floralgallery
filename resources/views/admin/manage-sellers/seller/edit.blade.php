@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin - Edit Seller Profile | FlowerGallery')
+@section('title', 'Admin - Edit Seller Profile | FloralGallery')
 
 @section('main-content')
     <!-- Manage Seller and Store Information -->
