@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Edit Product - FlowerGallery')
+@section('title', 'Admin - Edit Product | FloralGallery')
 
 @section('main-content')
     <!-- Edit Product -->

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'View Product - FlowerGallery')
+@section('title', 'View Product - FloralGallery')
 
 @section('main-content')
     @if (session()->has('cart-product-added'))

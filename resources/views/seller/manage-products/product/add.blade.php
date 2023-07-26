@@ -1,6 +1,6 @@
 @extends('seller.layouts.app')
 
-@section('title', 'Add New Product - FlowerGallery')
+@section('title', 'Seller - Add Product | FloralGallery')
 
 @section('main-content')
     <!-- Add New Product -->

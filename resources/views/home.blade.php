@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'FlowerGallery - Flowers For All Occasions')
+@section('title', 'FloralGallery - Flowers For All Occasions')
 
 @section('main-content')
     <!-- Carousel -->
