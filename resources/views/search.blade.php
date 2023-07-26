@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Search Results - FlowerGallery')
+@section('title', 'Search Results - FloralGallery')
 
 @section('main-content')
     <!-- Search Results -->

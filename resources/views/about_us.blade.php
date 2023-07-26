@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'About Us - FlowerGallery')
+@section('title', 'About Us - FloralGallery')
 
 @section('main-content')
     <!-- About Us -->
