@@ -1,4 +1,4 @@
-<div class="px-4 my-8 grid grid-cols-12 gap-8 md:gap-6">
+<div class="my-8 py-4 w-auto grid grid-cols-12 gap-y-8 md:gap-6">
     <form action="{{route('customer.address.show')}}" method="get" class="col-span-12 md:col-span-4 lg:col-span-3 border-2 border-dashed rounded-md border-gray-500">
         @csrf
         <button type="submit" class="h-[10vh] md:h-[16vh] lg:h-[25vh] w-full transition duration-300 hover:scale-105 hover:text-pink-400">
@@ -11,7 +11,7 @@
         </button>
     </form>
     @foreach ($addresses as $address)
-        <div class="mx-auto h-[20vh] w-full md:h-[18vh] lg:h-[25vh] col-span-12 md:col-span-4 lg:col-span-3 border border-gray-500 rounded-md flex flex-col justify-between items-center hover:shadow-xl">
+        <div class="mx-auto h-[20vh] md:h-[18vh] lg:h-[25vh] col-span-12 md:col-span-4 lg:col-span-3 border border-gray-500 rounded-md flex flex-col justify-between items-center hover:shadow-xl">
             <div class="h-full flex flex-col px-6 py-8">
                 <span class="font-semibold">{{$address->user_full_name}}</span>
                 <span>@if ($address->unit){{$address->unit}}-@endif{{$address->street_number}} {{$address->street_name}}</span>

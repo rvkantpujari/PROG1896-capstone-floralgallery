@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add Delivery Address - FlowerGallery')
+@section('title', 'Add Delivery Address - FloralGallery')
 
 @section('main-content')
     <div class="py-20">
@@ -10,11 +10,10 @@
         </h2>
         <div class="max-w-5xl mx-auto px-6 lg:px-8 space-y-6">
             <div class="p-4 bg-white shadow-md rounded-lg lg:p-0">
-                <div class="max-w-3xl mx-auto flex flex-col md:px-8 md:py-12 lg:px-8 lg:py-16 lg:flex-row lg:justify-center">
+                <div class="flex flex-col md:px-8 md:py-12 lg:px-8 lg:py-12 lg:flex-row lg:justify-center">
                     <form method="post" action="{{route('customer.address.add')}}">
                         @csrf                            
-                        <div class="py-12 px-8 w-full lg:min-h-[45vh]">
-                            
+                        <div class="p-8 w-full lg:min-h-[45vh]">
                             <h2 class="text-base font-semibold leading-7 text-gray-900">
                                 Delivery Address Information
                             </h2>
@@ -131,7 +130,7 @@
                             </div>
                         </div>
                 
-                        <div class="flex justify-end md:gap-x-4">
+                        <div class="pt-4 pb-8 flex justify-end md:gap-x-4">
                             @if (session('status') === 'profile-updated')
                                 <p x-data="{ show: true }" x-show="show" x-transition
                                     x-init="setTimeout(() => show = false, 2000)"
