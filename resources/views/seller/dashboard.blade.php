@@ -1,6 +1,6 @@
 @extends('seller.layouts.app')
 
-@section('title', 'Seller Dashboard - FlowerGallery')
+@section('title', 'Seller Dashboard - FloralGallery')
 
 @section('main-content')
     {{-- Add Main Section Here!!! --}}

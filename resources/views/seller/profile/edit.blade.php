@@ -1,6 +1,6 @@
 @extends('seller.layouts.app')
 
-@section('title', 'Manage Seller Profile - FlowerGallery')
+@section('title', 'Seller - Manage Profile | FloralGallery')
 
 @section('main-content')
     <div class="w-full py-20">
