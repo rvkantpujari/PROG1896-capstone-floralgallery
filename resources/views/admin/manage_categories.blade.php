@@ -15,7 +15,10 @@
 @section('main-content')
     {{-- Add Main Section Here!!! --}}
     <div class="w-full md:block" id="main">
-        <h1 class="text-center lg:text-left text-[26px] font-semibold m-8 pt-4">Manage Categories</h1>
+        <div class="flex flex-col md:flex-row items-center md:justify-between pt-4">
+            <h1 class="text-center lg:text-left text-[26px] font-semibold m-8 pt-4">Manage Categories</h1>
+            <a href="{{route('admin.category.add')}}" class="px-[16px] py-[8px] md:mr-8 rounded-md text-white bg-pink-500">Add Category</a>
+        </div>
         <div class="w-full px-8 flex justify-center">
             @livewire('admin.categories-list')
         </div>

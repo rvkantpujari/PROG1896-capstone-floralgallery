@@ -128,6 +128,8 @@ Route::middleware('auth:admin')->group(function () {
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/manage-categories', [AdminManageCategoryController::class, 'index'])->name('admin.categories');
+    Route::get('/admin/add-category', [AdminManageCategoryController::class, 'add'])->name('admin.category.add');
+    Route::post('/admin/add-category', [AdminManageCategoryController::class, 'store'])->name('admin.category.store');
     Route::get('/admin/edit-category/{id}', [AdminManageCategoryController::class, 'edit'])->name('admin.category.edit');
     Route::patch('/admin/edit-category/{id}', [AdminManageCategoryController::class, 'update'])->name('admin.category.update');
     Route::get('/admin/delete-category/{id}', [AdminManageCategoryController::class, 'destroy'])->name('admin.category.destroy');
