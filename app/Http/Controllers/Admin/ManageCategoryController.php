@@ -19,6 +19,24 @@ class ManageCategoryController extends Controller
         return view('admin.manage_categories');
     }
 
+    public function add()
+    {
+        return view('admin.manage-categories.category.add');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'category' => ['required', 'string', 'min:4']
+        ]);
+
+        $product_category = new ProductCategory();
+        $product_category->category = $request->category;
+        $product_category->save();
+        
+        return Redirect::route('admin.categories')->with('update-category-info', "Category Infromation Updated Successfully.");
+    }
+
     /**
      * Display the category editing form.
      */
