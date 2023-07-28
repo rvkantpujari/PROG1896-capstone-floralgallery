@@ -24,20 +24,9 @@
                         </p>
 
                         <div class="mt-10 grid grid-cols-6 gap-x-2 gap-y-4 md:grid-cols-12">
-                            <div class="col-span-6 md:col-span-12 lg:col-span-12">
-                                <label for="email" class="block text-sm font-medium leading-6 text-gray-500">
-                                    Category ID
-                                </label>
-                                <div class="mt-2">
-                                    <input type="text" id="category_id" name="id"
-                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                        value="{{old('id', $category->id)}}" readonly
-                                    />
-                                </div>
-                                @error('id')
-                                    <span class="text-red-500 text-sm">{{$message}}</span>
-                                @enderror
-                            </div>
+                            <input type="hidden" id="category_id" name="id" value="{{old('id', $category->id)}}" readonly
+                                class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                            />
 
                             <div class="col-span-6 md:col-span-6 lg:col-span-12">
                                 <label for="category" class="block text-sm font-medium leading-6 text-gray-500">
@@ -50,6 +39,20 @@
                                     />
                                 </div>
                                 @error('category')
+                                    <span class="text-red-500 text-sm">{{$message}}</span>
+                                @enderror
+                            </div>
+                            
+                            <div class="col-span-6 md:col-span-12 lg:col-span-12">
+                                <label for="category_desc" class="block text-sm font-medium leading-6 text-gray-500">
+                                    Category Description
+                                </label>
+                                <div class="mt-2">
+                                    <textarea name="category_desc" id="category_desc" cols="30" rows="4"
+                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                    >{{old('category_desc', $category->category_desc)}}</textarea>
+                                </div>
+                                @error('category_desc')
                                     <span class="text-red-500 text-sm">{{$message}}</span>
                                 @enderror
                             </div>

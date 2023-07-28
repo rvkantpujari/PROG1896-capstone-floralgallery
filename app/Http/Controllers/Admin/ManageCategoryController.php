@@ -53,7 +53,12 @@ class ManageCategoryController extends Controller
     */
     public function update(Request $request): RedirectResponse
     {
-        ProductCategory::where('id', $request->route('id'))->update(['category' => $request->category]);
+        $request->validate([
+            'category' => ['required', 'string', 'min:4'],
+            'category_desc' => ['required', 'string', 'min:20']
+        ]);
+        
+        ProductCategory::where('id', $request->route('id'))->update(['category' => $request->category, 'category_desc' => $request->category_desc]);
 
         return Redirect::route('admin.categories')->with('update-category-info', "Category Infromation Updated Successfully.");
     }
