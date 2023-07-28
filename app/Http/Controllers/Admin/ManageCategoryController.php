@@ -27,11 +27,13 @@ class ManageCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category' => ['required', 'string', 'min:4']
+            'category' => ['required', 'string', 'min:4'],
+            'category_desc' => ['required', 'string', 'min:20']
         ]);
 
         $product_category = new ProductCategory();
         $product_category->category = $request->category;
+        $product_category->category_desc = $request->category_desc;
         $product_category->save();
         
         return Redirect::route('admin.categories')->with('update-category-info', "Category Infromation Updated Successfully.");
