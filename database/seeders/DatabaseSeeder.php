@@ -68,10 +68,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('product_categories')->insert([
-            ['id' => 1, 'category' => 'Flowers', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 2, 'category' => 'Bouquets', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 3, 'category' => 'Pots and Containers', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id' => 4, 'category' => 'Gardening Tools', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+            ['id' => 1, 'category' => 'Flowers', 'category_desc' => 'Discover the epitome of natural beauty with our exquisite selection of fresh flowers. From the timeless elegance of roses to the vibrant allure of lilies, our diverse range of blooms will enchant and delight for every occasion.', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 2, 'category' => 'Bouquets', 'category_desc' => 'Elevate your gifting experience with our thoughtfully crafted bouquets. Handpicked and artfully arranged, each bouquet is a symphony of colors and scents, designed to convey heartfelt emotions and add a touch of joy to any recipient\'s day.', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 3, 'category' => 'Pots and Containers', 'category_desc' => 'Bring style and functionality together with our exquisite pots and containers. Elevate the presentation of your plants and flowers with our versatile selection, from elegant ceramic pots to practical hanging baskets, adding a touch of elegance to your indoor and outdoor spaces.', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id' => 4, 'category' => 'Gardening Tools', 'category_desc' => 'Embark on a journey of nurturing and creativity with our premium gardening tools. From sturdy shovels to precise pruners, our range of high-quality tools is designed to make gardening a joyous and rewarding experience for enthusiasts of all levels.', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
     }
 }

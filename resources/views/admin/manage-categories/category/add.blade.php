@@ -34,6 +34,19 @@
                                     <span class="text-red-500 text-sm">{{$message}}</span>
                                 @enderror
                             </div>
+                            <div class="col-span-6 md:col-span-12 lg:col-span-12">
+                                <label for="category_desc" class="block text-sm font-medium leading-6 text-gray-500">
+                                    Category Description
+                                </label>
+                                <div class="mt-2">
+                                    <textarea name="category_desc" id="category_desc" cols="30" rows="4"
+                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
+                                    ></textarea>
+                                </div>
+                                @error('category_desc')
+                                    <span class="text-red-500 text-sm">{{$message}}</span>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="py-8 flex justify-end md:gap-x-4">
