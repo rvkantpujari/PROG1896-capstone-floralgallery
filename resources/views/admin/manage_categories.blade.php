@@ -40,6 +40,43 @@
 
     <script>
         let provinceTable = $('#categories').DataTable({
+            drawCallback: function(){
+                function deleteButtonAddListener(btns) {
+                    btns.forEach(btn => {
+                        btn.addEventListener('click', deleteModal);
+                    });
+                }
+
+                function deleteModal(event) {
+                    var form =  $(this).closest("form");
+                    var name = $(this).data("name");
+                    event.preventDefault();
+                    swal({
+                        title: 'Are you sure? 😥',
+                        text: "You won't be able to revert this action!",
+                        icon: 'warning',
+                        buttons: {
+                            cancel: true,
+                            confirm: {
+                                text: "Yes, delete it!",
+                                value: true,
+                                className: "bg-red-500 hover:bg-red-700",
+                            },
+                        }
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            form.submit();
+                        }
+                    });
+                }
+
+                $('.paginate_button', this.api().table().container())          
+                    .on('click', function(){
+                        let deleteButtons = document.querySelectorAll('.show_confirm');
+                        deleteButtonAddListener(deleteButtons);
+                });
+            },
             dom: '<"my-4 py-4"lf><"mt-4 py-8"rt><"mb-4 py-4"Bp>',
             buttons: [
                 'colvis',
