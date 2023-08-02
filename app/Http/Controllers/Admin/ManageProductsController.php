@@ -167,4 +167,10 @@ class ManageProductsController extends Controller
         Product::where('id', $request->route('id'))->update(['product_status' => 'deleted']);
         return Redirect::route('admin.products')->with('delete-product-info', "Product Information Deleted Successfully.");
     }
+
+    public function seller_products(Request $request)
+    {
+        $store = DB::table('sellers')->select('sellers.store_name')->where('sellers.id', $request->route('seller_id'))->first();
+        return view('admin.manage_store', ['store' => $store, 'var' => 12]);
+    }
 }
