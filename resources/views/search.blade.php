@@ -223,6 +223,9 @@
                                     </div>
                                 @endif
                             </div>
+                            <div class="my-4 mx-2 py-8 px-2">
+                                {{ $products->links('pagination::tailwind') }}
+                            </div>
                         </div>
                     </div>
                 </section>
