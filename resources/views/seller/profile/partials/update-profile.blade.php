@@ -98,11 +98,14 @@
                                 class="{{$seller->hasVerifiedEmail() ? 'ring-green-500' : 'ring-red-400'}} block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                 value="{{old('email', $seller->email)}}"
                             />
+                            @error('email')
+                                <span class="text-red-500 text-sm">{{$message}}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
     
-                <div class="col-span-12 my-8">
+                <div class="col-span-12 mt-2 space-y-6">
                     @if ($seller instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $seller->hasVerifiedEmail())
                         <div class="text-center">
                             <p class="text-sm text-red-500 font-semibold">
