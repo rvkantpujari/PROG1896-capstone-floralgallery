@@ -10,13 +10,13 @@ class ViewProductController extends Controller
 {
     function index(Request $request)
     {
-        $product = DB::table('product_categories')
-                        ->join('products', 'products.category_id',"=",'product_categories.id')
-                        ->join('sellers', 'sellers.id',"=",'products.id')
+        $product = DB::table('products')
+                        ->join('product_categories', 'product_categories.id',"=",'products.category_id')
+                        ->join('sellers', 'sellers.id',"=",'products.seller_id')
                         ->select('products.id as product_id', 'products.*', 'product_categories.id as category_id', 'product_categories.category as category', 'sellers.id as seller_id', 'sellers.store_name')
                         ->where([
                             ['products.product_status', '=', 'published'],
-                            ['products.id', '=', $request->product_id],
+                            ['products.id', '=', $request->route('product_id')],
                         ])->first();
         
         if($product == null)
