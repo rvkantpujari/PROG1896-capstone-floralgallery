@@ -141,6 +141,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/edit-product/{id}', [AdminManageProductsController::class, 'edit'])->name('admin.product.edit');
     Route::patch('/admin/edit-product/{id}', [AdminManageProductsController::class, 'update'])->name('admin.product.update');
     Route::patch('/admin/delete-product/{id}', [AdminManageProductsController::class, 'destroy'])->name('admin.product.destroy');
+    
+    Route::get('/admin/seller/{seller_id}/products', [AdminManageProductsController::class, 'seller_products'])->whereNumber('seller_id')->name('admin.view.seller.products');
 });
 
 
