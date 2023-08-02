@@ -3,17 +3,22 @@
         <aside class="bg-[#1e3050] border-r overflow-x-auto transition ease-in duration-300">
             <div class="flex flex-col justify-between flex-1 w-screen md:w-56 h-screen mt-2">
                 <nav class="w-full px-8 md:w-auto space-y-6 md:px-2 lg:px-4">
-                    <div class="space-y-3 pt-8 md:mt-0 px-0 text-lg text-white flex justify-center items-center justify-items-center" title="{{Auth::guard('seller')->user()->first_name}} {{Auth::guard('seller')->user()->last_name}}">
+                    <div class="space-y-3 pt-8 md:mt-0 px-0 text-lg text-white flex justify-center items-center justify-items-center gap-x-4" title="{{Auth::guard('seller')->user()->first_name}} {{Auth::guard('seller')->user()->last_name}}">
                         <img style="display: inline" class="flex-shrink-0 object-cover mt-2 rounded-full w-12 h-12"
                             src="https://ui-avatars.com/api/?name={{Auth::guard('seller')->user()->first_name}}+{{Auth::guard('seller')->user()->last_name}}"
                             alt="{{Auth::guard('seller')->user()->first_name}}"
                         />
-                        <div class="mx-1">
+                        <div class="flex flex-col gap-1">
                             <h1 class="text-lg md:text-md font-semibold">
                                 {{ Str::upper(Str::limit(Auth::guard('seller')->user()->first_name, 10)) }}
                             </h1>
-                            <span class="text-sm font-bold text-pink-400">
-                                Seller
+                            <span class="flex items-center gap-1 text-sm font-bold" title="{{Auth::user()->email_verified_at != null ? 'Verified' : 'Not Verified'}}">
+                                <span class="text-pink-400">Seller</span>
+                                @if (Auth::user()->email_verified_at != null)
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                                    </svg>
+                                @endif
                             </span>
                         </div>
                     </div>
