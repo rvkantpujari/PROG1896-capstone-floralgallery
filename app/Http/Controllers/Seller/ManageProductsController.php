@@ -29,6 +29,7 @@ class ManageProductsController extends Controller
     public function add(): View
     {
         $product_categories = ProductCategory::select('*')->get();
+        
         return view('seller.manage-products.product.add', ['categories' => $product_categories]);
     }
 
@@ -67,7 +68,7 @@ class ManageProductsController extends Controller
             $product->product_img3 = $imgs[2];
 
         if(count($request->product_images) > 3)
-            $product->product_img4 = $imgName[3];
+            $product->product_img4 = $imgs[3];
 
         $product->product_status = $request->product_status;
 
@@ -84,7 +85,9 @@ class ManageProductsController extends Controller
         $product = DB::table('products')
                     ->join('product_categories', 'products.category_id',"=",'product_categories.id')
                     ->select("products.*", 'product_categories.category')->where('products.id', $request->route('id'))->first();
+        
         $categories = ProductCategory::select()->get();
+        
         return view('seller.manage-products.product.edit', ['product' => $product, 'categories' => $categories]);
     }
 
@@ -162,6 +165,7 @@ class ManageProductsController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Product::where('id', $request->route('id'))->update(['product_status' => 'deleted']);
+        
         return Redirect::route('seller.products')->with('delete-product-info', "Product Information Deleted Successfully.");
     }
 }
