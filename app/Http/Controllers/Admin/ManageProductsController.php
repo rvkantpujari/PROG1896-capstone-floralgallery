@@ -66,7 +66,7 @@ class ManageProductsController extends Controller
             $product->product_img3 = $imgs[2];
 
         if(count($request->product_images) > 3)
-            $product->product_img4 = $imgName[3];
+            $product->product_img4 = $imgs[3];
 
         $product->save();
         
@@ -81,13 +81,13 @@ class ManageProductsController extends Controller
         $product = DB::table('products')
                     ->join('product_categories', 'products.category_id',"=",'product_categories.id')
                     ->join('sellers', 'sellers.id',"=",'products.seller_id')
-                    // ->select('products.id', 'products.*', 'product_categories.category', 'sellers.id as seller_id', 'sellers.first_name', 'sellers.last_name', 'sellers.store_name', 'product_categories.id as category_id')
                     ->select('products.id', 'products.product_name', 'products.product_price', 'products.product_dimensions', 'products.product_desc', 'products.product_status', 
                         'product_img1', 'product_img2', 'product_img3', 'product_img4', 'product_categories.category', 'sellers.id as seller_id', 'sellers.first_name', 
                         'sellers.last_name', 'sellers.store_name', 'product_categories.id as category_id')
                     ->where('products.id', $request->route('id'))->first();
+        
         $categories = ProductCategory::select()->get();
-        // dd($product);
+        
         return view('admin.manage-products.product.edit', ['product' => $product, 'categories' => $categories]);
     }
 
@@ -171,6 +171,7 @@ class ManageProductsController extends Controller
     public function seller_products(Request $request)
     {
         $store = DB::table('sellers')->select('sellers.store_name')->where('sellers.id', $request->route('seller_id'))->first();
+        
         return view('admin.manage_store', ['store' => $store, 'var' => 12]);
     }
 }
