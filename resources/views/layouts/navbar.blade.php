@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav x-data="{ isOpen: false }" class="w-full relative shadow bg-white px-12">
+<nav x-data="{ isOpen: false }" class="w-full relative shadow bg-white lg:px-12">
     <div class="mx-auto p-4">
         {{-- <div class="lg:flex lg:items-center lg:justify-between"> --}}
         <div class="lg:grid lg:grid-cols-12">
