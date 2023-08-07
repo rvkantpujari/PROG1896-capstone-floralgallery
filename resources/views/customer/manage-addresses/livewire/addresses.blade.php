@@ -12,7 +12,7 @@
             </button>
         </form>
         @foreach ($addresses as $address)
-            <div class="min-h-[12vh] md:h-[16vh] lg:min-h-[20vh] lg:min-w-[16vw] w-full md:w-auto text-center border border-gray-500 rounded-md flex flex-col justify-between items-center hover:shadow-xl">
+            <div class="min-h-[12vh] md:h-[16vh] lg:min-h-[20vh] lg:min-w-[16vw] w-full md:w-auto text-center border border-gray-500 rounded-md flex flex-col justify-between items-center @if($user->default_address_id == $address->id) shadow-xl shadow-pink-200 @else hover:shadow-xl @endif">
                 <div class="h-full w-full flex flex-col p-6">
                     <span class="font-semibold">{{$address->user_full_name}}</span>
                     <span>@if ($address->unit){{$address->unit}}-@endif{{$address->street_number}} {{$address->street_name}}</span>
