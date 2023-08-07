@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Your Cart - FlowerGallery')
+@section('title', 'Your Cart - FloralGallery')
 
 @section('main-content')
     <!-- Product Details -->
