@@ -82,6 +82,6 @@ class ManageAddressesController extends Controller
     function setAddress(Request $request)
     {
         DB::table('users')->where('id', auth()->user()->id)->update($request->except(['_token', '_method']));
-        return Redirect::route('customer.addresses')->with('set-default-user-address', "Default Delivery Address Set Successfully.");
+        return redirect()->back();
     }
 }
