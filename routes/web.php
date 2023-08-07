@@ -10,6 +10,7 @@ use App\Http\Controllers\ViewProductController;
 use App\Http\Controllers\Customer\ProfileController as CustomerManageProfileController;
 use App\Http\Controllers\Customer\ManageAddressesController as CustomerManageAddressesController;
 use App\Http\Controllers\Customer\CartController as CustomerManageCartController;
+use App\Http\Controllers\Customer\OrderController as CustomerOrderController;
 
 use App\Http\Controllers\Admin\ManageProvincesController as AdminManageProvinceController;
 use App\Http\Controllers\Admin\ManageCategoryController as AdminManageCategoryController;
@@ -70,11 +71,17 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/address/set-default-address', [CustomerManageAddressesController::class, 'setAddress'])->name('customer.set.defualt.address');
 });
 
+
 Route::middleware('auth:web')->group(function () {
     Route::get('/cart', [CustomerManageCartController::class, 'index'])->name('cart');
     Route::post('/cart/add-product', [CustomerManageCartController::class, 'add'])->name('cart.add.product');
     Route::patch('/cart/update-product', [CustomerManageCartController::class, 'update'])->name('cart.update.product.quantity');
     Route::delete('/cart/remove-product', [CustomerManageCartController::class, 'remove'])->name('cart.remove.product');
+});
+
+
+Route::middleware('auth:web')->group(function () {
+    Route::get('/checkout', [CustomerOrderController::class, 'index'])->name('checkout');
 });
 
 
