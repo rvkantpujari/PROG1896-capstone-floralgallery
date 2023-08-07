@@ -72,9 +72,9 @@
             </dl>
 
             <div class="flex justify-end gap-4">
-                <button class="rounded-md bg-pink-400 px-5 py-3 text-md text-white font-semibold hover:transition hover:scale-105 hover:bg-pink-500">
-                    Proceed to Buy
-                </button>
+                <a href="{{route('checkout')}}" class="rounded-md bg-pink-400 px-5 py-3 text-md text-white font-semibold hover:transition hover:scale-105 hover:bg-pink-500">
+                    Proceed to Checkout
+                </a>
             </div>
         </div>
     </div>
