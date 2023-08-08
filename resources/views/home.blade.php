@@ -4,7 +4,7 @@
 
 @section('main-content')
     <!-- Floral Category Section -->
-    <section class="mx-auto py-12 lg:py-20 px-6 lg:px-12 space-y-4">
+    <section class="mx-auto py-12 lg:py-12 px-6 lg:px-12 space-y-4">
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-stretch">
             <div class="lg:col-span-2 grid p-8 bg-gray-100 rounded place-content-center">
                 <div class="max-w-md mx-auto text-center lg:text-left">
@@ -20,7 +20,7 @@
             <div class="lg:col-span-2 lg:py-8">
                 <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                     <li class="col-span-2 md:col-span-1 lg:col-span-2">
-                        <a href="#" class="relative block group">
+                        <div class="relative block group">
                             <div class="block relative h-56 rounded-xl overflow-hidden">
                                 <img src="{{asset('assets/featured categories/andrew-small-EfhCUc_fjrU-unsplash.jpg')}}" alt=""
                                     class="absolute inset-0 h-full w-full object-cover opacity-0 hover:duration-500 group-hover:opacity-100"/>
@@ -30,14 +30,14 @@
                             </div>
                     
                             <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                                <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                <a href="{{route('category', ['category' => 'flowers'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
                                     Shop Flowers
-                                </span>
+                                </a>
                             </div>
-                        </a>
+                        </div>
                     </li>
                     <li class="col-span-2 md:col-span-1 lg:col-span-2">
-                        <a href="#" class="relative block group">
+                        <div class="relative block group">
                             <div class="block relative h-56 rounded-xl overflow-hidden">
                                 <img src="{{asset('assets/featured categories/debby-hudson-VO7p_CgTylQ-unsplash.jpg')}}" alt=""
                                     class="absolute inset-0 h-full w-full object-cover object-top opacity-0 hover:duration-500 group-hover:opacity-100"/>
@@ -47,11 +47,11 @@
                             </div>
                     
                             <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                                <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                <a href="{{route('category', ['category' => 'bouquets'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
                                     Shop Bouquets
-                                </span>
+                                </a>
                             </div>
-                        </a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -72,24 +72,7 @@
             <div class="lg:col-span-2 lg:py-8 md:order-2 lg:order-1">
                 <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                     <li class="col-span-2 md:col-span-1 lg:col-span-2">
-                        <a href="#" class="relative block group">
-                            <div class="block relative h-56 rounded-xl overflow-hidden">
-                                <img src="{{asset('assets/featured categories/pexels-gary-barnes-6231714.jpg')}}" alt=""
-                                    class="absolute inset-0 h-full w-full object-cover opacity-0 hover:duration-500 group-hover:opacity-100"/>
-
-                                <img src="{{asset('assets/featured categories/pexels-gary-barnes-6231726.jpg')}}" alt=""
-                                    class="absolute inset-0 h-full w-full object-cover opacity-100 hover:duration-500 group-hover:opacity-0"/>
-                            </div>
-                    
-                            <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                                <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
-                                    Shop Gardnening Tools
-                                </span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="col-span-2 md:col-span-1 lg:col-span-2">
-                        <a href="#" class="relative block group">
+                        <div class="relative block group">
                             <div class="block relative h-56 rounded-xl overflow-hidden">
                                 <img src="{{asset('assets/featured categories/pexels-cottonbro-studio-4503741.jpg')}}" alt=""
                                     class="absolute inset-0 h-full w-full object-cover object-center opacity-0 hover:duration-500 group-hover:opacity-100"/>
@@ -99,11 +82,28 @@
                             </div>
                     
                             <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                                <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                <a href="{{route('category', ['category' => 'pots and containers'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
                                     Shop Pots and Containers
-                                </span>
+                                </a>
                             </div>
-                        </a>
+                        </div>
+                    </li>
+                    <li class="col-span-2 md:col-span-1 lg:col-span-2">
+                        <div class="relative block group">
+                            <div class="block relative h-56 rounded-xl overflow-hidden">
+                                <img src="{{asset('assets/featured categories/pexels-gary-barnes-6231714.jpg')}}" alt=""
+                                    class="absolute inset-0 h-full w-full object-cover opacity-0 hover:duration-500 group-hover:opacity-100"/>
+
+                                <img src="{{asset('assets/featured categories/pexels-gary-barnes-6231726.jpg')}}" alt=""
+                                    class="absolute inset-0 h-full w-full object-cover opacity-100 hover:duration-500 group-hover:opacity-0"/>
+                            </div>
+                    
+                            <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+                                <a href="{{route('category', ['category' => 'gardening tools'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                    Shop Gardening Tools
+                                </a>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -111,13 +111,13 @@
     </section>
 
     <!-- Why FloralGallery -->
-    <section class="py-12 body-font">
-        <div class="py-12 lg:py-4 text-center text-3xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2">
+    <section class="pb-6 body-font">
+        <div class="py-12 text-center text-3xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2">
             <span>Why <span class="text-pink-500">Floral</span><span class="text-black">Gallery</span>?</span>
             <div class="h-1 w-32 bg-pink-500 rounded"></div>
         </div>
         <div class="container px-12 py-4 mx-auto flex flex-wrap">
-            <div class="flex relative pt-6 pb-12 items-center md:w-2/3 mx-auto">
+            <div class="flex relative pt-6 pb-12 items-center lg:w-2/3 mx-auto">
                 <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
                     <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
                 </div>
@@ -137,7 +137,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex relative pb-12 sm:items-center md:w-2/3 mx-auto">
+            <div class="flex relative pb-12 sm:items-center lg:w-2/3 mx-auto">
                 <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
                     <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
                 </div>
@@ -156,7 +156,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex relative pb-4 sm:items-center md:w-2/3 mx-auto">
+            <div class="flex relative pb-4 sm:items-center lg:w-2/3 mx-auto">
                 <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
                     <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
                 </div>
@@ -179,9 +179,9 @@
     </section>
     
     <!-- Display Full Width Card -->
-    <div class="mx-auto mb-20 px-8 lg:px-20 bg-white">
-        <div class="py-12 lg:py-12 text-center text-3xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2">
-            Our Vision
+    <div class="mx-auto pb-12 px-8 lg:px-20 bg-white">
+        <div class="py-12 text-center text-3xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2">
+            <span><span class="text-pink-500">Our</span><span class="text-black"> Vision</span></span>
             <div class="h-1 w-20 bg-pink-500 rounded"></div>
         </div>
         <div class="relative p-8 lg:p-0 rounded-lg block md:flex items-center bg-gray-100 shadow-xl" style="min-height: 19rem;">
@@ -202,8 +202,9 @@
 
     <!-- Newsletter -->
     <div class="pb-20 lg:pt-12 lg:pb-32">
-        <div class="text-center text-3xl font-semibold">
-            Newsletter
+        <div class="py-12 lg:py-4 text-center text-3xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2">
+            <span><span class="text-pink-500">News</span><span class="text-black">letter</span></span>
+            <div class="h-1 w-20 bg-pink-500 rounded"></div>
         </div>
         <section class="mt-12 flex flex-col mx-8 max-w-4xl lg:mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 md:flex-row md:h-48">
             <div class="md:flex md:items-center md:justify-center md:w-1/2 bg-[#1e3050]">

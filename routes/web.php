@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\SearchProductController;
 use App\Http\Controllers\ViewProductController;
+use App\Http\Controllers\CategoryController;
 
 use App\Http\Controllers\Customer\ProfileController as CustomerManageProfileController;
 use App\Http\Controllers\Customer\ManageAddressesController as CustomerManageAddressesController;
@@ -43,6 +44,9 @@ Route::post('/contact_us', [ContactFormController::class, 'contactFormValidation
 Route::get('/search', [SearchProductController::class, 'showSearchForm'])->name('search');
 Route::post('/search', [SearchProductController::class, 'showResults'])->name('search.results');
 Route::post('/search/filter', [SearchProductController::class, 'applyFilter'])->name('search.filter');
+
+
+Route::get('/category/{category}', [CategoryController::class, 'show'])->where('category', '[A-Z a-z]+')->name('category');
 
 
 Route::get('/product/{product_id}', [ViewProductController::class, 'index'])->whereNumber('product_id')->name('product.view');
