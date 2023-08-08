@@ -3,270 +3,205 @@
 @section('title', 'FloralGallery - Flowers For All Occasions')
 
 @section('main-content')
-    <!-- Carousel -->
-    <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl">
-        <template x-for="(image, index) in images">
-            <figure
-                class="h-screen"
-                x-show="currentIndex == index + 1"
-                x-transition:enter="transition transform duration-300"
-                x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100"
-                x-transition:leave="transition transform duration-300"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
-            >
-                <img
-                    :src="image"
-                    alt="Image"
-                    class="absolute inset-0 z-10 h-full w-full object-cover object-center lg:object-left opacity-70"
-                />
-            </figure>
-        </template>
-
-        <button
-            @click="back()"
-            class="absolute left-14 top-1/2 -translate-y-1/2 w-11 h-11 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200 collapse md:collapse lg:visible"
-        >
-            <svg
-                class="w-8 h-8 font-bold transition duration-500 ease-in-out transform motion-reduce:transform-none text-gray-500 hover:text-gray-600 hover:-translate-x-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2.5"
-                    d="M15 19l-7-7 7-7"
-                ></path>
-            </svg>
-        </button>
-
-        <button
-            @click="next()"
-            class="absolute -my-10 right-14 top-1/2 translate-y-1/2 w-11 h-11 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200 collapse md:collapse lg:visible"
-        >
-            <svg
-                class="w-8 h-8 font-bold transition duration-500 ease-in-out transform motion-reduce:transform-none text-gray-500 hover:text-gray-600 hover:translate-x-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2.5"
-                    d="M9 5l7 7-7 7"
-                ></path>
-            </svg>
-        </button>
-    </article>
-
-    <section class="container mx-auto">
-        <div class="bg-white">
-            <main class="mx-auto max-w-7xl px-6 lg:px-4">
-                <div class="flex items-baseline justify-between border-b border-gray-200 pb-2 pt-24">
-                    <h1 class="text-3xl font-semibold tracking-tight text-gray-900">Explore Products 🌺</h1>
+    <!-- Floral Category Section -->
+    <section class="mx-auto py-12 lg:py-20 px-6 lg:px-12 space-y-4">
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-stretch">
+            <div class="lg:col-span-2 grid p-8 bg-gray-100 rounded place-content-center">
+                <div class="max-w-md mx-auto text-center lg:text-left">
+                    <header>
+                        <h1 class="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900">Floral Products 🌺</h1>
+                        <p class="mt-4 flex text-gray-700">
+                            Explore Our Flowers &amp; Bouquets. Let Nature's Elegance Blossom in Every Corner!
+                        </p>
+                    </header>
                 </div>
-        
-                <section aria-labelledby="products-heading" class="pb-24 pt-6">
-                    <h2 id="products-heading" class="sr-only">Products</h2>
-                    <div class="grid gap-y-10 gap-x-8 md:grid-cols-12">
-                        <!-- Filters Mobile -->
-                        <div class="space-y-2 md:hidden">
-                            <form method="POST" action={{route('home.filter.search')}}>
-                                @csrf
-                                <div x-data="{ isOpen: false }" class="overflow-hidden rounded border border-gray-300">
-                                    <button x-on:click="isOpen = !isOpen" type="button" 
-                                        class="flex w-full cursor-pointer items-center justify-between gap-2 bg-white p-4 text-gray-900 transition">
-                                        <span class="text-sm font-semibold">Filters</span>
+            </div>
 
-                                        <span class="transition" :class="{ '-rotate-180': isOpen }">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                            </svg>
-                                        </span>
-                                    </button>
-                                    <div x-cloak x-show="isOpen" x-on:keydown.escape.window="isOpen = false" class="m-4 pt-6 border-t border-gray-200 bg-white">
-                                        <span class="pl-2 text-md font-semibold">Category</span>
-                                        <div class="p-6 border-gray-300" id="filter-section-0">
-                                            <div class="space-y-4 text-sm">
-                                                @foreach ($categories as $category)
-                                                    <div class="flex items-center">
-                                                        @if(Request()->product_category)
-                                                            <input id="filter-category-mobile-{{$category->category}}" {{ in_array($category->category, Request()->product_category) ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
-                                                            <label for="filter-category-mobile-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
-                                                        @else
-                                                            <input id="filter-category-mobile-{{$category->category}}" name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
-                                                            <label for="filter-category-mobile-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
-                                                        @endif
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                        <span class="pl-2 text-md font-semibold">Price</span>
-                                        <div class="p-6 border-gray-300">
-                                            <!-- Price section -->
-                                            <div class="space-y-4">
-                                                <div class="flex items-center">
-                                                    <div class="border-gray-200">
-                                                        <div class="flex justify-between gap-4">
-                                                            <label for="FilterPriceFrom" class="flex items-center gap-2">
-                                                                <span class="text-sm font-semibold text-gray-600">Min: </span>
-                                                                @if (Request()->price_min)
-                                                                    <input type="text" id="FilterPriceFrom" placeholder="CAD$" min="0" name="price_min" value="{{Request()->price_min}}"
-                                                                        class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm" />
-                                                                @else
-                                                                    <input type="text" id="FilterPriceFrom" placeholder="CAD$" min="0" name="price_min"
-                                                                        class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm" />
-                                                                @endif
-                                                            </label>
-                                        
-                                                            <label for="FilterPriceTo" class="flex items-center gap-2">
-                                                                <span class="text-sm font-semibold text-gray-600">Max: </span>
-                                                                @if (Request()->price_max)
-                                                                    <input type="text" id="FilterPriceTo" placeholder="CAD$" min="0" name="price_max" value="{{Request()->price_max}}"
-                                                                        class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm" />
-                                                                @else
-                                                                    <input type="text" id="FilterPriceTo" placeholder="CAD$" min="0" name="price_max"
-                                                                        class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm" />
-                                                                @endif
-                                                            </label>
-                                                        </div>
-                                                        <div class="flex justify-between mt-2">
-                                                            @error('price_min')
-                                                                <span class="text-red-500 text-sm">{{$message}}</span>
-                                                            @enderror
-                                                            @error('price_max')
-                                                                <span class="text-red-500 text-sm">{{$message}}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <input type="submit" value="Apply" class="mt-4 px-[16px] py-[8px] bg-pink-500 text-white font-semibold rounded cursor-pointer">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+            <div class="lg:col-span-2 lg:py-8">
+                <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <li class="col-span-2 md:col-span-1 lg:col-span-2">
+                        <a href="#" class="relative block group">
+                            <div class="block relative h-56 rounded-xl overflow-hidden">
+                                <img src="{{asset('assets/featured categories/andrew-small-EfhCUc_fjrU-unsplash.jpg')}}" alt=""
+                                    class="absolute inset-0 h-full w-full object-cover opacity-0 hover:duration-500 group-hover:opacity-100"/>
 
-                        <!-- Filters Desktop & Tablet -->
-                        <form method="POST" action={{route('home.filter.search')}} class="hidden md:block md:col-span-3">
-                            @csrf
-                            <div class="py-6">
-                                <!-- Category section -->
-                                <h3 class="-my-3 flow-root">
-                                    <span class="flex w-full items-center justify-between bg-white py-3 text-md text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
-                                        <span class="font-semibold text-gray-900">Category</span>
-                                    </span>
-                                </h3>
-                                <div class="pt-6 mt-4 border-t border-gray-300" id="filter-section-0">
-                                    <div class="space-y-4 text-sm">
-                                        @foreach ($categories as $category)
-                                            <div class="flex items-center">
-                                                @if(Request()->product_category)
-                                                    <input id="filter-category-{{$category->category}}" {{ in_array($category->category, Request()->product_category) ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
-                                                    <label for="filter-category-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
-                                                @else
-                                                    <input id="filter-category-{{$category->category}}" name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
-                                                    <label for="filter-category-{{$category->category}}" class="ml-3 text-sm text-gray-600">{{$category->category}}</label>
-                                                @endif
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
+                                <img src="{{asset('assets/featured categories/pawel-czerwinski-Gmxbaiph-YE-unsplash.jpg')}}" alt=""
+                                    class="absolute inset-0 h-full w-full object-cover opacity-100 hover:duration-500 group-hover:opacity-0"/>
                             </div>
-                            <div class="py-6">
-                                <!-- Price section -->
-                                <h3 class="-my-3 flow-root">
-                                    <button type="button" class="flex w-full items-center justify-between bg-white py-3 text-md text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" aria-expanded="false">
-                                        <span class="font-semibold text-gray-900">Price</span>
-                                    </button>
-                                </h3>
-                                <div class="pt-6 mt-4 border-t" id="filter-section-1">
-                                    <div class="space-y-4">
-                                        <div class="flex items-center">
-                                            <div class="border-gray-200">
-                                                <div class="flex justify-between md:flex-col lg:flex-row gap-4">
-                                                    <label for="FilterPriceFrom" class="flex items-center gap-2">
-                                                        <span class="text-sm font-semibold text-gray-600">Min: </span>
-                                                        @if (Request()->price_min)
-                                                            <input type="text" id="FilterPriceFrom" placeholder="CAD$" min="0" name="price_min" value="{{Request()->price_min}}"
-                                                                class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm" />
-                                                        @else
-                                                            <input type="text" id="FilterPriceFrom" placeholder="CAD$" min="0" name="price_min"
-                                                                class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm" />
-                                                        @endif
-                                                    </label>
-                                
-                                                    <label for="FilterPriceTo" class="flex items-center gap-2">
-                                                        <span class="text-sm font-semibold text-gray-600">Max: </span>
-                                                        @if (Request()->price_max)
-                                                            <input type="text" id="FilterPriceTo" placeholder="CAD$" min="0" name="price_max" value="{{Request()->price_max}}"
-                                                                class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm" />
-                                                        @else
-                                                            <input type="text" id="FilterPriceTo" placeholder="CAD$" min="0" name="price_max"
-                                                                class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm" />
-                                                        @endif
-                                                    </label>
-                                                </div>
-                                                <div class="flex justify-between mt-2">
-                                                    @error('price_min')
-                                                        <span class="text-red-500 text-sm">{{$message}}</span>
-                                                    @enderror
-                                                    @error('price_max')
-                                                        <span class="text-red-500 text-sm">{{$message}}</span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    
+                            <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+                                <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                    Shop Flowers
+                                </span>
                             </div>
-                            <div class="py-6">
-                                <input type="submit" value="Apply" class="px-[16px] py-[8px] bg-pink-500 text-white font-semibold rounded cursor-pointer">
+                        </a>
+                    </li>
+                    <li class="col-span-2 md:col-span-1 lg:col-span-2">
+                        <a href="#" class="relative block group">
+                            <div class="block relative h-56 rounded-xl overflow-hidden">
+                                <img src="{{asset('assets/featured categories/debby-hudson-VO7p_CgTylQ-unsplash.jpg')}}" alt=""
+                                    class="absolute inset-0 h-full w-full object-cover object-top opacity-0 hover:duration-500 group-hover:opacity-100"/>
+
+                                <img src="{{asset('assets/featured categories/uljana-borodina-NFj6pEUdmpY-unsplash.jpg')}}" alt=""
+                                    class="absolute inset-0 h-full w-full object-cover object-center opacity-100 hover:duration-500 group-hover:opacity-0"/>
                             </div>
-                        </form>
-            
-                        <!-- Product grid -->
-                        <div class="md:col-span-9">
-                            <div class="flex flex-wrap">
-                                @if ($products)
-                                    @foreach ($products as $product)
-                                        <div class="lg:w-1/3 md:w-1/2 p-4 w-full">
-                                            <a href="{{route('product.view', ['product_id' => $product->product_id])}}" class="block relative h-48 rounded overflow-hidden hover:shadow-lg">
-                                                <img src="{{asset($product->product_img1)}}" alt="{{$product->product_name}}" title="{{$product->product_name}}"
-                                                    loading="lazy" class="object-cover object-center w-full h-full block hover:scale-110 hover:duration-500"/>
-                                            </a>
-                                            <div class="mt-4 px-2">
-                                                <div class="flex justify-between">
-                                                    <h3 class="text-pink-400 text-sm tracking-widest font-semibold title-font mb-1">{{$product->category}}</h3>
-                                                    <p class="font-semibold">CAD$ {{$product->product_price}}</p>
-                                                </div>
-                                                <h2 class="text-black title-font text-lg font-semibold">{{Str::limit($product->product_name, 24)}}</h2>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <div class="lg:w-1/3 md:w-1/2 w-full p-4 text-xl">
-                                        😥
-                                    </div>
-                                @endif
+                    
+                            <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+                                <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                    Shop Bouquets
+                                </span>
                             </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-stretch">
+            <div class="lg:col-span-2 grid p-8 bg-gray-100 rounded place-content-center md:order-2">
+                <div class="max-w-md mx-auto text-center lg:text-right">
+                    <header>
+                        <h1 class="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900">Gardnening Products 🌻</h1>
+                        <p class="mt-4 flex text-gray-700">
+                            Transform Your Garden Dreams into Reality: Explore Our Gardening Products!
+                        </p>
+                    </header>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 lg:py-8 md:order-2 lg:order-1">
+                <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <li class="col-span-2 md:col-span-1 lg:col-span-2">
+                        <a href="#" class="relative block group">
+                            <div class="block relative h-56 rounded-xl overflow-hidden">
+                                <img src="{{asset('assets/featured categories/pexels-gary-barnes-6231714.jpg')}}" alt=""
+                                    class="absolute inset-0 h-full w-full object-cover opacity-0 hover:duration-500 group-hover:opacity-100"/>
+
+                                <img src="{{asset('assets/featured categories/pexels-gary-barnes-6231726.jpg')}}" alt=""
+                                    class="absolute inset-0 h-full w-full object-cover opacity-100 hover:duration-500 group-hover:opacity-0"/>
+                            </div>
+                    
+                            <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+                                <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                    Shop Gardnening Tools
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="col-span-2 md:col-span-1 lg:col-span-2">
+                        <a href="#" class="relative block group">
+                            <div class="block relative h-56 rounded-xl overflow-hidden">
+                                <img src="{{asset('assets/featured categories/pexels-cottonbro-studio-4503741.jpg')}}" alt=""
+                                    class="absolute inset-0 h-full w-full object-cover object-center opacity-0 hover:duration-500 group-hover:opacity-100"/>
+
+                                <img src="{{asset('assets/featured categories/pexels-rov-camato-1201798.jpg')}}" alt=""            
+                                    class="absolute inset-0 h-full w-full object-cover object-center opacity-100 hover:duration-500 group-hover:opacity-0"/>
+                            </div>
+                    
+                            <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+                                <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                    Shop Pots and Containers
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
 
+    <!-- Why FloralGallery -->
+    <section class="py-12 body-font">
+        <div class="py-12 lg:py-4 text-center text-3xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2">
+            <span>Why <span class="text-pink-500">Floral</span><span class="text-black">Gallery</span>?</span>
+            <div class="h-1 w-32 bg-pink-500 rounded"></div>
+        </div>
+        <div class="container px-12 py-4 mx-auto flex flex-wrap">
+            <div class="flex relative pt-6 pb-12 items-center md:w-2/3 mx-auto">
+                <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
+                    <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
+                </div>
+                <div class="flex-shrink-0 w-6 h-6 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-pink-500 text-white relative z-10 title-font font-medium text-sm">1</div>
+                <div class="flex-grow md:pl-8 pl-4 flex sm:items-center items-start flex-col sm:flex-row">
+                    <div class="flex-shrink-0 w-24 h-24 bg-pink-100 text-pink-500 rounded-full inline-flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <div class="flex-grow mt-6 md:pl-6 sm:mt-0">
+                        <h2 class="font-semibold title-font text-gray-900 mb-1 text-lg md:text-xl">What You See Is What You Get</h2>
+                        <p class="leading-relaxed">
+                            Love the product on your screen? That's exactly what our local florist will prepare freshly for your order or your money back!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex relative pb-12 sm:items-center md:w-2/3 mx-auto">
+                <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
+                    <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
+                </div>
+                <div class="flex-shrink-0 w-6 h-6 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-pink-500 text-white relative z-10 title-font font-medium text-sm">2</div>
+                    <div class="flex-grow md:pl-8 pl-4 flex sm:items-center items-start flex-col sm:flex-row">
+                    <div class="flex-shrink-0 w-24 h-24 bg-pink-100 text-pink-500 rounded-full inline-flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.115 5.19l.319 1.913A6 6 0 008.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 002.288-4.042 1.087 1.087 0 00-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 01-.98-.314l-.295-.295a1.125 1.125 0 010-1.591l.13-.132a1.125 1.125 0 011.3-.21l.603.302a.809.809 0 001.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 001.528-1.732l.146-.292M6.115 5.19A9 9 0 1017.18 4.64M6.115 5.19A8.965 8.965 0 0112 3c1.929 0 3.716.607 5.18 1.64" />
+                        </svg>
+                    </div>
+                    <div class="flex-grow mt-6 md:pl-6 sm:mt-0">
+                        <h2 class="font-semibold title-font text-gray-900 mb-1 text-lg md:text-xl">Always unique</h2>
+                        <p class="leading-relaxed">
+                            We work with talented and unique artisans, and we're passionate about supporting our skilled family of florists.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex relative pb-4 sm:items-center md:w-2/3 mx-auto">
+                <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
+                    <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
+                </div>
+                <div class="flex-shrink-0 w-6 h-6 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-pink-500 text-white relative z-10 title-font font-medium text-sm">3</div>
+                    <div class="flex-grow md:pl-8 pl-4 flex sm:items-center items-start flex-col sm:flex-row">
+                    <div class="flex-shrink-0 w-24 h-24 bg-pink-100 text-pink-500 rounded-full inline-flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                        </svg>
+                    </div>
+                    <div class="flex-grow mt-6 md:pl-6 sm:mt-0">
+                        <h2 class="font-semibold title-font text-gray-900 mb-1 text-lg md:text-xl">Hand-delivered with care &amp; attention</h2>
+                        <p class="leading-relaxed">
+                            Every order is professionally arranged, wrapped and safely delivered within set timeframe.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Display Full Width Card -->
+    <div class="mx-auto mb-20 px-8 lg:px-20 bg-white">
+        <div class="py-12 lg:py-12 text-center text-3xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2">
+            Our Vision
+            <div class="h-1 w-20 bg-pink-500 rounded"></div>
+        </div>
+        <div class="relative p-8 lg:p-0 rounded-lg block md:flex items-center bg-gray-100 shadow-xl" style="min-height: 19rem;">
+            <div class="relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-r-none md:rounded-l-lg" style="min-height: 19rem;">
+                <div class="absolute inset-0 w-full h-full bg-pink-500 opacity-75"></div>
+                    <img class="absolute inset-0 w-full h-full object-cover object-center" src="{{asset('assets/images/aaron-burden-DjsBoWp7HV0-unsplash.jpg')}}" alt="">
+                </div>
+            <div class="w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg">
+                <div class="px-4 py-8 md:pr-8 md:pl-16 md:py-12 lg:pr-12 lg:pl-12">
+                    <p class="text-gray-600 text-lg">At <span class="font-semibold"><span class="text-pink-500">Floral</span><span class="text-black">Gallery</span></span>, our vision is to curate a virtual haven where sellers from every corner of Canada can showcase their finest floral creations, while customers discover a gallery of possibilities to celebrate life's moments. Through innovation and collaboration, we strive to be the premier destination that unites sellers and seekers in a tapestry of blossoms, enriching lives with the enchantment and elegance of nature's artistry.</p>
+                </div>
+                <svg class="hidden md:block absolute inset-y-0 h-full w-24 fill-current text-gray-100 -ml-12" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <polygon points="50,0 100,0 50,100 0,100" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
     <!-- Newsletter -->
-    <div class="pb-20 lg:mt-4">
+    <div class="pb-20 lg:pt-12 lg:pb-32">
         <div class="text-center text-3xl font-semibold">
             Newsletter
         </div>
@@ -302,33 +237,4 @@
             </div>
         </section>
     </div>
-@endsection
-
-@section('js-scripts')
-    <!-- JavaScript -->
-    <script>
-        document.addEventListener("alpine:init", () => {
-            Alpine.data("slider", () => ({
-                currentIndex: 1,
-                images: [
-                    "assets/images/andrew-small-EfhCUc_fjrU-unsplash.jpg",
-                    "assets/images/pawel-czerwinski-Gmxbaiph-YE-unsplash.jpg",
-                    "assets/images/pawel-czerwinski-rxdNnhMPRGE-unsplash.jpg",
-                ],
-                back() {
-                    if (this.currentIndex > 1) {
-                        this.currentIndex = this.currentIndex - 1;
-                    }
-                },
-                next() {
-                    if (this.currentIndex < this.images.length) {
-                        this.currentIndex = this.currentIndex + 1;
-                    } else if (this.currentIndex <= this.images.length) {
-                        this.currentIndex =
-                            this.images.length - this.currentIndex + 1;
-                    }
-                },
-            }));
-        });
-    </script>
 @endsection
