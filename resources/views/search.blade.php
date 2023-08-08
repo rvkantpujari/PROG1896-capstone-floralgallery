@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Search Results - FloralGallery')
+@section('title', (isset($store_name) ? Str::limit($store_name, 35) : 'Search Results').' - FloralGallery')
 
 @section('main-content')
     <!-- Search Results -->
@@ -14,6 +14,17 @@
                         </h1>
                         <div class="h-1 w-20 bg-pink-500 rounded"></div>
                     </div>
+                </div>
+            </div>
+        </section>
+    @endisset
+
+    @isset($store_name)
+        <section class="body-font mx-auto lg:max-w-7xl px-6 pt-12 pb-4 flex flex-wrap">
+            <div class="w-full">
+                <div class="text-center text-2xl font-semibold capitalize flex flex-col justify-center items-center gap-y-2">
+                    <span>Store <span class="text-pink-500">{{Str::limit($store_name, 50)}}</span><span class="text-black"></span></span>
+                    <div class="h-1 w-24 bg-pink-500 rounded"></div>
                 </div>
             </div>
         </section>

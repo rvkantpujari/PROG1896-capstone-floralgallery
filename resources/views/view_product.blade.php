@@ -66,7 +66,7 @@
                                         {{ $product->product_name }}
                                     </h1>
                                     <div class="flex mb-4">
-                                        Product by&nbsp;<span class="font-semibold text-pink-500" title="{{$product->store_name}}">{{Str::limit($product->store_name, 50)}}</span>
+                                        Product by&nbsp;<span class="font-semibold text-pink-500" title="{{$product->store_name}}"><a href="{{route('view.store.products', ['store' => $product->store_name])}}" class="hover:text-pink-600 hover:border-b hover:border-pink-600">{{Str::limit($product->store_name, 35)}}</a></span>
                                     </div>
                                     <p class="leading-relaxed lg:min-h-[10vh] md:min-h-[5vh]">{{$product->product_desc}}</p>
                                     <div class="flex mt-4 items-center pb-5 border-b-2 border-gray-100 mb-5">
