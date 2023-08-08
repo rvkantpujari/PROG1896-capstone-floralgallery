@@ -30,6 +30,17 @@
         </section>
     @endisset
 
+    @isset($search_category)
+        <section class="body-font mx-auto lg:max-w-7xl px-6 pt-12 pb-4 flex flex-wrap">
+            <div class="w-full">
+                <div class="text-center text-2xl font-semibold flex flex-col justify-center items-center gap-y-2">
+                    <span><span class="text-pink-500">{{Str::limit($search_category, 50)}}</span><span class="text-black"></span></span>
+                    <div class="h-1 w-24 bg-pink-500 rounded"></div>
+                </div>
+            </div>
+        </section>
+    @endisset
+
     <!-- Products -->
     <section class="container md:mx-auto lg:mx-0 bg-white">
         <main class="lg:mx-auto lg:max-w-7xl lg:px-6 lg:p-4">
@@ -63,13 +74,18 @@
                                         <div class="space-y-3 text-md">
                                             @foreach ($categories as $category)
                                                 <div class="flex items-center">
-                                                    @if(Request()->product_category)
-                                                        <input id="filter-category-mobile-{{$category->category}}" {{ in_array($category->category, Request()->product_category) ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
-                                                        <label for="filter-category-mobile-{{$category->category}}" class="ml-3 text-gray-600">{{$category->category}}</label>
+                                                    @isset($search_category)
+                                                        <input id="filter-category-{{$category->category}}" {{ $category->category === $search_category ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
+                                                        <label for="filter-category-{{$category->category}}" class="ml-3">{{$category->category}}</label>
                                                     @else
-                                                        <input id="filter-category-mobile-{{$category->category}}" name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
-                                                        <label for="filter-category-mobile-{{$category->category}}" class="ml-3 text-gray-600">{{$category->category}}</label>
-                                                    @endif
+                                                        @if(Request()->product_category)
+                                                            <input id="filter-category-mobile-{{$category->category}}" {{ in_array($category->category, Request()->product_category) ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
+                                                            <label for="filter-category-mobile-{{$category->category}}" class="ml-3 text-gray-600">{{$category->category}}</label>
+                                                        @else
+                                                            <input id="filter-category-mobile-{{$category->category}}" name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
+                                                            <label for="filter-category-mobile-{{$category->category}}" class="ml-3 text-gray-600">{{$category->category}}</label>
+                                                        @endif
+                                                    @endisset
                                                 </div>
                                             @endforeach
                                         </div>
@@ -144,8 +160,13 @@
                                                 <input id="filter-category-{{$category->category}}" {{ $category->category === $search_category ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
                                                 <label for="filter-category-{{$category->category}}" class="ml-3">{{$category->category}}</label>
                                             @else
-                                                <input id="filter-category-{{$category->category}}" name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
-                                                <label for="filter-category-{{$category->category}}" class="ml-3">{{$category->category}}</label>
+                                                @if(Request()->product_category)
+                                                    <input id="filter-category-mobile-{{$category->category}}" {{ in_array($category->category, Request()->product_category) ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
+                                                    <label for="filter-category-mobile-{{$category->category}}" class="ml-3 text-gray-600">{{$category->category}}</label>
+                                                @else
+                                                    <input id="filter-category-mobile-{{$category->category}}" name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
+                                                    <label for="filter-category-mobile-{{$category->category}}" class="ml-3 text-gray-600">{{$category->category}}</label>
+                                                @endif
                                             @endisset
                                         </div>
                                     @endforeach
