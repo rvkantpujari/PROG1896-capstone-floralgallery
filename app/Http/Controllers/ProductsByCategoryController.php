@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CategoryController extends Controller
+class ProductsByCategoryController extends Controller
 {
     function show(Request $request)
     {
