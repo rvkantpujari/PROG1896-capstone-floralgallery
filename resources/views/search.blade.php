@@ -129,13 +129,13 @@
                                 <div class="space-y-4 text-md">
                                     @foreach ($categories as $category)
                                         <div class="flex items-center text-gray-600 hover:text-gray-800">
-                                            @if(Request()->product_category)
-                                                <input id="filter-category-{{$category->category}}" {{ in_array($category->category, Request()->product_category) ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
+                                            @isset($search_category)
+                                                <input id="filter-category-{{$category->category}}" {{ $category->category === $search_category ? "checked" : "" }} name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
                                                 <label for="filter-category-{{$category->category}}" class="ml-3">{{$category->category}}</label>
                                             @else
                                                 <input id="filter-category-{{$category->category}}" name="product_category[]" value="{{$category->category}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-pink-400 focus:ring-pink-500">
                                                 <label for="filter-category-{{$category->category}}" class="ml-3">{{$category->category}}</label>
-                                            @endif
+                                            @endisset
                                         </div>
                                     @endforeach
                                 </div>
