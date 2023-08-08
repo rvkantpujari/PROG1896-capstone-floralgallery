@@ -14,13 +14,13 @@ class ProductUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_name' => ['required', 'string', 'min: 3'],
+            'product_name' => ['required', 'string', 'min: 3', 'max:100'],
             'product_price' => ['required', 'numeric'],
-            'product_desc' => ['required', 'string'],
-            'product_images.0' => ['mimes:jpeg,jpg,png,JPEG,JPG,PNG', 'min:100', 'max:5120'],
-            'product_images.1' => ['mimes:jpeg,jpg,png,JPEG,JPG,PNG', 'min:100', 'max:5120'],
-            'product_images.2' => ['mimes:jpeg,jpg,png,JPEG,JPG,PNG', 'min:100', 'max:5120'],
-            'product_images.3' => ['mimes:jpeg,jpg,png,JPEG,JPG,PNG', 'min:100', 'max:5120'],
+            'product_desc' => ['required', 'string', 'min:250', 'max:1000'],
+            'product_images.0' => ['required', 'mimes:jpeg,jpg,png,JPEG,JPG,PNG', 'min:50', 'max:2048'],
+            'product_images.1' => ['mimes:jpeg,jpg,png,JPEG,JPG,PNG', 'min:50', 'max:2048'],
+            'product_images.2' => ['mimes:jpeg,jpg,png,JPEG,JPG,PNG', 'min:50', 'max:2048'],
+            'product_images.3' => ['mimes:jpeg,jpg,png,JPEG,JPG,PNG', 'min:50', 'max:2048'],
             'product_status' => ['required', 'string'],
             'category_id' => ['required'],
             'seller_id' => ['required'],
