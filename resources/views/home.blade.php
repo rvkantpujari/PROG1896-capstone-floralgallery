@@ -117,7 +117,7 @@
             <div class="h-1 w-32 bg-pink-500 rounded"></div>
         </div>
         <div class="container px-12 py-4 mx-auto flex flex-wrap">
-            <div class="flex relative pt-6 pb-12 items-center md:w-2/3 mx-auto">
+            <div class="flex relative pt-6 pb-12 items-center lg:w-2/3 mx-auto">
                 <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
                     <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
                 </div>
@@ -137,7 +137,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex relative pb-12 sm:items-center md:w-2/3 mx-auto">
+            <div class="flex relative pb-12 sm:items-center lg:w-2/3 mx-auto">
                 <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
                     <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
                 </div>
@@ -156,7 +156,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex relative pb-4 sm:items-center md:w-2/3 mx-auto">
+            <div class="flex relative pb-4 sm:items-center lg:w-2/3 mx-auto">
                 <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
                     <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
                 </div>
