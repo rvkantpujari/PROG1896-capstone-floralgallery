@@ -53,8 +53,8 @@
                         <dl class="divide-y divide-gray-100 text-sm py-2 border-b">
                             @foreach ($products as $product)
                                 <div class="p-2 text-gray-700 even:bg-gray-50 flex justify-between">
-                                    <dd>{{$product->product_name}}</dd>
-                                    <dd>{{$product->quantity}} x CA$ {{$product->product_price}}</dd>
+                                    <dd>{{$product->quantity}} x {{$product->product_name}}</dd>
+                                    <dd>CA$ {{$product->product_price}}</dd>
                                 </div>
                             @endforeach
                         </dl>
