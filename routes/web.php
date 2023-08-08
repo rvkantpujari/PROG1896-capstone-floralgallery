@@ -47,7 +47,7 @@ Route::post('/search', [SearchProductController::class, 'showResults'])->name('s
 Route::post('/search/filter', [SearchProductController::class, 'applyFilter'])->name('search.filter');
 
 
-Route::get('/category/{category}', [ProductsByCategoryController::class, 'show'])->where('category', '[A-Z a-z]+')->name('category');
+Route::get('/category/{category}', [ProductsByCategoryController::class, 'show'])->where('category', '[A-Z a-z]+')->name('view.category.products');
 Route::get('/store/{store}', [ProductsByStoreController::class, 'show'])->where('store', '[A-Z a-z]+')->name('view.store.products');
 
 

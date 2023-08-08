@@ -30,7 +30,7 @@
                             </div>
                     
                             <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                                <a href="{{route('category', ['category' => 'flowers'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                <a href="{{route('view.category.products', ['category' => 'flowers'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
                                     Shop Flowers
                                 </a>
                             </div>
@@ -47,7 +47,7 @@
                             </div>
                     
                             <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                                <a href="{{route('category', ['category' => 'bouquets'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                <a href="{{route('view.category.products', ['category' => 'bouquets'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
                                     Shop Bouquets
                                 </a>
                             </div>
@@ -82,7 +82,7 @@
                             </div>
                     
                             <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                                <a href="{{route('category', ['category' => 'pots and containers'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                <a href="{{route('view.category.products', ['category' => 'pots and containers'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
                                     Shop Pots and Containers
                                 </a>
                             </div>
@@ -99,7 +99,7 @@
                             </div>
                     
                             <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                                <a href="{{route('category', ['category' => 'gardening tools'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
+                                <a href="{{route('view.category.products', ['category' => 'gardening tools'])}}" class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white hover:scale-110">
                                     Shop Gardening Tools
                                 </a>
                             </div>
