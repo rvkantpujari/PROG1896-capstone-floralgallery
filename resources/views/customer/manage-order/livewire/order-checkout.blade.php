@@ -1,5 +1,5 @@
-<div class="my-8 py-8 grid grid-cols-12 gap-8 md:gap-4">
-    <div class="col-span-full md:col-span-8">
+<div class="my-8 py-8 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4">
+    <div class="col-span-1 md:col-span-8">
         <div class="space-y-4">
             <details class="group [&_summary::-webkit-details-marker]:hidden" open>
                 <summary class="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900">
