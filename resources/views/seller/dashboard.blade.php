@@ -4,7 +4,7 @@
 
 @section('main-content')
     {{-- Add Main Section Here!!! --}}
-    <section class="container m-8 pt-4">
+    <div class="container m-8 pt-4">
         <h1 class="text-[26px] font-semibold">Dashboard</h1>
         <div class="pt-8">
             @if(Auth::user()->email_verified_at == null)
@@ -39,8 +39,9 @@
                     </article>
                 </div>
             @else
-                <h2>Hi, {{Auth::guard('seller')->user()->first_name}}. This is Seller Dashboard.</h2>
+                {{-- <h2>Hi, {{Auth::guard('seller')->user()->first_name}}. This is Seller Dashboard.</h2> --}}
+                @livewire('seller.products-pie-chart')
             @endif
         </div>
-    </section>
+    </div>
 @endsection
