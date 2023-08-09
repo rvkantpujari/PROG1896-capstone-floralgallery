@@ -94,6 +94,7 @@
                                 <textarea name="product_desc" id="product_desc" cols="30" rows="4"
                                     class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
                                 >{{old('product_desc', $product->product_desc)}}</textarea>
+                                <span class="text-gray-500 text-sm float-right"><span id="product_desc_length">0</span>/1000</span>
                             </div>
                             @error('product_desc')
                                 <span class="text-red-500 text-sm">{{$message}}</span>
@@ -159,9 +160,6 @@
                                     <span class="text-red-500 text-xs mt-2" id="error_product_images" hidden>(Maximum 4 allowed.)</span>
                                 </label>
                                 <div class="mt-2">
-                                    {{-- <input type="file" name="product_images[]" id="product_images" multiple
-                                        class="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-300 outline-none focus:border-white sm:text-sm sm:leading-6"
-                                    /> --}}
                                     <label for="product_images" class="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                                         <div class="flex flex-col items-center justify-center py-2">
                                             <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -249,4 +247,20 @@
             </div>
         </form>
     </div>
+    <script>
+        addEventListener("load", (event) => {
+            let charCount = document.getElementById('product_desc_length');
+            let productDesc = document.getElementById('product_desc');
+            charCount.innerHTML = productDesc.value.length;
+            productDesc.addEventListener('keyup', (e) => {
+                if(productDesc.value.length < 200) {
+                    charCount.innerHTML = '🙁 ' + productDesc.value.length;
+                } else if(productDesc.value.length >= 200 && productDesc.value.length <= 1000) {
+                    charCount.innerHTML = '😇 ' + productDesc.value.length;
+                } else {
+                    charCount.innerHTML = '😢 ' + productDesc.value.length;
+                }
+            })
+        });
+    </script>
 @endsection
