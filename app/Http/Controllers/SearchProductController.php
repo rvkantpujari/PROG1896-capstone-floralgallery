@@ -30,7 +30,7 @@ class SearchProductController extends Controller
                             $price_min = $request->price_min == null ? 0 : $request->price_min;
                             $q->whereRaw("products.product_price BETWEEN $price_min AND $request->price_max");//, [$request->price_min == null ? 0 : $request->price_min, $request->product_max]);
                         })
-                        ->paginate(8);
+                        ->paginate(6);
         
         return view('search', ['categories' => $categories, 'products' => $products, 'search' => $request->input('search')]);
     }
@@ -54,7 +54,7 @@ class SearchProductController extends Controller
                             $q->where('products.product_name', "like", "%" . $request->search . "%");
                             $q->orWhere('products.product_desc', "like", "%" . $request->search . "%");
                         })
-                        ->paginate(8);
+                        ->paginate(6);
         
         return view('search', ['categories' => $categories, 'products' => $products, 'search' => $request->input('search')]);
     }
@@ -90,7 +90,7 @@ class SearchProductController extends Controller
                             $price_min = $request->price_min == null ? 0 : $request->price_min;
                             return $q->whereRaw("products.product_price BETWEEN $price_min AND $request->price_max");
                         })
-                        ->paginate(8);
+                        ->paginate(6);
         
         $search = $request->search == null ? $request->searchKeywords : $request->search;
         

@@ -21,8 +21,8 @@ class ProductsByStoreController extends Controller
 
         $categories = DB::table('product_categories')->get();
 
-        $products = DB::table('product_categories')->join('products', 'products.seller_id',"=",'product_categories.id')
-                        ->select('products.id as product_id', 'products.*', 'product_categories.id as seller_id', 'product_categories.category')
+        $products = DB::table('product_categories')->join('products', 'products.category_id',"=",'product_categories.id')
+                        ->select('products.id as product_id', 'products.*', 'product_categories.category')
                         ->where('products.product_status', '=', 'published')
                         ->where('products.seller_id', $seller->id)
                         ->paginate(6);
