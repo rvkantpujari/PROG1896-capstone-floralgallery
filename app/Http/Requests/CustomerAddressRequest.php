@@ -16,8 +16,8 @@ class CustomerAddressRequest extends FormRequest
         return [
             'user_full_name' => ['required', 'string', 'max:100'],
             'unit' => ['numeric', 'nullable'],
-            'street_number' => ['required', 'numeric'],
-            'street_name' => ['required', 'string', 'max:120'],
+            'street_number' => ['required', 'numeric', 'min:1', 'max:9999'],
+            'street_name' => ['required', 'string', 'min:5', 'max:120'],
             'city' => ['required', 'string', 'max:100'],
             'postal_code' => ['required', 'regex:/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i'],
             'province_id' => ['required'],
